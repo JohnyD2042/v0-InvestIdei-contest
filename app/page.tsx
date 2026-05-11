@@ -301,26 +301,22 @@ export default function Dashboard() {
           <CardContent className="relative">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Award 1 — Акции: треугольник */}
-              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-border/50 hover:border-amber-500/30 transition-all hover:shadow-lg hover:shadow-amber-500/10 group">
+              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-border/50 hover:border-fuchsia-500/30 transition-all hover:shadow-lg hover:shadow-fuchsia-500/10 group">
                 <div className="flex flex-col items-center text-center gap-4">
-                  <svg className="w-20 h-20 group-hover:scale-110 transition-transform drop-shadow-lg" viewBox="0 0 80 80">
-                    <defs>
-                      <linearGradient id="triangleGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#f59e0b" />
-                        <stop offset="100%" stopColor="#f97316" />
-                      </linearGradient>
-                    </defs>
-                    <polygon points="40,8 72,72 8,72" fill="url(#triangleGrad)" />
-                  </svg>
+                  <img 
+                    src="/images/award-stocks.png" 
+                    alt="Акции" 
+                    className="w-20 h-20 object-contain group-hover:scale-110 transition-transform drop-shadow-lg"
+                  />
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Лучшая идея по акциям</h3>
-                    <div className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                    <div className="text-2xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
                       500 тыс. ₽
                     </div>
                   </div>
                 </div>
                 <div className="absolute top-3 right-3">
-                  <Trophy className="w-4 h-4 text-amber-500/30" />
+                  <Trophy className="w-4 h-4 text-fuchsia-500/30" />
                 </div>
               </div>
 
