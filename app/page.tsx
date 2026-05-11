@@ -116,13 +116,21 @@ function VerticalBarChart() {
               </div>
               <div className="w-full flex flex-col justify-end rounded-sm overflow-hidden" style={{ height: "168px" }}>
                 <div
-                  className="w-full bg-violet-500 transition-all duration-300 group-hover:brightness-110"
+                  className="w-full bg-violet-500 transition-all duration-300 group-hover:brightness-110 flex items-center justify-center"
                   style={{ height: `${influencersH}%` }}
-                />
+                >
+                  {influencersH > 10 && (
+                    <span className="text-[9px] font-semibold text-white/90 leading-none">{item.influencers}</span>
+                  )}
+                </div>
                 <div
-                  className="w-full bg-blue-500 transition-all duration-300 group-hover:brightness-110"
+                  className="w-full bg-blue-500 transition-all duration-300 group-hover:brightness-110 flex items-center justify-center"
                   style={{ height: `${brokersH}%` }}
-                />
+                >
+                  {brokersH > 10 && (
+                    <span className="text-[9px] font-semibold text-white/90 leading-none">{item.brokers}</span>
+                  )}
+                </div>
               </div>
             </div>
           )
