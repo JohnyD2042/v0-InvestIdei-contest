@@ -300,10 +300,18 @@ export default function Dashboard() {
           
           <CardContent className="relative">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Award 1 — Акции: оранжевый круг */}
+              {/* Award 1 — Акции: треугольник */}
               <div className="relative p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-border/50 hover:border-amber-500/30 transition-all hover:shadow-lg hover:shadow-amber-500/10 group">
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full shadow-lg group-hover:scale-110 transition-transform" />
+                  <svg className="w-20 h-20 group-hover:scale-110 transition-transform drop-shadow-lg" viewBox="0 0 80 80">
+                    <defs>
+                      <linearGradient id="triangleGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#f59e0b" />
+                        <stop offset="100%" stopColor="#f97316" />
+                      </linearGradient>
+                    </defs>
+                    <polygon points="40,8 72,72 8,72" fill="url(#triangleGrad)" />
+                  </svg>
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Лучшая идея по акциям</h3>
                     <div className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
@@ -316,10 +324,18 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Award 2 — БПИФ: розово-фиолетовый скругленный квадрат */}
+              {/* Award 2 — БПИФ: знак бесконечности */}
               <div className="relative p-6 rounded-2xl bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-border/50 hover:border-fuchsia-500/30 transition-all hover:shadow-lg hover:shadow-fuchsia-500/10 group">
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-fuchsia-400 to-pink-400 rounded-3xl shadow-lg group-hover:scale-110 transition-transform" />
+                  <svg className="w-20 h-20 group-hover:scale-110 transition-transform drop-shadow-lg" viewBox="0 0 80 80">
+                    <defs>
+                      <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#e879f9" />
+                        <stop offset="100%" stopColor="#f472b6" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M20,40 C20,28 28,20 40,20 C52,20 52,40 40,40 C28,40 28,60 40,60 C52,60 60,52 60,40 C60,28 52,20 40,20" fill="none" stroke="url(#infinityGrad)" strokeWidth="10" strokeLinecap="round" />
+                  </svg>
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Лучшая идея по БПИФ</h3>
                     <div className="text-2xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
@@ -332,10 +348,18 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Award 3 — ОТС: оранжево-розовый градиентный прямоугольник */}
+              {/* Award 3 — ОТС: буква О */}
               <div className="relative p-6 rounded-2xl bg-gradient-to-br from-orange-500/10 to-pink-500/10 border border-border/50 hover:border-orange-500/30 transition-all hover:shadow-lg hover:shadow-orange-500/10 group">
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-pink-400 rounded-2xl shadow-lg group-hover:scale-110 transition-transform" />
+                  <svg className="w-20 h-20 group-hover:scale-110 transition-transform drop-shadow-lg" viewBox="0 0 80 80">
+                    <defs>
+                      <linearGradient id="oGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#fb923c" />
+                        <stop offset="100%" stopColor="#f472b6" />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="40" cy="40" r="30" fill="none" stroke="url(#oGrad)" strokeWidth="12" />
+                  </svg>
                   <div>
                     <h3 className="font-semibold text-foreground mb-2">Лучшая идея ОТС</h3>
                     <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">
