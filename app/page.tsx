@@ -52,7 +52,7 @@ const faqItems = [
 ]
 
 function FAQ() {
-  const [openIndex, setOpenIndex] = React.useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <div className="divide-y divide-border">
