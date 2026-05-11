@@ -59,35 +59,8 @@ function VerticalBarChart() {
   const maxTotal = Math.max(...weeklyIdeasData.map((d) => d.brokers + d.influencers))
 
   return (
+    <>
     <div className="relative" ref={containerRef}>
-      {/* Tooltip */}
-      {tooltip && (
-        <div
-          className="absolute z-50 pointer-events-none bg-popover border border-border rounded-lg shadow-lg px-3 py-2 text-xs"
-          style={{
-            left: Math.max(60, Math.min(tooltip.x, 280)),
-            top: Math.max(tooltip.y, 20),
-            transform: "translate(-50%, -100%)",
-          }}
-        >
-          <div className="font-medium text-foreground mb-1">{tooltip.item.week}</div>
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-sm bg-blue-500 inline-block shrink-0" />
-            <span className="text-muted-foreground">Брокеры:</span>
-            <span className="font-medium text-foreground">{tooltip.item.brokers}</span>
-          </div>
-          <div className="flex items-center gap-2 mt-0.5">
-            <span className="w-2.5 h-2.5 rounded-sm bg-violet-500 inline-block shrink-0" />
-            <span className="text-muted-foreground">Инфлюенсеры:</span>
-            <span className="font-medium text-foreground">{tooltip.item.influencers}</span>
-          </div>
-          <div className="flex items-center gap-2 mt-1 border-t border-border pt-1">
-            <span className="text-muted-foreground">Итого:</span>
-            <span className="font-semibold text-foreground">{tooltip.item.brokers + tooltip.item.influencers}</span>
-          </div>
-        </div>
-      )}
-
       {/* Chart */}
       <div className="flex items-end justify-between gap-2 h-48 px-1">
         {weeklyIdeasData.map((item) => {
@@ -152,6 +125,35 @@ function VerticalBarChart() {
         </div>
       </div>
     </div>
+
+    {/* Tooltip - Outside container for proper stacking */}
+    {tooltip && containerRef.current && (
+      <div
+        className="fixed z-50 pointer-events-none bg-popover border border-border rounded-lg shadow-lg px-3 py-2 text-xs"
+        style={{
+          left: `${containerRef.current.getBoundingClientRect().left + tooltip.x}px`,
+          top: `${containerRef.current.getBoundingClientRect().top + tooltip.y - 100}px`,
+          transform: "translateX(-50%)",
+        }}
+      >
+        <div className="font-medium text-foreground mb-1">{tooltip.item.week}</div>
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-sm bg-blue-500 inline-block shrink-0" />
+          <span className="text-muted-foreground">Брокеры:</span>
+          <span className="font-medium text-foreground">{tooltip.item.brokers}</span>
+        </div>
+        <div className="flex items-center gap-2 mt-0.5">
+          <span className="w-2.5 h-2.5 rounded-sm bg-violet-500 inline-block shrink-0" />
+          <span className="text-muted-foreground">Инфлюенсеры:</span>
+          <span className="font-medium text-foreground">{tooltip.item.influencers}</span>
+        </div>
+        <div className="flex items-center gap-2 mt-1 border-t border-border pt-1">
+          <span className="text-muted-foreground">Итого:</span>
+          <span className="font-semibold text-foreground">{tooltip.item.brokers + tooltip.item.influencers}</span>
+        </div>
+      </div>
+    )}
+    </>
   )
 }
 
