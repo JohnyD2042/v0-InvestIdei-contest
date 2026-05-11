@@ -51,29 +51,7 @@ const statsData = {
   prizeAwarded: 900000,
 }
 
-const awards = [
-  { 
-    title: "Лучшая идея по акциям", 
-    prize: "500 тыс. ₽",
-    icon: TrendingUp,
-    gradient: "from-amber-400 to-orange-500",
-    bgGradient: "from-amber-500/10 to-orange-500/10"
-  },
-  { 
-    title: "Лучшая идея по БПИФ", 
-    prize: "350 тыс. ₽",
-    icon: Layers,
-    gradient: "from-blue-400 to-indigo-500",
-    bgGradient: "from-blue-500/10 to-indigo-500/10"
-  },
-  { 
-    title: "Лучшая идея ОТС", 
-    prize: "50 тыс. ₽",
-    icon: Rocket,
-    gradient: "from-emerald-400 to-teal-500",
-    bgGradient: "from-emerald-500/10 to-teal-500/10"
-  },
-]
+
 
 function VerticalBarChart() {
   const [tooltip, setTooltip] = useState<{ x: number; y: number; item: (typeof weeklyIdeasData)[0] } | null>(null)
@@ -204,19 +182,17 @@ export default function Dashboard() {
         </div>
 
         {/* Main Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {/* Total Participants */}
           <Link href="/rating" className="h-full">
             <Card className="border-border hover:border-primary/50 hover:shadow-md transition-all cursor-pointer h-full">
-              <CardContent className="p-6 h-full flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                    <Users className="w-6 h-6 text-primary" />
-                  </div>
+              <CardContent className="p-6 flex flex-col h-full">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-primary" />
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-1">{statsData.totalParticipants}</div>
-                <div className="text-sm text-muted-foreground">Всего участников</div>
-                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground mt-auto">
+                <div className="text-3xl font-bold text-foreground">{statsData.totalParticipants}</div>
+                <div className="text-sm text-muted-foreground mt-1">Участников</div>
+                <div className="mt-auto pt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <BriefcaseBusiness className="w-3 h-3 text-primary shrink-0" />
                     <span className="whitespace-nowrap">{statsData.brokers} брокеров</span>
@@ -233,15 +209,13 @@ export default function Dashboard() {
 
           {/* Total Ideas */}
           <Card className="border-border hover:border-green-500/50 hover:shadow-md transition-all cursor-pointer h-full">
-            <CardContent className="p-6 h-full flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center">
-                  <Lightbulb className="w-6 h-6 text-green-500" />
-                </div>
+            <CardContent className="p-6 flex flex-col h-full">
+              <div className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-4">
+                <Lightbulb className="w-6 h-6 text-green-500" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-2">{statsData.totalIdeas}</div>
-              <div className="text-sm text-muted-foreground">Инвест-идей</div>
-              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground mt-auto">
+              <div className="text-3xl font-bold text-foreground">{statsData.totalIdeas}</div>
+              <div className="text-sm text-muted-foreground mt-1">Инвест-идей</div>
+              <div className="mt-auto pt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <BriefcaseBusiness className="w-3 h-3 text-primary shrink-0" />
                   <span className="whitespace-nowrap">{statsData.ideasFromBrokers} от брокеров</span>
@@ -258,15 +232,13 @@ export default function Dashboard() {
           {/* Base Assets */}
           <Link href="/coverage" className="h-full">
             <Card className="border-border hover:border-amber-500/50 hover:shadow-md transition-all cursor-pointer h-full">
-              <CardContent className="p-6 h-full flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center">
-                    <Layers className="w-6 h-6 text-amber-500" />
-                  </div>
+              <CardContent className="p-6 flex flex-col h-full">
+                <div className="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mb-4">
+                  <Layers className="w-6 h-6 text-amber-500" />
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-1">{statsData.baseAssets}</div>
-                <div className="text-sm text-muted-foreground">Базовых активов</div>
-                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground mt-auto">
+                <div className="text-3xl font-bold text-foreground">{statsData.baseAssets}</div>
+                <div className="text-sm text-muted-foreground mt-1">Базовых активов</div>
+                <div className="mt-auto pt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <BarChart2 className="w-3 h-3 text-amber-500 shrink-0" />
                     <span className="whitespace-nowrap">{statsData.stocks} акций</span>
@@ -283,15 +255,13 @@ export default function Dashboard() {
 
           {/* Ideas Per Day */}
           <Card className="border-border h-full">
-            <CardContent className="p-6 h-full flex flex-col">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
-                  <TrendingUp className="w-6 h-6 text-blue-500" />
-                </div>
+            <CardContent className="p-6 flex flex-col h-full">
+              <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
+                <TrendingUp className="w-6 h-6 text-blue-500" />
               </div>
-              <div className="text-3xl font-bold text-foreground mb-1">{statsData.ideasPerDay}</div>
-              <div className="text-sm text-muted-foreground">Идей / день</div>
-              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground mt-auto">
+              <div className="text-3xl font-bold text-foreground">{statsData.ideasPerDay}</div>
+              <div className="text-sm text-muted-foreground mt-1">Идей / день</div>
+              <div className="mt-auto pt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <Calendar className="w-3 h-3 text-blue-500 shrink-0" />
                   <span className="whitespace-nowrap">Средняя активность</span>
@@ -301,7 +271,7 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Weekly Ideas Chart */}
+        {/* Weekly Ideas Chart - Full Width */}
         <Card className="border-border">
           <CardHeader>
             <CardTitle className="text-lg">Динамика идей по неделям</CardTitle>
@@ -312,7 +282,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Awards Honor Board */}
+        {/* Monthly Awards */}
         <Card className="border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 overflow-hidden relative">
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-orange-400/10 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -333,29 +303,59 @@ export default function Dashboard() {
           
           <CardContent className="relative">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {awards.map((award, index) => (
-                <div 
-                  key={index} 
-                  className={`relative p-6 rounded-2xl bg-gradient-to-br ${award.bgGradient} border border-border/50 hover:border-amber-500/30 transition-all hover:shadow-lg hover:shadow-amber-500/10 group`}
-                >
-                  <div className="flex flex-col items-center text-center gap-4">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${award.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                      <award.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-2">{award.title}</h3>
-                      <div className={`text-2xl font-bold bg-gradient-to-r ${award.gradient} bg-clip-text text-transparent`}>
-                        {award.prize}
-                      </div>
-                    </div>
+              {/* Award 1: Лучшая идея по акциям */}
+              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-border/50 hover:border-amber-500/30 transition-all hover:shadow-lg hover:shadow-amber-500/10 group">
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <TrendingUp className="w-8 h-8 text-white" />
                   </div>
-                  
-                  {/* Decorative corner */}
-                  <div className="absolute top-3 right-3">
-                    <Trophy className="w-4 h-4 text-amber-500/30" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Лучшая идея по акциям</h3>
+                    <div className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                      500 тыс. ₽
+                    </div>
                   </div>
                 </div>
-              ))}
+                <div className="absolute top-3 right-3">
+                  <Trophy className="w-4 h-4 text-amber-500/30" />
+                </div>
+              </div>
+
+              {/* Award 2: Лучшая идея по БПИФ */}
+              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-indigo-500/10 border border-border/50 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 group">
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Layers className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Лучшая идея по БПИФ</h3>
+                    <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
+                      350 тыс. ₽
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-3 right-3">
+                  <Trophy className="w-4 h-4 text-blue-500/30" />
+                </div>
+              </div>
+
+              {/* Award 3: Лучшая идея ОТС */}
+              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-border/50 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/10 group">
+                <div className="flex flex-col items-center text-center gap-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Rocket className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Лучшая идея ОТС</h3>
+                    <div className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">
+                      50 тыс. ₽
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-3 right-3">
+                  <Trophy className="w-4 h-4 text-emerald-500/30" />
+                </div>
+              </div>
             </div>
             
             {/* Live indicator */}
