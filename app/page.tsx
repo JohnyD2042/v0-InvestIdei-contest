@@ -108,10 +108,6 @@ function FAQ() {
     </div>
   )
 }
-      })}
-    </div>
-  )
-}
 
 const weeklyIdeasData = [
   { week: "6 апр", brokers: 5, influencers: 3 },
