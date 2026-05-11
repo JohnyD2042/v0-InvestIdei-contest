@@ -54,34 +54,65 @@ const faqItems = [
 function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const handleToggle = (index: number) => {
-    console.log("[v0] Toggling index:", index, "Current openIndex:", openIndex)
-    setOpenIndex(openIndex === index ? null : index)
-  }
+  const gradients = [
+    "from-fuchsia-500 to-pink-500",
+    "from-orange-400 to-amber-500",
+    "from-violet-500 to-purple-500",
+    "from-emerald-400 to-teal-500",
+    "from-rose-400 to-pink-500",
+    "from-blue-400 to-cyan-500",
+  ]
 
   return (
-    <div className="divide-y divide-border">
-      {faqItems.map((item, index) => (
-        <div key={index}>
-          <button
-            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/40 transition-colors cursor-pointer"
-            onClick={() => handleToggle(index)}
-            type="button"
+    <div className="space-y-3 p-4">
+      {faqItems.map((item, index) => {
+        const isOpen = openIndex === index
+        const gradient = gradients[index % gradients.length]
+        
+        return (
+          <div 
+            key={index}
+            className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+              isOpen 
+                ? "border-transparent bg-gradient-to-r " + gradient + " p-[1px]" 
+                : "border-border hover:border-muted-foreground/30"
+            }`}
           >
-            <span className="font-medium text-foreground pr-4">{item.question}</span>
-            <div className={`shrink-0 w-5 h-5 flex items-center justify-center rounded-full border border-border transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""}`}>
-              <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <div className={`rounded-2xl ${isOpen ? "bg-background" : ""}`}>
+              <button
+                className="w-full flex items-center gap-4 px-5 py-4 text-left cursor-pointer"
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                type="button"
+              >
+                <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white bg-gradient-to-br ${gradient}`}>
+                  {index + 1}
+                </div>
+                <span className="font-medium text-foreground flex-1">{item.question}</span>
+                <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  isOpen 
+                    ? "bg-gradient-to-br " + gradient + " text-white rotate-180" 
+                    : "bg-muted text-muted-foreground"
+                }`}>
+                  <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
+                    <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </button>
+              <div className={`grid transition-all duration-300 ease-in-out ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}>
+                <div className="overflow-hidden">
+                  <div className="px-5 pb-5 pt-0 pl-17">
+                    <div className="pl-12 text-sm text-muted-foreground leading-relaxed border-l-2 border-muted ml-4 pl-4">
+                      {item.answer}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </button>
-          {openIndex === index && (
-            <div className="px-6 py-5 text-sm text-muted-foreground leading-relaxed bg-muted/20">
-              {item.answer}
-            </div>
-          )}
-        </div>
-      ))}
+          </div>
+        )
+      })}
     </div>
   )
 }
