@@ -357,11 +357,15 @@ export default function Dashboard() {
               {/* Award 1 — Акции: треугольник */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <img 
-                    src="/images/award-stocks.png" 
-                    alt="Акции" 
-                    className="w-28 h-28 group-hover:scale-110 transition-transform duration-300"
-                  />
+                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 100 100" fill="none">
+                    <path d="M50 10 L90 85 Q90 90 85 90 L15 90 Q10 90 10 85 L50 10 Q50 8 50 10" fill="url(#triangleGradient1)"/>
+                    <defs>
+                      <linearGradient id="triangleGradient1" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#e879f9"/>
+                        <stop offset="100%" stopColor="#f0abfc"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
                     <div className="text-xl font-bold text-fuchsia-400 whitespace-nowrap">
@@ -371,14 +375,23 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Award 2 — БПИФ: знак бесконечности */}
+              {/* Award 2 — БПИФ: знак бесконечности/бабочка */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <img 
-                    src="/images/award-bpif.png" 
-                    alt="БПИФ" 
-                    className="w-28 h-28 group-hover:scale-110 transition-transform duration-300"
-                  />
+                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 100 70" fill="none">
+                    <path d="M5 10 Q5 5 10 5 L45 35 L10 65 Q5 65 5 60 Z" fill="url(#bowLeft)"/>
+                    <path d="M95 10 Q95 5 90 5 L55 35 L90 65 Q95 65 95 60 Z" fill="url(#bowRight)"/>
+                    <defs>
+                      <linearGradient id="bowLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#fb923c"/>
+                        <stop offset="100%" stopColor="#f97316"/>
+                      </linearGradient>
+                      <linearGradient id="bowRight" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#f0abfc"/>
+                        <stop offset="100%" stopColor="#e879f9"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
                     <div className="text-xl font-bold text-fuchsia-400 whitespace-nowrap">
@@ -388,14 +401,18 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Award 3 — ОТС: буква О */}
+              {/* Award 3 — ОТС: круг */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <img 
-                    src="/images/award-otc.png" 
-                    alt="ОТС" 
-                    className="w-28 h-28 group-hover:scale-110 transition-transform duration-300"
-                  />
+                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" fill="url(#circleGradient1)"/>
+                    <defs>
+                      <linearGradient id="circleGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#fb923c"/>
+                        <stop offset="100%" stopColor="#f97316"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
                     <div className="text-xl font-bold text-orange-400 whitespace-nowrap">
