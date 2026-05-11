@@ -279,18 +279,10 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Monthly Awards */}
-        <Card className="border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-amber-400/10 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-orange-400/10 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-          
-          <CardHeader className="text-center pb-2 relative">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/25">
-                <Medal className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            <CardTitle className="text-2xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+        {/* Monthly Awards — Hipster minimal style */}
+        <Card className="border-border/50 bg-transparent overflow-hidden relative">
+          <CardHeader className="text-center pb-4 relative">
+            <CardTitle className="text-2xl font-bold text-foreground tracking-tight">
               Ежемесячные награды
             </CardTitle>
             <CardDescription className="text-muted-foreground">
@@ -299,31 +291,28 @@ export default function Dashboard() {
           </CardHeader>
           
           <CardContent className="relative">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Award 1 — Акции: треугольник */}
-              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-border/50 hover:border-fuchsia-500/30 transition-all hover:shadow-lg hover:shadow-fuchsia-500/10 group">
-                <div className="flex flex-col items-center text-center gap-4">
+              <div className="relative p-8 group cursor-pointer">
+                <div className="flex flex-col items-center text-center gap-6">
                   <img 
                     src="/images/award-stocks.png" 
                     alt="Акции" 
-                    className="w-20 h-20 object-contain group-hover:scale-110 transition-transform drop-shadow-lg"
+                    className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                   <div>
-                    <h3 className="font-semibold text-foreground mb-2">Лучшая идея по акциям</h3>
-                    <div className="text-2xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+                    <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
+                    <div className="text-3xl font-bold text-fuchsia-400">
                       500 тыс. ₽
                     </div>
                   </div>
                 </div>
-                <div className="absolute top-3 right-3">
-                  <Trophy className="w-4 h-4 text-fuchsia-500/30" />
-                </div>
               </div>
 
               {/* Award 2 — БПИФ: знак бесконечности */}
-              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-border/50 hover:border-fuchsia-500/30 transition-all hover:shadow-lg hover:shadow-fuchsia-500/10 group">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <svg className="w-20 h-20 group-hover:scale-110 transition-transform drop-shadow-lg" viewBox="0 0 80 80">
+              <div className="relative p-8 group cursor-pointer">
+                <div className="flex flex-col items-center text-center gap-6">
+                  <svg className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 80 80">
                     <defs>
                       <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#e879f9" />
@@ -333,21 +322,18 @@ export default function Dashboard() {
                     <path d="M20,40 C20,28 28,20 40,20 C52,20 52,40 40,40 C28,40 28,60 40,60 C52,60 60,52 60,40 C60,28 52,20 40,20" fill="none" stroke="url(#infinityGrad)" strokeWidth="10" strokeLinecap="round" />
                   </svg>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-2">Лучшая идея по БПИФ</h3>
-                    <div className="text-2xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+                    <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
+                    <div className="text-3xl font-bold text-fuchsia-400">
                       350 тыс. ₽
                     </div>
                   </div>
                 </div>
-                <div className="absolute top-3 right-3">
-                  <Trophy className="w-4 h-4 text-fuchsia-500/30" />
-                </div>
               </div>
 
               {/* Award 3 — ОТС: буква О */}
-              <div className="relative p-6 rounded-2xl bg-gradient-to-br from-orange-500/10 to-pink-500/10 border border-border/50 hover:border-orange-500/30 transition-all hover:shadow-lg hover:shadow-orange-500/10 group">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <svg className="w-20 h-20 group-hover:scale-110 transition-transform drop-shadow-lg" viewBox="0 0 80 80">
+              <div className="relative p-8 group cursor-pointer">
+                <div className="flex flex-col items-center text-center gap-6">
+                  <svg className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 80 80">
                     <defs>
                       <linearGradient id="oGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#fb923c" />
@@ -357,14 +343,11 @@ export default function Dashboard() {
                     <circle cx="40" cy="40" r="30" fill="none" stroke="url(#oGrad)" strokeWidth="12" />
                   </svg>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-2">Лучшая идея ОТС</h3>
-                    <div className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">
+                    <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
+                    <div className="text-3xl font-bold text-orange-400">
                       50 тыс. ₽
                     </div>
                   </div>
-                </div>
-                <div className="absolute top-3 right-3">
-                  <Trophy className="w-4 h-4 text-orange-500/30" />
                 </div>
               </div>
             </div>
