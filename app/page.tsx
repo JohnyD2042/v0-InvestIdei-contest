@@ -195,12 +195,12 @@ export default function Dashboard() {
                 <div className="mt-auto pt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <BriefcaseBusiness className="w-3 h-3 text-blue-500 shrink-0" />
-                    <span className="whitespace-nowrap text-blue-500">{statsData.brokers} брокеров</span>
+                    <span className="whitespace-nowrap">{statsData.brokers} брокеров</span>
                   </div>
                   <span className="hidden sm:inline">·</span>
                   <div className="flex items-center gap-1">
                     <Palmtree className="w-3 h-3 text-violet-500 shrink-0" />
-                    <span className="whitespace-nowrap text-violet-500">{statsData.influencers} инфлюенсеров</span>
+                    <span className="whitespace-nowrap">{statsData.influencers} инфлюенсеров</span>
                   </div>
                 </div>
               </CardContent>
@@ -218,11 +218,11 @@ export default function Dashboard() {
               <div className="mt-auto pt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <BriefcaseBusiness className="w-3 h-3 text-blue-500 shrink-0" />
-                  <span className="whitespace-nowrap text-blue-500">{statsData.ideasFromBrokers} от брокеров</span>
+                  <span className="whitespace-nowrap">{statsData.ideasFromBrokers} от брокеров</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <Palmtree className="w-3 h-3 text-violet-500 shrink-0" />
-                  <span className="whitespace-nowrap text-violet-500">{statsData.ideasFromInfluencers} от инфлюенсеров</span>
+                  <span className="whitespace-nowrap">{statsData.ideasFromInfluencers} от инфлюенсеров</span>
                 </div>
               </div>
             </CardContent>
