@@ -357,10 +357,14 @@ export default function Dashboard() {
               {/* Award 1 — Акции: треугольник */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <img 
-                    src="/images/award-stocks.png" 
-                    alt="Акции" 
-                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300 bg-transparent"
+                  <div 
+                    className="w-36 h-36 group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      backgroundImage: 'url(/images/award-stocks.png)',
+                      backgroundSize: 'contain',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'center'
+                    }}
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
@@ -374,10 +378,14 @@ export default function Dashboard() {
               {/* Award 2 — БПИФ: знак бесконечности */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <img 
-                    src="/images/award-bpif.png" 
-                    alt="БПИФ" 
-                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300 bg-transparent"
+                  <div 
+                    className="w-36 h-36 group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      backgroundImage: 'url(/images/award-bpif.png)',
+                      backgroundSize: 'contain',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'center'
+                    }}
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
@@ -391,10 +399,14 @@ export default function Dashboard() {
               {/* Award 3 — ОТС: буква О */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <img 
-                    src="/images/award-otc.png" 
-                    alt="ОТС" 
-                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300 bg-transparent"
+                  <div 
+                    className="w-36 h-36 group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      backgroundImage: 'url(/images/award-otc.png)',
+                      backgroundSize: 'contain',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'center'
+                    }}
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
