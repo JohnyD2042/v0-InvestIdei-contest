@@ -9,7 +9,6 @@ import {
   Lightbulb,
   Layers,
   TrendingUp,
-  Gift,
   Calendar,
   FileText,
   ArrowRight,
@@ -17,6 +16,7 @@ import {
   Target,
   Rocket,
   BarChart2,
+  Trophy,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -133,7 +133,7 @@ function VerticalBarChart() {
               }}
               onMouseLeave={() => setTooltip(null)}
             >
-              <div className="text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity font-medium">
+              <div className="text-[10px] text-muted-foreground font-medium">
                 {total}
               </div>
               <div className="w-full flex flex-col justify-end rounded-sm overflow-hidden" style={{ height: "168px" }}>
@@ -240,7 +240,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="text-3xl font-bold text-foreground mb-1">{statsData.totalIdeas}</div>
-              <div className="text-sm text-muted-foreground">Всего инвест-идей</div>
+              <div className="text-sm text-muted-foreground">Инвест-идей</div>
               <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground mt-auto">
                 <div className="flex items-center gap-1">
                   <BriefcaseBusiness className="w-3 h-3 text-primary shrink-0" />
@@ -301,20 +301,16 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Charts and Prizes Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Weekly Ideas Chart */}
-          <Card className="border-border lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="text-lg">Динамика идей по неделям</CardTitle>
-              <CardDescription>Количество новых инвестиционных идей</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <VerticalBarChart />
-            </CardContent>
-          </Card>
-
-        </div>
+        {/* Weekly Ideas Chart */}
+        <Card className="border-border">
+          <CardHeader>
+            <CardTitle className="text-lg">Динамика идей по неделям</CardTitle>
+            <CardDescription>Количество новых инвестиционных идей</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <VerticalBarChart />
+          </CardContent>
+        </Card>
 
         {/* Awards Honor Board */}
         <Card className="border-amber-500/30 bg-gradient-to-br from-amber-500/5 via-transparent to-orange-500/5 overflow-hidden relative">
@@ -328,7 +324,7 @@ export default function Dashboard() {
               </div>
             </div>
             <CardTitle className="text-2xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
-              Доска почета
+              Ежемесячные награды
             </CardTitle>
             <CardDescription className="text-muted-foreground">
               Главные номинации конкурса
@@ -356,7 +352,7 @@ export default function Dashboard() {
                   
                   {/* Decorative corner */}
                   <div className="absolute top-3 right-3">
-                    <Gift className="w-4 h-4 text-amber-500/30" />
+                    <Trophy className="w-4 h-4 text-amber-500/30" />
                   </div>
                 </div>
               ))}
