@@ -24,6 +24,62 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress"
 import { DashboardLayout } from "@/components/dashboard-layout"
 
+const faqItems = [
+  {
+    question: "Кто может участвовать в конкурсе?",
+    answer: "В конкурсе могут участвовать лицензированные брокеры, инвестиционные компании и финансовые инфлюенсеры, зарегистрированные на платформе Invest-idei.ru. Для участия необходимо пройти верификацию и принять условия конкурса.",
+  },
+  {
+    question: "Как подать инвест-идею?",
+    answer: "Идеи подаются через личный кабинет на платформе Invest-idei.ru. Каждая идея должна содержать: базовый актив, целевую цену, горизонт инвестирования и обоснование. Одна организация может подать неограниченное количество идей.",
+  },
+  {
+    question: "Как распределяются награды?",
+    answer: "Победители определяются ежемесячно по итогам закрытых идей. Лучшая идея по акциям получает 500 тыс. ₽, лучшая идея по БПИФ — 350 тыс. ₽, лучшая идея ОТС — 50 тыс. ₽. Оценка производится по соотношению доходность/риск и точности прогноза.",
+  },
+  {
+    question: "Какие критерии оценки идей?",
+    answer: "Идеи оцениваются по следующим критериям: фактическая доходность на момент закрытия, точность целевой цены, качество аналитического обоснования и актуальность идеи на момент подачи. Итоговый балл формируется автоматически на основе рыночных данных.",
+  },
+  {
+    question: "Куда обращаться, если хочу участвовать?",
+    answer: "Для участия в конкурсе свяжитесь с организаторами через раздел «Контакты» на сайте Invest-idei.ru или напишите на почту contest@invest-idei.ru. Наша команда свяжется с вами в течение одного рабочего дня и поможет пройти регистрацию.",
+  },
+  {
+    question: "Когда проходит конкурс?",
+    answer: "Конкурс проходит с 1 апреля по 25 декабря 2026 года. Награждение победителей проводится ежемесячно — 1-го числа каждого месяца по итогам предыдущего периода. Финальная церемония награждения состоится в январе 2027 года.",
+  },
+]
+
+function FAQ() {
+  const [openIndex, setOpenIndex] = React.useState<number | null>(null)
+
+  return (
+    <div className="divide-y divide-border">
+      {faqItems.map((item, index) => (
+        <div key={index}>
+          <button
+            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/40 transition-colors"
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+          >
+            <span className="font-medium text-foreground pr-4">{item.question}</span>
+            <div className={`shrink-0 w-5 h-5 flex items-center justify-center rounded-full border border-border transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""}`}>
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </button>
+          {openIndex === index && (
+            <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">
+              {item.answer}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const weeklyIdeasData = [
   { week: "6 апр", brokers: 5, influencers: 3 },
   { week: "13 апр", brokers: 7, influencers: 5 },
@@ -387,48 +443,14 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Participant CTA Block */}
-        <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
-          <CardContent className="p-8">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-              <div className="space-y-4">
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-2">Хотите участвовать?</h2>
-                  <p className="text-muted-foreground">
-                    Присоединяйтесь к конкурсу финансовых аналитиков и покажите свои навыки прогнозирования
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-6">
-                  {/* Timeline */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                      <Calendar className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-foreground">Сроки конкурса</div>
-                      <div className="text-xs text-muted-foreground">1 апреля - 25 декабря 2026</div>
-                    </div>
-                  </div>
-
-                  {/* Rules */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                      <FileText className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-foreground">Правила</div>
-                      <a href="#" className="text-xs text-primary hover:underline">Читать правила</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <Button size="lg" className="gap-2 shrink-0">
-                Хочу участвовать
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </div>
+        {/* FAQ Block */}
+        <Card className="border-border">
+          <CardHeader>
+            <CardTitle className="text-xl font-bold text-foreground">О конкурсе</CardTitle>
+            <CardDescription>Часто задаваемые вопросы</CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <FAQ />
           </CardContent>
         </Card>
       </div>
