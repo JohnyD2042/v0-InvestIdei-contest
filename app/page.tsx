@@ -299,6 +299,7 @@ export default function Dashboard() {
                     src="/images/award-stocks.png" 
                     alt="Акции" 
                     className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                    style={{ mixBlendMode: 'screen' }}
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
@@ -316,6 +317,7 @@ export default function Dashboard() {
                     src="/images/award-bpif.png" 
                     alt="БПИФ" 
                     className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                    style={{ mixBlendMode: 'screen' }}
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
@@ -333,6 +335,7 @@ export default function Dashboard() {
                     src="/images/award-otc.png" 
                     alt="ОТС" 
                     className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                    style={{ mixBlendMode: 'screen' }}
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
