@@ -302,7 +302,7 @@ export default function Dashboard() {
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
-                    <div className="text-3xl font-bold text-fuchsia-400">
+                    <div className="text-xl font-bold text-fuchsia-400 whitespace-nowrap">
                       500 тыс. ₽
                     </div>
                   </div>
@@ -323,7 +323,7 @@ export default function Dashboard() {
                   </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
-                    <div className="text-3xl font-bold text-fuchsia-400">
+                    <div className="text-xl font-bold text-fuchsia-400 whitespace-nowrap">
                       350 тыс. ₽
                     </div>
                   </div>
@@ -344,7 +344,7 @@ export default function Dashboard() {
                   </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
-                    <div className="text-3xl font-bold text-orange-400">
+                    <div className="text-xl font-bold text-orange-400 whitespace-nowrap">
                       50 тыс. ₽
                     </div>
                   </div>
