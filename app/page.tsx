@@ -305,7 +305,7 @@ export default function Dashboard() {
                   <span className="hidden sm:inline">·</span>
                   <div className="flex items-center gap-1">
                     <Layers className="w-3 h-3 text-muted-foreground shrink-0" />
-                    <span className="whitespace-nowrap">{statsData.baseAssets - statsData.stocks} п��очее</span>
+                    <span className="whitespace-nowrap">{statsData.baseAssets - statsData.stocks} БПИФ</span>
                   </div>
                 </div>
               </CardContent>
