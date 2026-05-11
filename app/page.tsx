@@ -59,7 +59,6 @@ function VerticalBarChart() {
   const maxTotal = Math.max(...weeklyIdeasData.map((d) => d.brokers + d.influencers))
 
   return (
-    <>
     <div className="relative" ref={containerRef}>
       {/* Chart */}
       <div className="flex items-end justify-between gap-2 h-48 px-1">
@@ -153,7 +152,6 @@ function VerticalBarChart() {
         </div>
       </div>
     )}
-    </>
   )
 }
 
