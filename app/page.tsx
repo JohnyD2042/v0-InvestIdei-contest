@@ -305,7 +305,7 @@ export default function Dashboard() {
                   <span className="hidden sm:inline">·</span>
                   <div className="flex items-center gap-1">
                     <Layers className="w-3 h-3 text-muted-foreground shrink-0" />
-                    <span className="whitespace-nowrap">{statsData.baseAssets - statsData.stocks} прочее</span>
+                    <span className="whitespace-nowrap">{statsData.baseAssets - statsData.stocks} п��очее</span>
                   </div>
                 </div>
               </CardContent>
@@ -360,7 +360,7 @@ export default function Dashboard() {
                   <img 
                     src="/images/award-stocks.png" 
                     alt="Акции" 
-                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300"
+                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300 bg-transparent"
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
@@ -377,7 +377,7 @@ export default function Dashboard() {
                   <img 
                     src="/images/award-bpif.png" 
                     alt="БПИФ" 
-                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300"
+                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300 bg-transparent"
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
@@ -394,7 +394,7 @@ export default function Dashboard() {
                   <img 
                     src="/images/award-otc.png" 
                     alt="ОТС" 
-                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300"
+                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300 bg-transparent"
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
