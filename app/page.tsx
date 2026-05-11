@@ -199,8 +199,8 @@ export default function Dashboard() {
                   </div>
                   <span className="hidden sm:inline">·</span>
                   <div className="flex items-center gap-1">
-                    <Palmtree className="w-3 h-3 text-amber-500 shrink-0" />
-                    <span className="whitespace-nowrap">{statsData.influencers} инфлюенсеров</span>
+                    <Palmtree className="w-3 h-3 text-violet-500 shrink-0" />
+                    <span className="whitespace-nowrap text-violet-500">{statsData.influencers} инфлюенсеров</span>
                   </div>
                 </div>
               </CardContent>
@@ -221,8 +221,8 @@ export default function Dashboard() {
                   <span className="whitespace-nowrap">{statsData.ideasFromBrokers} от брокеров</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Palmtree className="w-3 h-3 text-amber-500 shrink-0" />
-                  <span className="whitespace-nowrap">{statsData.ideasFromInfluencers} от инфлюенсеров</span>
+                  <Palmtree className="w-3 h-3 text-violet-500 shrink-0" />
+                  <span className="whitespace-nowrap text-violet-500">{statsData.ideasFromInfluencers} от инфлюенсеров</span>
                 </div>
               </div>
             </CardContent>
