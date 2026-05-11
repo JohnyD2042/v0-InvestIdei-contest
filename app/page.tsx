@@ -380,14 +380,14 @@ export default function Dashboard() {
               {/* Award 1 — Акции: треугольник */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 100 100" fill="none">
-                    <path d="M50 10 L90 85 Q90 90 85 90 L15 90 Q10 90 10 85 L50 10 Q50 8 50 10" fill="url(#triangleGradient1)"/>
+                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
                     <defs>
-                      <linearGradient id="triangleGradient1" x1="0%" y1="100%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#e879f9"/>
-                        <stop offset="100%" stopColor="#f0abfc"/>
+                      <linearGradient id="gradTriangle" x1="56" y1="440" x2="456" y2="72" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#F2A7D5"/>
+                        <stop offset="100%" stopColor="#D899F0"/>
                       </linearGradient>
                     </defs>
+                    <polygon points="256,52 40,426 472,426" fill="url(#gradTriangle)" stroke="url(#gradTriangle)" strokeWidth="28" strokeLinejoin="round"/>
                   </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
@@ -398,22 +398,18 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Award 2 — БПИФ: знак бесконечности/бабочка */}
+              {/* Award 2 — БПИФ: бабочка */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 100 70" fill="none">
-                    <path d="M5 10 Q5 5 10 5 L45 35 L10 65 Q5 65 5 60 Z" fill="url(#bowLeft)"/>
-                    <path d="M95 10 Q95 5 90 5 L55 35 L90 65 Q95 65 95 60 Z" fill="url(#bowRight)"/>
+                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
                     <defs>
-                      <linearGradient id="bowLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#fb923c"/>
-                        <stop offset="100%" stopColor="#f97316"/>
-                      </linearGradient>
-                      <linearGradient id="bowRight" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#f0abfc"/>
-                        <stop offset="100%" stopColor="#e879f9"/>
+                      <linearGradient id="gradBpif" x1="18" y1="256" x2="494" y2="256" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#F6A000"/>
+                        <stop offset="52%" stopColor="#F6B08F"/>
+                        <stop offset="100%" stopColor="#E08FEF"/>
                       </linearGradient>
                     </defs>
+                    <path d="M 18 78 Q 18 42 46 30 L 84 12 Q 104 2 124 20 L 256 148 L 388 20 Q 408 2 428 12 L 466 30 Q 494 42 494 78 L 494 434 Q 494 470 466 482 L 428 500 Q 408 510 388 492 L 256 364 L 124 492 Q 104 510 84 500 L 46 482 Q 18 470 18 434 Z" fill="url(#gradBpif)"/>
                   </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
@@ -427,14 +423,15 @@ export default function Dashboard() {
               {/* Award 3 — ОТС: круг */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 100 100" fill="none">
-                    <circle cx="50" cy="50" r="45" fill="url(#circleGradient1)"/>
+                  <svg className="w-28 h-28 group-hover:scale-110 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
                     <defs>
-                      <linearGradient id="circleGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#fb923c"/>
-                        <stop offset="100%" stopColor="#f97316"/>
-                      </linearGradient>
+                      <radialGradient id="gradCircle" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(368 136) rotate(134.105) scale(430)">
+                        <stop offset="0%" stopColor="#FFC33A"/>
+                        <stop offset="55%" stopColor="#FFA20A"/>
+                        <stop offset="100%" stopColor="#F3981C"/>
+                      </radialGradient>
                     </defs>
+                    <circle cx="256" cy="256" r="256" fill="url(#gradCircle)"/>
                   </svg>
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
