@@ -63,11 +63,11 @@ function VerticalBarChart() {
       {/* Tooltip */}
       {tooltip && (
         <div
-          className="absolute z-10 pointer-events-none bg-popover border border-border rounded-lg shadow-lg px-3 py-2 text-xs"
+          className="absolute z-50 pointer-events-none bg-popover border border-border rounded-lg shadow-lg px-3 py-2 text-xs"
           style={{
-            left: tooltip.x,
-            top: tooltip.y,
-            transform: "translate(-50%, -110%)",
+            left: Math.max(60, Math.min(tooltip.x, 280)),
+            top: Math.max(tooltip.y, 20),
+            transform: "translate(-50%, -100%)",
           }}
         >
           <div className="font-medium text-foreground mb-1">{tooltip.item.week}</div>
