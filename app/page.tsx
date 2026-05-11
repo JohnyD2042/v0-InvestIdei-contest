@@ -51,8 +51,6 @@ const statsData = {
   prizeAwarded: 900000,
 }
 
-
-
 function VerticalBarChart() {
   const [tooltip, setTooltip] = useState<{ x: number; y: number; item: (typeof weeklyIdeasData)[0] } | null>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
