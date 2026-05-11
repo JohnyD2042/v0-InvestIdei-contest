@@ -60,6 +60,34 @@ function VerticalBarChart() {
 
   return (
     <div className="relative" ref={containerRef}>
+      {/* Tooltip */}
+      {tooltip && (
+        <div
+          className="absolute z-10 pointer-events-none bg-popover border border-border rounded-lg shadow-lg px-3 py-2 text-xs"
+          style={{
+            left: tooltip.x,
+            top: tooltip.y,
+            transform: "translate(-50%, -110%)",
+          }}
+        >
+          <div className="font-medium text-foreground mb-1">{tooltip.item.week}</div>
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-sm bg-blue-500 inline-block shrink-0" />
+            <span className="text-muted-foreground">Брокеры:</span>
+            <span className="font-medium text-foreground">{tooltip.item.brokers}</span>
+          </div>
+          <div className="flex items-center gap-2 mt-0.5">
+            <span className="w-2.5 h-2.5 rounded-sm bg-violet-500 inline-block shrink-0" />
+            <span className="text-muted-foreground">Инфлюенсеры:</span>
+            <span className="font-medium text-foreground">{tooltip.item.influencers}</span>
+          </div>
+          <div className="flex items-center gap-2 mt-1 border-t border-border pt-1">
+            <span className="text-muted-foreground">Итого:</span>
+            <span className="font-semibold text-foreground">{tooltip.item.brokers + tooltip.item.influencers}</span>
+          </div>
+        </div>
+      )}
+
       {/* Chart */}
       <div className="flex items-end justify-between gap-2 h-48 px-1">
         {weeklyIdeasData.map((item) => {
@@ -124,34 +152,6 @@ function VerticalBarChart() {
         </div>
       </div>
     </div>
-
-    {/* Tooltip - Outside container for proper stacking */}
-    {tooltip && containerRef.current && (
-      <div
-        className="fixed z-50 pointer-events-none bg-popover border border-border rounded-lg shadow-lg px-3 py-2 text-xs"
-        style={{
-          left: `${containerRef.current.getBoundingClientRect().left + tooltip.x}px`,
-          top: `${containerRef.current.getBoundingClientRect().top + tooltip.y - 100}px`,
-          transform: "translateX(-50%)",
-        }}
-      >
-        <div className="font-medium text-foreground mb-1">{tooltip.item.week}</div>
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-sm bg-blue-500 inline-block shrink-0" />
-          <span className="text-muted-foreground">Брокеры:</span>
-          <span className="font-medium text-foreground">{tooltip.item.brokers}</span>
-        </div>
-        <div className="flex items-center gap-2 mt-0.5">
-          <span className="w-2.5 h-2.5 rounded-sm bg-violet-500 inline-block shrink-0" />
-          <span className="text-muted-foreground">Инфлюенсеры:</span>
-          <span className="font-medium text-foreground">{tooltip.item.influencers}</span>
-        </div>
-        <div className="flex items-center gap-2 mt-1 border-t border-border pt-1">
-          <span className="text-muted-foreground">Итого:</span>
-          <span className="font-semibold text-foreground">{tooltip.item.brokers + tooltip.item.influencers}</span>
-        </div>
-      </div>
-    )}
   )
 }
 
@@ -302,7 +302,7 @@ export default function Dashboard() {
           
           <CardContent className="relative">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Award 1: Лучшая идея по акциям */}
+              {/* Award 1 */}
               <div className="relative p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-border/50 hover:border-amber-500/30 transition-all hover:shadow-lg hover:shadow-amber-500/10 group">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -320,7 +320,7 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Award 2: Лучшая идея по БПИФ */}
+              {/* Award 2 */}
               <div className="relative p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-indigo-500/10 border border-border/50 hover:border-blue-500/30 transition-all hover:shadow-lg hover:shadow-blue-500/10 group">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -338,7 +338,7 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Award 3: Лучшая идея ОТС */}
+              {/* Award 3 */}
               <div className="relative p-6 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-border/50 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/10 group">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
