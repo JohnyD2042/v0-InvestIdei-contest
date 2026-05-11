@@ -342,7 +342,7 @@ export default function Dashboard() {
         </Card>
 
         {/* Monthly Awards — Hipster minimal style */}
-        <Card className="border-border/50 overflow-hidden relative" style={{ backgroundColor: '#f0f0f0' }}>
+        <Card className="border-border/50 overflow-hidden relative bg-background">
           <CardHeader className="text-center pb-4 relative">
             <CardTitle className="text-2xl font-bold text-foreground tracking-tight">
               Ежемесячные награды
@@ -360,7 +360,7 @@ export default function Dashboard() {
                   <img 
                     src="/images/award-stocks.png" 
                     alt="Акции" 
-                    className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по акциям</h3>
@@ -377,7 +377,7 @@ export default function Dashboard() {
                   <img 
                     src="/images/award-bpif.png" 
                     alt="БПИФ" 
-                    className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
@@ -394,7 +394,7 @@ export default function Dashboard() {
                   <img 
                     src="/images/award-otc.png" 
                     alt="ОТС" 
-                    className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                    className="w-36 h-36 object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
