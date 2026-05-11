@@ -239,13 +239,19 @@ export default function Dashboard() {
                   <Lightbulb className="w-6 h-6 text-green-500" />
                 </div>
               </div>
-              <div className="text-3xl font-bold text-foreground mb-1">{statsData.totalIdeas}</div>
+              <div className="text-3xl font-bold text-foreground mb-2">{statsData.totalIdeas}</div>
               <div className="text-sm text-muted-foreground">Инвест-идей</div>
               <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground mt-auto">
                 <div className="flex items-center gap-1">
                   <BriefcaseBusiness className="w-3 h-3 text-primary shrink-0" />
                   <span className="whitespace-nowrap">{statsData.ideasFromBrokers} от брокеров</span>
                 </div>
+                <span className="hidden sm:inline">·</span>
+                <div className="flex items-center gap-1">
+                  <Palmtree className="w-3 h-3 text-amber-500 shrink-0" />
+                  <span className="whitespace-nowrap">{statsData.ideasFromInfluencers} от инфлюенсеров</span>
+                </div>
+              </div>
                 <span className="hidden sm:inline">·</span>
                 <div className="flex items-center gap-1">
                   <Palmtree className="w-3 h-3 text-amber-500 shrink-0" />
