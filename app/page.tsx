@@ -360,12 +360,12 @@ export default function Dashboard() {
             {/* Live indicator */}
             <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/10 rounded-full">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-[pulse_0.8s_ease-in-out_infinite]" />
                 <span className="text-xs font-medium text-green-600">Конкурс идет</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/10 rounded-full">
-                <Calendar className="w-3 h-3 text-amber-500" />
-                <span className="text-xs font-medium text-amber-600">Ближайшее награждение 1 июля</span>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-muted rounded-full">
+                <Calendar className="w-3 h-3 text-muted-foreground" />
+                <span className="text-xs font-medium text-muted-foreground">Ближайшее награждение 1 июля</span>
               </div>
             </div>
           </CardContent>
