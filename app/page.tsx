@@ -54,44 +54,36 @@ const faqItems = [
 function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
-  const gradients = [
-    "from-fuchsia-500 to-pink-500",
-    "from-orange-400 to-amber-500",
-    "from-violet-500 to-purple-500",
-    "from-emerald-400 to-teal-500",
-    "from-rose-400 to-pink-500",
-    "from-blue-400 to-cyan-500",
-  ]
-
   return (
     <div className="space-y-3 p-4">
       {faqItems.map((item, index) => {
         const isOpen = openIndex === index
-        const gradient = gradients[index % gradients.length]
         
         return (
           <div 
             key={index}
             className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
               isOpen 
-                ? "border-transparent bg-gradient-to-r " + gradient + " p-[1px]" 
+                ? "border-transparent bg-gradient-to-r from-fuchsia-500/20 to-pink-500/20 p-[2px]" 
                 : "border-border hover:border-muted-foreground/30"
             }`}
           >
             <div className={`rounded-2xl ${isOpen ? "bg-background" : ""}`}>
               <button
-                className="w-full flex items-center gap-4 px-5 py-4 text-left cursor-pointer"
+                className="w-full flex items-center gap-4 px-5 py-4 text-left cursor-pointer group"
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 type="button"
               >
-                <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white bg-gradient-to-br ${gradient}`}>
-                  {index + 1}
-                </div>
-                <span className="font-medium text-foreground flex-1">{item.question}</span>
-                <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
+                <div className={`shrink-0 w-3 h-3 rounded-full transition-all duration-300 ${
                   isOpen 
-                    ? "bg-gradient-to-br " + gradient + " text-white rotate-180" 
-                    : "bg-muted text-muted-foreground"
+                    ? "bg-gradient-to-br from-fuchsia-500 to-pink-500 w-4 h-4" 
+                    : "bg-muted-foreground/40 group-hover:bg-muted-foreground/60"
+                }`} />
+                <span className="font-medium text-foreground flex-1">{item.question}</span>
+                <div className={`shrink-0 w-5 h-5 flex items-center justify-center transition-all duration-300 ${
+                  isOpen 
+                    ? "text-fuchsia-500 rotate-180" 
+                    : "text-muted-foreground"
                 }`}>
                   <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
                     <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -103,7 +95,7 @@ function FAQ() {
               }`}>
                 <div className="overflow-hidden">
                   <div className="px-5 pb-5 pt-0 pl-17">
-                    <div className="pl-12 text-sm text-muted-foreground leading-relaxed border-l-2 border-muted ml-4 pl-4">
+                    <div className="pl-12 text-sm text-muted-foreground leading-relaxed border-l-2 border-fuchsia-500/30">
                       {item.answer}
                     </div>
                   </div>
@@ -112,6 +104,10 @@ function FAQ() {
             </div>
           </div>
         )
+      })}
+    </div>
+  )
+}
       })}
     </div>
   )
@@ -458,7 +454,7 @@ export default function Dashboard() {
             <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/10 rounded-full">
                 <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-[pulse_0.8s_ease-in-out_infinite]" />
-                <span className="text-xs font-medium text-green-600">Конкурс идет</span>
+                <span className="text-xs font-medium text-green-600">Конкурс ид��т</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-muted rounded-full">
                 <Calendar className="w-3 h-3 text-muted-foreground" />
