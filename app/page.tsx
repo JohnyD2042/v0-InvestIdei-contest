@@ -54,13 +54,19 @@ const faqItems = [
 function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
+  const handleToggle = (index: number) => {
+    console.log("[v0] Toggling index:", index, "Current openIndex:", openIndex)
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
   return (
     <div className="divide-y divide-border">
       {faqItems.map((item, index) => (
         <div key={index}>
           <button
-            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/40 transition-colors"
-            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/40 transition-colors cursor-pointer"
+            onClick={() => handleToggle(index)}
+            type="button"
           >
             <span className="font-medium text-foreground pr-4">{item.question}</span>
             <div className={`shrink-0 w-5 h-5 flex items-center justify-center rounded-full border border-border transition-transform duration-200 ${openIndex === index ? "rotate-180" : ""}`}>
@@ -70,7 +76,7 @@ function FAQ() {
             </div>
           </button>
           {openIndex === index && (
-            <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">
+            <div className="px-6 py-5 text-sm text-muted-foreground leading-relaxed bg-muted/20">
               {item.answer}
             </div>
           )}
