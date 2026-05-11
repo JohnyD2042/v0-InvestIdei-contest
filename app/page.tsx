@@ -333,15 +333,11 @@ export default function Dashboard() {
               {/* Award 3 — ОТС: буква О */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <svg className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 80 80">
-                    <defs>
-                      <linearGradient id="oGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#fb923c" />
-                        <stop offset="100%" stopColor="#f472b6" />
-                      </linearGradient>
-                    </defs>
-                    <circle cx="40" cy="40" r="30" fill="none" stroke="url(#oGrad)" strokeWidth="12" />
-                  </svg>
+                  <img 
+                    src="/images/award-otc.png" 
+                    alt="ОТС" 
+                    className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
                     <div className="text-xl font-bold text-orange-400 whitespace-nowrap">
