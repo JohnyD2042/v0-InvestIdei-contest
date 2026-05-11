@@ -252,12 +252,6 @@ export default function Dashboard() {
                   <span className="whitespace-nowrap">{statsData.ideasFromInfluencers} от инфлюенсеров</span>
                 </div>
               </div>
-                <span className="hidden sm:inline">·</span>
-                <div className="flex items-center gap-1">
-                  <Palmtree className="w-3 h-3 text-amber-500 shrink-0" />
-                  <span className="whitespace-nowrap">{statsData.ideasFromInfluencers} от инфлюенсеров</span>
-                </div>
-              </div>
             </CardContent>
           </Card>
 
