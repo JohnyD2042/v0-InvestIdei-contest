@@ -312,15 +312,11 @@ export default function Dashboard() {
               {/* Award 2 — БПИФ: знак бесконечности */}
               <div className="relative p-8 group cursor-pointer">
                 <div className="flex flex-col items-center text-center gap-6">
-                  <svg className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 80 80">
-                    <defs>
-                      <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#e879f9" />
-                        <stop offset="100%" stopColor="#f472b6" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M20,40 C20,28 28,20 40,20 C52,20 52,40 40,40 C28,40 28,60 40,60 C52,60 60,52 60,40 C60,28 52,20 40,20" fill="none" stroke="url(#infinityGrad)" strokeWidth="10" strokeLinecap="round" />
-                  </svg>
+                  <img 
+                    src="/images/award-bpif.png" 
+                    alt="БПИФ" 
+                    className="w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
                   <div>
                     <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
                     <div className="text-xl font-bold text-fuchsia-400 whitespace-nowrap">
