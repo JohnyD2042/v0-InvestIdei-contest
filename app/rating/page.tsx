@@ -8,7 +8,8 @@ import {
   Medal,
   ChevronUp,
   ChevronDown,
-  Users,
+  BriefcaseBusiness,
+  Palmtree,
   User,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -26,7 +27,7 @@ import {
 
 type SortField = "rank" | "ideas" | "profitablePercent" | "betterThanBenchmark" | "avgReturn" | "hitRate" | "awards"
 type SortDirection = "asc" | "desc"
-type Category = "team" | "individual" | "tleague"
+type Category = "all" | "institutional" | "influencer" | "tleague"
 
 interface MedalCount {
   gold: number
@@ -80,7 +81,7 @@ const columnInfo = {
   profitablePercent: "Процент идей, которые принесли положительную доходность",
   betterThanBenchmark: "Процент идей, которые показали доходность выше индекса МосБиржи",
   avgReturn: "Средняя доходность всех идей участника",
-  hitRate: "Процент точных прог��озов по направлению движения цены",
+  hitRate: "Процент точных прогнозов по направлению движения цены",
   awards: "Количество полученных наград за всё время участия в конкурсе",
 }
 
@@ -147,17 +148,15 @@ function MedalDisplayCompact({ medals }: { medals: MedalCount }) {
 }
 
 export default function RatingPage() {
-  const [category, setCategory] = useState<Category>("team")
+  const [category, setCategory] = useState<Category>("all")
   const [sortField, setSortField] = useState<SortField>("rank")
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc")
 
   const filteredAndSortedData = useMemo(() => {
     let data = [...participantsData]
     
-    if (category === "individual") {
-      data = data.filter(p => p.category === "influencer")
-    } else if (category === "tleague") {
-      data = data.filter(p => p.category === "tleague")
+    if (category !== "all") {
+      data = data.filter(p => p.category === category)
     }
     
     // Sort
@@ -250,34 +249,43 @@ export default function RatingPage() {
             <div>
               <h1 className="text-xl sm:text-3xl font-bold text-foreground flex items-center gap-2 sm:gap-3">
                 <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-amber-500" />
-                <span>Рейтинг чемпионов</span>
+                <span>Рейтинг участников</span>
               </h1>
               <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
-                Лучшие аналитики за все время
+                Турнирная таблица конкурса финансовых аналитиков
               </p>
             </div>
           </div>
 
           {/* Filters */}
           <div className="flex flex-wrap items-center gap-2">
-            {([
-              { key: "team", label: "Командный зачет", icon: <Users className="w-4 h-4" /> },
-              { key: "individual", label: "Индивидуальный зачет", icon: <User className="w-4 h-4" /> },
-              { key: "tleague", label: "Т-лига", icon: <span className="inline-flex items-center justify-center w-5 h-5 rounded text-xs font-black bg-yellow-400 text-black">Т</span> },
-            ] as { key: Category; label: string; icon: React.ReactNode }[]).map(({ key, label, icon }) => {
-              const isActive = category === key
+            {(["all", "institutional", "influencer", "tleague"] as Category[]).map((cat) => {
+              const isActive = category === cat
               return (
                 <button
-                  key={key}
-                  onClick={() => setCategory(key)}
+                  key={cat}
+                  onClick={() => setCategory(cat)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-all ${
                     isActive
                       ? "bg-foreground text-background border-foreground shadow-sm"
                       : "bg-card text-muted-foreground border-border hover:text-foreground hover:border-foreground/30"
                   }`}
                 >
-                  <span className={isActive ? "text-background" : "text-muted-foreground"}>{icon}</span>
-                  {label}
+                  {cat === "institutional" && (
+                    <BriefcaseBusiness className={`w-4 h-4 ${isActive ? "text-background" : "text-blue-500"}`} />
+                  )}
+                  {cat === "influencer" && (
+                    <Palmtree className={`w-4 h-4 ${isActive ? "text-background" : "text-violet-500"}`} />
+                  )}
+                  {cat === "tleague" && (
+                    <span className="inline-flex items-center justify-center w-5 h-5 rounded text-xs font-black bg-yellow-400 text-black">
+                      Т
+                    </span>
+                  )}
+                  {cat === "all" && "Все"}
+                  {cat === "institutional" && "Брокеры"}
+                  {cat === "influencer" && "Инфлюенсеры"}
+                  {cat === "tleague" && "Т-лига"}
                 </button>
               )
             })}
@@ -320,11 +328,11 @@ export default function RatingPage() {
                                 <span className="truncate">{participant.company}</span>
                                 <span className="shrink-0">
                                   {participant.category === "institutional" ? (
-                                    <Users className="w-3 h-3 text-blue-500" />
+                                    <BriefcaseBusiness className="w-3 h-3 text-blue-500" />
                                   ) : participant.category === "tleague" ? (
                                     <span className="inline-flex items-center justify-center w-3 h-3 rounded bg-yellow-400 text-black text-[8px] font-black">Т</span>
                                   ) : (
-                                    <User className="w-3 h-3 text-violet-500" />
+                                    <Palmtree className="w-3 h-3 text-violet-500" />
                                   )}
                                 </span>
                               </div>
@@ -381,11 +389,11 @@ export default function RatingPage() {
                           {participant.company}
                           <span className="ml-1">
                             {participant.category === "institutional" ? (
-                              <Users className="w-3.5 h-3.5 text-blue-500" />
+                              <BriefcaseBusiness className="w-3.5 h-3.5 text-blue-500" />
                             ) : participant.category === "tleague" ? (
                               <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded bg-yellow-400 text-black text-[9px] font-black">Т</span>
                             ) : (
-                              <User className="w-3.5 h-3.5 text-violet-500" />
+                              <Palmtree className="w-3.5 h-3.5 text-violet-500" />
                             )}
                           </span>
                         </div>
