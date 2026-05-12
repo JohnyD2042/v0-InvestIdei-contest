@@ -176,21 +176,48 @@ function TeamMedalDisplay({ medals }: { medals: MedalCount }) {
     return <span className="text-muted-foreground">-</span>
   }
 
-  const breakdown: string[] = []
-  if (medals.gold > 0) breakdown.push(`${medals.gold} зол.`)
-  if (medals.silver > 0) breakdown.push(`${medals.silver} сер.`)
-  if (medals.bronze > 0) breakdown.push(`${medals.bronze} бр.`)
-
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-1">
       <span className="text-xl font-bold text-foreground">{total}</span>
-      <span className="text-xs text-muted-foreground">{breakdown.join(", ")}</span>
+      <div className="flex items-center gap-1.5">
+        {medals.gold > 0 && (
+          <span className="inline-flex items-center gap-0.5">
+            <span className="w-3 h-3 rounded-full bg-amber-400 border border-amber-500" />
+            <span className="text-xs text-muted-foreground">{medals.gold}</span>
+          </span>
+        )}
+        {medals.silver > 0 && (
+          <span className="inline-flex items-center gap-0.5">
+            <span className="w-3 h-3 rounded-full bg-slate-300 border border-slate-400" />
+            <span className="text-xs text-muted-foreground">{medals.silver}</span>
+          </span>
+        )}
+        {medals.bronze > 0 && (
+          <span className="inline-flex items-center gap-0.5">
+            <span className="w-3 h-3 rounded-full bg-orange-400 border border-orange-500" />
+            <span className="text-xs text-muted-foreground">{medals.bronze}</span>
+          </span>
+        )}
+      </div>
     </div>
   )
 }
 
 function BrokerLogo({ logo }: { logo: string }) {
-  const colors: Record<string, string> = {
+  const logos: Record<string, string> = {
+    VTB: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/VTB_Logo_2018.svg/200px-VTB_Logo_2018.svg.png",
+    SBER: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Sberbank.svg/200px-Sberbank.svg.png",
+    ALFA: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alfa-Bank.svg/200px-Alfa-Bank.svg.png",
+    TINK: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/T_Bank_logo.svg/200px-T_Bank_logo.svg.png",
+    BCS: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/BCS_Global_Markets.svg/200px-BCS_Global_Markets.svg.png",
+    GPB: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Gazprombank.svg/200px-Gazprombank.svg.png",
+    REN: "https://upload.wikimedia.org/wikipedia/ru/thumb/b/ba/Renaissance_Capital_logo.svg/200px-Renaissance_Capital_logo.svg.png",
+    OTKR: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Otkritie_Bank_logo.svg/200px-Otkritie_Bank_logo.svg.png",
+    FNAM: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Finam_logo.svg/200px-Finam_logo.svg.png",
+    ATON: "https://upload.wikimedia.org/wikipedia/ru/thumb/e/e9/Aton_logo.svg/200px-Aton_logo.svg.png",
+  }
+  
+  const fallbackColors: Record<string, string> = {
     VTB: "bg-blue-600",
     SBER: "bg-green-600",
     ALFA: "bg-red-600",
@@ -203,8 +230,18 @@ function BrokerLogo({ logo }: { logo: string }) {
     ATON: "bg-indigo-600",
   }
   
+  const logoUrl = logos[logo]
+  
+  if (logoUrl) {
+    return (
+      <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center overflow-hidden p-1">
+        <img src={logoUrl} alt={logo} className="w-full h-full object-contain" />
+      </div>
+    )
+  }
+  
   return (
-    <div className={`w-10 h-10 rounded-lg ${colors[logo] || "bg-muted"} flex items-center justify-center text-white font-bold text-xs`}>
+    <div className={`w-10 h-10 rounded-lg ${fallbackColors[logo] || "bg-muted"} flex items-center justify-center text-white font-bold text-xs`}>
       {logo}
     </div>
   )
