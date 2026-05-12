@@ -204,45 +204,15 @@ function TeamMedalDisplay({ medals }: { medals: MedalCount }) {
 }
 
 function BrokerLogo({ logo }: { logo: string }) {
-  const logos: Record<string, string> = {
-    VTB: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/VTB_Logo_2018.svg/200px-VTB_Logo_2018.svg.png",
-    SBER: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Sberbank.svg/200px-Sberbank.svg.png",
-    ALFA: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alfa-Bank.svg/200px-Alfa-Bank.svg.png",
-    TINK: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/T_Bank_logo.svg/200px-T_Bank_logo.svg.png",
-    BCS: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/BCS_Global_Markets.svg/200px-BCS_Global_Markets.svg.png",
-    GPB: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Gazprombank.svg/200px-Gazprombank.svg.png",
-    REN: "https://upload.wikimedia.org/wikipedia/ru/thumb/b/ba/Renaissance_Capital_logo.svg/200px-Renaissance_Capital_logo.svg.png",
-    OTKR: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Otkritie_Bank_logo.svg/200px-Otkritie_Bank_logo.svg.png",
-    FNAM: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Finam_logo.svg/200px-Finam_logo.svg.png",
-    ATON: "https://upload.wikimedia.org/wikipedia/ru/thumb/e/e9/Aton_logo.svg/200px-Aton_logo.svg.png",
-  }
+  const availableLogos = ["/logos/sber.png", "/logos/tbank.svg", "/logos/finam.jpg"]
   
-  const fallbackColors: Record<string, string> = {
-    VTB: "bg-blue-600",
-    SBER: "bg-green-600",
-    ALFA: "bg-red-600",
-    TINK: "bg-yellow-500",
-    BCS: "bg-emerald-600",
-    GPB: "bg-sky-600",
-    REN: "bg-violet-600",
-    OTKR: "bg-cyan-600",
-    FNAM: "bg-orange-500",
-    ATON: "bg-indigo-600",
-  }
-  
-  const logoUrl = logos[logo]
-  
-  if (logoUrl) {
-    return (
-      <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center overflow-hidden p-1">
-        <img src={logoUrl} alt={logo} className="w-full h-full object-contain" />
-      </div>
-    )
-  }
+  // Use logo code to consistently pick a logo (same broker always gets same logo)
+  const logoIndex = logo.charCodeAt(0) % availableLogos.length
+  const logoUrl = availableLogos[logoIndex]
   
   return (
-    <div className={`w-10 h-10 rounded-lg ${fallbackColors[logo] || "bg-muted"} flex items-center justify-center text-white font-bold text-xs`}>
-      {logo}
+    <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center overflow-hidden p-1">
+      <img src={logoUrl} alt={logo} className="w-full h-full object-contain" />
     </div>
   )
 }
