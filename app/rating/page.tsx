@@ -24,7 +24,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-type SortField = "rank" | "ideas" | "profitablePercent" | "betterThanBenchmark" | "avgReturn" | "hitRate" | "awards"
+type SortField = "rank" | "ideas" | "profitablePercent" | "betterThanBenchmark" | "avgReturn" | "hitRate" | "awards" | "maxReturn"
 type SortDirection = "asc" | "desc"
 type Category = "team" | "individual" | "tleague"
 
@@ -47,6 +47,29 @@ interface Participant {
   hitRate: number
   medals: MedalCount
 }
+
+interface TeamParticipant {
+  id: number
+  name: string
+  logo: string
+  ideas: number
+  medals: MedalCount
+  maxReturn: number
+  avgReturn: number
+}
+
+const teamData: TeamParticipant[] = [
+  { id: 1, name: "VTB Capital", logo: "VTB", ideas: 156, medals: { gold: 5, silver: 3, bronze: 2 }, maxReturn: 87.4, avgReturn: 24.2 },
+  { id: 2, name: "Sberbank CIB", logo: "SBER", ideas: 143, medals: { gold: 4, silver: 4, bronze: 1 }, maxReturn: 72.1, avgReturn: 21.8 },
+  { id: 3, name: "Альфа Капитал", logo: "ALFA", ideas: 128, medals: { gold: 3, silver: 2, bronze: 3 }, maxReturn: 65.3, avgReturn: 19.5 },
+  { id: 4, name: "Тинькофф Инвестиции", logo: "TINK", ideas: 134, medals: { gold: 2, silver: 3, bronze: 2 }, maxReturn: 58.9, avgReturn: 18.1 },
+  { id: 5, name: "БКС Мир Инвестиций", logo: "BCS", ideas: 112, medals: { gold: 2, silver: 2, bronze: 1 }, maxReturn: 54.2, avgReturn: 16.7 },
+  { id: 6, name: "Газпромбанк", logo: "GPB", ideas: 98, medals: { gold: 1, silver: 2, bronze: 2 }, maxReturn: 48.7, avgReturn: 15.3 },
+  { id: 7, name: "Ренессанс Капитал", logo: "REN", ideas: 87, medals: { gold: 1, silver: 1, bronze: 2 }, maxReturn: 45.1, avgReturn: 14.2 },
+  { id: 8, name: "Открытие", logo: "OTKR", ideas: 76, medals: { gold: 1, silver: 1, bronze: 1 }, maxReturn: 42.3, avgReturn: 13.1 },
+  { id: 9, name: "Финам", logo: "FNAM", ideas: 94, medals: { gold: 0, silver: 2, bronze: 1 }, maxReturn: 38.6, avgReturn: 12.4 },
+  { id: 10, name: "Атон", logo: "ATON", ideas: 65, medals: { gold: 0, silver: 1, bronze: 2 }, maxReturn: 35.2, avgReturn: 11.8 },
+]
 
 const participantsData: Participant[] = [
   { id: 1, rank: 1, name: "Алексей Смирнов", company: "VTB Capital", category: "institutional", ideas: 24, profitablePercent: 78.5, betterThanBenchmark: 65.2, avgReturn: 18.4, hitRate: 72.3, medals: { gold: 2, silver: 2, bronze: 1 } },
@@ -80,7 +103,7 @@ const columnInfo = {
   profitablePercent: "Процент идей, которые принесли положительную доходность",
   betterThanBenchmark: "Процент идей, которые показали доходность выше индекса МосБиржи",
   avgReturn: "Средняя доходность всех идей участника",
-  hitRate: "Процент точных прогнозов по направлению движения цены",
+  hitRate: "Процент точных прог��озов по направлению движения цены",
   awards: "Количество полученных наград за всё время участия в конкурсе",
 }
 
@@ -146,10 +169,88 @@ function MedalDisplayCompact({ medals }: { medals: MedalCount }) {
   )
 }
 
+function TeamMedalDisplay({ medals }: { medals: MedalCount }) {
+  const total = medals.gold + medals.silver + medals.bronze
+  
+  if (total === 0) {
+    return <span className="text-muted-foreground">-</span>
+  }
+
+  const breakdown: string[] = []
+  if (medals.gold > 0) breakdown.push(`${medals.gold} зол.`)
+  if (medals.silver > 0) breakdown.push(`${medals.silver} сер.`)
+  if (medals.bronze > 0) breakdown.push(`${medals.bronze} бр.`)
+
+  return (
+    <div className="flex flex-col">
+      <span className="text-xl font-bold text-foreground">{total}</span>
+      <span className="text-xs text-muted-foreground">{breakdown.join(", ")}</span>
+    </div>
+  )
+}
+
+function BrokerLogo({ logo }: { logo: string }) {
+  const colors: Record<string, string> = {
+    VTB: "bg-blue-600",
+    SBER: "bg-green-600",
+    ALFA: "bg-red-600",
+    TINK: "bg-yellow-500",
+    BCS: "bg-emerald-600",
+    GPB: "bg-sky-600",
+    REN: "bg-violet-600",
+    OTKR: "bg-cyan-600",
+    FNAM: "bg-orange-500",
+    ATON: "bg-indigo-600",
+  }
+  
+  return (
+    <div className={`w-10 h-10 rounded-lg ${colors[logo] || "bg-muted"} flex items-center justify-center text-white font-bold text-xs`}>
+      {logo}
+    </div>
+  )
+}
+
 export default function RatingPage() {
   const [category, setCategory] = useState<Category>("team")
   const [sortField, setSortField] = useState<SortField>("rank")
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc")
+
+  // Team data sorted
+  const sortedTeamData = useMemo(() => {
+    const data = [...teamData]
+    
+    data.sort((a, b) => {
+      const direction = sortDirection === "asc" ? 1 : -1
+      
+      if (sortField === "awards") {
+        const aTotalMedals = a.medals.gold + a.medals.silver + a.medals.bronze
+        const bTotalMedals = b.medals.gold + b.medals.silver + b.medals.bronze
+        if (aTotalMedals !== bTotalMedals) return (aTotalMedals > bTotalMedals ? 1 : -1) * direction
+        if (a.medals.gold !== b.medals.gold) return (a.medals.gold > b.medals.gold ? 1 : -1) * direction
+        if (a.medals.silver !== b.medals.silver) return (a.medals.silver > b.medals.silver ? 1 : -1) * direction
+        return (a.medals.bronze > b.medals.bronze ? 1 : -1) * direction
+      }
+      
+      if (sortField === "maxReturn") {
+        return (a.maxReturn > b.maxReturn ? 1 : -1) * direction
+      }
+      
+      if (sortField === "avgReturn") {
+        return (a.avgReturn > b.avgReturn ? 1 : -1) * direction
+      }
+      
+      if (sortField === "ideas") {
+        return (a.ideas > b.ideas ? 1 : -1) * direction
+      }
+      
+      // Default: by total medals desc
+      const aTotalMedals = a.medals.gold + a.medals.silver + a.medals.bronze
+      const bTotalMedals = b.medals.gold + b.medals.silver + b.medals.bronze
+      return (bTotalMedals - aTotalMedals) * direction
+    })
+    
+    return data
+  }, [sortField, sortDirection])
 
   const filteredAndSortedData = useMemo(() => {
     let data = [...participantsData]
@@ -302,6 +403,84 @@ export default function RatingPage() {
           {/* Table */}
           <Card className="border-border max-w-full">
             <CardContent className="p-0 max-w-full">
+              {/* Team Table */}
+              {category === "team" && (
+                <>
+                  {/* Desktop Team Table */}
+                  <div className="hidden md:block overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+                    <Table className="min-w-[700px]">
+                      <TableHeader>
+                        <TableRow className="bg-secondary/50">
+                          <TableHead className="w-12 px-3 text-center font-medium text-foreground">#</TableHead>
+                          <TableHead className="font-medium text-foreground">Аналитик</TableHead>
+                          <SortableHeader field="awards" className="w-32 px-3">Награды</SortableHeader>
+                          <SortableHeader field="maxReturn" className="w-36 px-3">Макс. дох-сть</SortableHeader>
+                          <SortableHeader field="avgReturn" className="w-32 px-3">Ср. дох-сть</SortableHeader>
+                          <SortableHeader field="ideas" className="w-20 px-3">Идей</SortableHeader>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {sortedTeamData.map((team, index) => (
+                          <TableRow key={team.id} className="hover:bg-secondary/30">
+                            <TableCell className="w-12 px-3 text-center">{getRankBadge(index + 1)}</TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-3">
+                                <BrokerLogo logo={team.logo} />
+                                <span className="font-semibold text-foreground text-base">{team.name}</span>
+                              </div>
+                            </TableCell>
+                            <TableCell className="px-3">
+                              <TeamMedalDisplay medals={team.medals} />
+                            </TableCell>
+                            <TableCell className="px-3">
+                              <span className="text-green-600 font-medium">+{team.maxReturn}%</span>
+                            </TableCell>
+                            <TableCell className="px-3">
+                              <span className="text-green-600">+{team.avgReturn}%</span>
+                            </TableCell>
+                            <TableCell className="px-3 font-medium">{team.ideas}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                  
+                  {/* Mobile Team View */}
+                  <div className="md:hidden divide-y divide-border">
+                    {sortedTeamData.map((team, index) => (
+                      <div key={team.id} className="p-4 space-y-3">
+                        <div className="flex items-center gap-3">
+                          {getRankBadge(index + 1)}
+                          <BrokerLogo logo={team.logo} />
+                          <span className="font-semibold text-foreground text-base flex-1">{team.name}</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3 text-sm">
+                          <div>
+                            <span className="text-muted-foreground">Награды:</span>
+                            <TeamMedalDisplay medals={team.medals} />
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Макс. дох-сть:</span>
+                            <div className="text-green-600 font-medium">+{team.maxReturn}%</div>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Ср. дох-сть:</span>
+                            <div className="text-green-600">+{team.avgReturn}%</div>
+                          </div>
+                          <div>
+                            <span className="text-muted-foreground">Идей:</span>
+                            <div className="font-medium">{team.ideas}</div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* Individual/T-League Tables */}
+              {category !== "team" && (
+              <>
               {/* Desktop Table View */}
               <div className="hidden md:block overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <Table className="min-w-[860px]">
@@ -318,9 +497,9 @@ export default function RatingPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filteredAndSortedData.map((participant) => (
+                    {filteredAndSortedData.map((participant, index) => (
                       <TableRow key={participant.id} className="hover:bg-secondary/30">
-                        <TableCell className="w-10 px-2 text-center">{getRankBadge(participant.rank)}</TableCell>
+                        <TableCell className="w-10 px-2 text-center">{getRankBadge(index + 1)}</TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
                             <Avatar className="w-7 h-7 shrink-0">
@@ -379,11 +558,11 @@ export default function RatingPage() {
 
               {/* Mobile Card View */}
               <div className="md:hidden divide-y divide-border">
-                {filteredAndSortedData.map((participant) => (
+                {filteredAndSortedData.map((participant, index) => (
                   <div key={participant.id} className="p-4 space-y-3">
                     {/* Header with rank and analyst info */}
                     <div className="flex items-start gap-3">
-                      {getRankBadge(participant.rank)}
+                      {getRankBadge(index + 1)}
                       <Avatar className="w-10 h-10 shrink-0">
                         <AvatarFallback className="bg-muted text-muted-foreground">
                           <User className="w-5 h-5" />
@@ -437,6 +616,8 @@ export default function RatingPage() {
                   </div>
                 ))}
               </div>
+              </>
+              )}
             </CardContent>
           </Card>
         </div>
