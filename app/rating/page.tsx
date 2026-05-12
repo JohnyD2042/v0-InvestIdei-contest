@@ -381,11 +381,11 @@ export default function RatingPage() {
                           {participant.company}
                           <span className="ml-1">
                             {participant.category === "institutional" ? (
-                              <BriefcaseBusiness className="w-3.5 h-3.5 text-blue-500" />
+                              <Users className="w-3.5 h-3.5 text-blue-500" />
                             ) : participant.category === "tleague" ? (
                               <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded bg-yellow-400 text-black text-[9px] font-black">Т</span>
                             ) : (
-                              <Palmtree className="w-3.5 h-3.5 text-violet-500" />
+                              <User className="w-3.5 h-3.5 text-violet-500" />
                             )}
                           </span>
                         </div>
@@ -396,7 +396,7 @@ export default function RatingPage() {
                     {/* Stats grid */}
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
-                        <span className="text-muted-foreground">Ид��й</span>
+                        <span className="text-muted-foreground">Идей</span>
                         <span className="font-medium">{participant.ideas}</span>
                       </div>
                       <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
