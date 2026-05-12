@@ -46,6 +46,8 @@ interface Participant {
   avgReturn: number
   hitRate: number
   medals: MedalCount
+  maxReturn: number
+  maxReturnStock: string
 }
 
 interface TeamParticipant {
@@ -73,29 +75,29 @@ const teamData: TeamParticipant[] = [
 ]
 
 const participantsData: Participant[] = [
-  { id: 1, rank: 1, name: "Алексей Смирнов", company: "VTB Capital", category: "institutional", ideas: 24, profitablePercent: 78.5, betterThanBenchmark: 65.2, avgReturn: 18.4, hitRate: 72.3, medals: { gold: 2, silver: 2, bronze: 1 } },
-  { id: 2, rank: 2, name: "Мария Петрова", company: "Sberbank CIB", category: "institutional", ideas: 31, profitablePercent: 74.2, betterThanBenchmark: 58.1, avgReturn: 15.7, hitRate: 68.9, medals: { gold: 2, silver: 1, bronze: 1 } },
-  { id: 3, rank: 3, name: "InvestBlog", company: "Независимый", category: "influencer", ideas: 45, profitablePercent: 71.1, betterThanBenchmark: 52.4, avgReturn: 14.2, hitRate: 65.5, medals: { gold: 1, silver: 1, bronze: 1 } },
-  { id: 4, rank: 4, name: "Дмитрий Козлов", company: "Alfa Capital", category: "institutional", ideas: 18, profitablePercent: 72.2, betterThanBenchmark: 61.1, avgReturn: 16.8, hitRate: 70.1, medals: { gold: 1, silver: 1, bronze: 1 } },
-  { id: 5, rank: 5, name: "FinanceGuru", company: "YouTube", category: "influencer", ideas: 52, profitablePercent: 68.3, betterThanBenchmark: 48.5, avgReturn: 12.1, hitRate: 62.4, medals: { gold: 1, silver: 1, bronze: 0 } },
-  { id: 21, rank: 6, name: "Кирилл Орлов", company: "Т-Инвестиции", category: "tleague", ideas: 29, profitablePercent: 75.9, betterThanBenchmark: 62.1, avgReturn: 17.3, hitRate: 69.0, medals: { gold: 1, silver: 0, bronze: 1 } },
-  { id: 6, rank: 7, name: "Елена Волкова", company: "Tinkoff Investments", category: "institutional", ideas: 27, profitablePercent: 70.4, betterThanBenchmark: 55.6, avgReturn: 13.9, hitRate: 64.8, medals: { gold: 1, silver: 0, bronze: 1 } },
-  { id: 7, rank: 8, name: "StockMaster", company: "Telegram", category: "influencer", ideas: 38, profitablePercent: 66.7, betterThanBenchmark: 45.2, avgReturn: 11.5, hitRate: 60.2, medals: { gold: 0, silver: 2, bronze: 0 } },
-  { id: 8, rank: 9, name: "Андрей Новиков", company: "Renaissance Capital", category: "institutional", ideas: 15, profitablePercent: 73.3, betterThanBenchmark: 60.0, avgReturn: 15.2, hitRate: 66.7, medals: { gold: 0, silver: 1, bronze: 0 } },
-  { id: 22, rank: 10, name: "Виктория Соболева", company: "Т-Инвестиции", category: "tleague", ideas: 22, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 13.6, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 1 } },
-  { id: 9, rank: 11, name: "TradingPro", company: "Независимый", category: "influencer", ideas: 41, profitablePercent: 63.4, betterThanBenchmark: 43.9, avgReturn: 10.8, hitRate: 58.5, medals: { gold: 0, silver: 0, bronze: 1 } },
-  { id: 10, rank: 12, name: "Ольга Иванова", company: "BCS Global Markets", category: "institutional", ideas: 22, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 12.7, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 1 } },
-  { id: 11, rank: 13, name: "MarketWatcher", company: "YouTube", category: "influencer", ideas: 33, profitablePercent: 60.6, betterThanBenchmark: 42.4, avgReturn: 9.8, hitRate: 57.6, medals: { gold: 0, silver: 0, bronze: 1 } },
-  { id: 12, rank: 14, name: "Сергей Федоров", company: "Gazprombank", category: "institutional", ideas: 19, profitablePercent: 68.4, betterThanBenchmark: 52.6, avgReturn: 11.9, hitRate: 63.2, medals: { gold: 0, silver: 0, bronze: 1 } },
-  { id: 13, rank: 15, name: "InvestorDaily", company: "Telegram", category: "influencer", ideas: 48, profitablePercent: 58.3, betterThanBenchmark: 39.6, avgReturn: 8.7, hitRate: 54.2, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 14, rank: 16, name: "Наталья Соколова", company: "Uralsib", category: "institutional", ideas: 14, profitablePercent: 71.4, betterThanBenchmark: 57.1, avgReturn: 13.2, hitRate: 64.3, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 23, rank: 17, name: "Максим Тарасов", company: "Т-Инвестиции", category: "tleague", ideas: 17, profitablePercent: 58.8, betterThanBenchmark: 41.2, avgReturn: 9.1, hitRate: 52.9, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 15, rank: 18, name: "FinTech Analyst", company: "Независимый", category: "influencer", ideas: 29, profitablePercent: 55.2, betterThanBenchmark: 37.9, avgReturn: 7.9, hitRate: 51.7, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 16, rank: 19, name: "Павел Михайлов", company: "Otkritie", category: "institutional", ideas: 21, profitablePercent: 61.9, betterThanBenchmark: 47.6, avgReturn: 10.1, hitRate: 57.1, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 17, rank: 20, name: "RussianStocks", company: "YouTube", category: "influencer", ideas: 36, profitablePercent: 52.8, betterThanBenchmark: 33.3, avgReturn: 6.5, hitRate: 47.2, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 18, rank: 21, name: "Анна Кузнецова", company: "Finam", category: "institutional", ideas: 17, profitablePercent: 64.7, betterThanBenchmark: 47.1, avgReturn: 9.4, hitRate: 58.8, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 19, rank: 22, name: "MoneyTalks", company: "Telegram", category: "influencer", ideas: 25, profitablePercent: 48.0, betterThanBenchmark: 28.0, avgReturn: 5.2, hitRate: 44.0, medals: { gold: 0, silver: 0, bronze: 0 } },
-  { id: 20, rank: 23, name: "Игорь Белов", company: "Aton", category: "institutional", ideas: 12, profitablePercent: 66.7, betterThanBenchmark: 50.0, avgReturn: 8.9, hitRate: 58.3, medals: { gold: 0, silver: 0, bronze: 0 } },
+  { id: 1, rank: 1, name: "Алексей Смирнов", company: "VTB Capital", category: "institutional", ideas: 8, profitablePercent: 78.5, betterThanBenchmark: 65.2, avgReturn: 18.4, hitRate: 72.3, medals: { gold: 2, silver: 1, bronze: 0 }, maxReturn: 87.4, maxReturnStock: "Яндекс" },
+  { id: 2, rank: 2, name: "Мария Петрова", company: "Sberbank CIB", category: "institutional", ideas: 5, profitablePercent: 74.2, betterThanBenchmark: 58.1, avgReturn: 15.7, hitRate: 68.9, medals: { gold: 1, silver: 2, bronze: 0 }, maxReturn: 72.1, maxReturnStock: "Лукойл" },
+  { id: 3, rank: 3, name: "InvestBlog", company: "Независимый", category: "influencer", ideas: 12, profitablePercent: 71.1, betterThanBenchmark: 52.4, avgReturn: 14.2, hitRate: 65.5, medals: { gold: 1, silver: 1, bronze: 1 }, maxReturn: 65.3, maxReturnStock: "OZON" },
+  { id: 4, rank: 4, name: "Дмитрий Козлов", company: "Alfa Capital", category: "institutional", ideas: 6, profitablePercent: 72.2, betterThanBenchmark: 61.1, avgReturn: 16.8, hitRate: 70.1, medals: { gold: 1, silver: 0, bronze: 2 }, maxReturn: 58.9, maxReturnStock: "Мосбиржа" },
+  { id: 5, rank: 5, name: "FinanceGuru", company: "YouTube", category: "influencer", ideas: 15, profitablePercent: 68.3, betterThanBenchmark: 48.5, avgReturn: 12.1, hitRate: 62.4, medals: { gold: 1, silver: 1, bronze: 0 }, maxReturn: 54.2, maxReturnStock: "Яндекс" },
+  { id: 21, rank: 6, name: "Кирилл Орлов", company: "Т-Инвестиции", category: "tleague", ideas: 9, profitablePercent: 75.9, betterThanBenchmark: 62.1, avgReturn: 17.3, hitRate: 69.0, medals: { gold: 1, silver: 0, bronze: 1 }, maxReturn: 51.7, maxReturnStock: "Лукойл" },
+  { id: 6, rank: 7, name: "Елена Волкова", company: "Tinkoff Investments", category: "institutional", ideas: 7, profitablePercent: 70.4, betterThanBenchmark: 55.6, avgReturn: 13.9, hitRate: 64.8, medals: { gold: 0, silver: 2, bronze: 1 }, maxReturn: 48.3, maxReturnStock: "OZON" },
+  { id: 7, rank: 8, name: "StockMaster", company: "Telegram", category: "influencer", ideas: 11, profitablePercent: 66.7, betterThanBenchmark: 45.2, avgReturn: 11.5, hitRate: 60.2, medals: { gold: 0, silver: 2, bronze: 0 }, maxReturn: 45.1, maxReturnStock: "Мосбиржа" },
+  { id: 8, rank: 9, name: "Андрей Новиков", company: "Renaissance Capital", category: "institutional", ideas: 4, profitablePercent: 73.3, betterThanBenchmark: 60.0, avgReturn: 15.2, hitRate: 66.7, medals: { gold: 0, silver: 1, bronze: 1 }, maxReturn: 42.3, maxReturnStock: "Яндекс" },
+  { id: 22, rank: 10, name: "Виктория Соболева", company: "Т-Инвестиции", category: "tleague", ideas: 7, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 13.6, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 2 }, maxReturn: 38.6, maxReturnStock: "Лукойл" },
+  { id: 9, rank: 11, name: "TradingPro", company: "Независимый", category: "influencer", ideas: 13, profitablePercent: 63.4, betterThanBenchmark: 43.9, avgReturn: 10.8, hitRate: 58.5, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 35.2, maxReturnStock: "OZON" },
+  { id: 10, rank: 12, name: "Ольга Иванова", company: "BCS Global Markets", category: "institutional", ideas: 6, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 12.7, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 33.1, maxReturnStock: "Мосбиржа" },
+  { id: 11, rank: 13, name: "MarketWatcher", company: "YouTube", category: "influencer", ideas: 9, profitablePercent: 60.6, betterThanBenchmark: 42.4, avgReturn: 9.8, hitRate: 57.6, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 31.4, maxReturnStock: "Яндекс" },
+  { id: 12, rank: 14, name: "Сергей Федоров", company: "Gazprombank", category: "institutional", ideas: 5, profitablePercent: 68.4, betterThanBenchmark: 52.6, avgReturn: 11.9, hitRate: 63.2, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 29.7, maxReturnStock: "Лукойл" },
+  { id: 13, rank: 15, name: "InvestorDaily", company: "Telegram", category: "influencer", ideas: 14, profitablePercent: 58.3, betterThanBenchmark: 39.6, avgReturn: 8.7, hitRate: 54.2, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 27.2, maxReturnStock: "OZON" },
+  { id: 14, rank: 16, name: "Наталья Соколова", company: "Uralsib", category: "institutional", ideas: 3, profitablePercent: 71.4, betterThanBenchmark: 57.1, avgReturn: 13.2, hitRate: 64.3, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 25.8, maxReturnStock: "Мосбиржа" },
+  { id: 23, rank: 17, name: "Максим Тарасов", company: "Т-Инвестиции", category: "tleague", ideas: 5, profitablePercent: 58.8, betterThanBenchmark: 41.2, avgReturn: 9.1, hitRate: 52.9, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 23.5, maxReturnStock: "Яндекс" },
+  { id: 15, rank: 18, name: "FinTech Analyst", company: "Независимый", category: "influencer", ideas: 8, profitablePercent: 55.2, betterThanBenchmark: 37.9, avgReturn: 7.9, hitRate: 51.7, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 21.3, maxReturnStock: "Лукойл" },
+  { id: 16, rank: 19, name: "Павел Михайлов", company: "Otkritie", category: "institutional", ideas: 6, profitablePercent: 61.9, betterThanBenchmark: 47.6, avgReturn: 10.1, hitRate: 57.1, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 19.8, maxReturnStock: "OZON" },
+  { id: 17, rank: 20, name: "RussianStocks", company: "YouTube", category: "influencer", ideas: 10, profitablePercent: 52.8, betterThanBenchmark: 33.3, avgReturn: 6.5, hitRate: 47.2, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 18.2, maxReturnStock: "Мосбиржа" },
+  { id: 18, rank: 21, name: "Анна Кузнецова", company: "Finam", category: "institutional", ideas: 4, profitablePercent: 64.7, betterThanBenchmark: 47.1, avgReturn: 9.4, hitRate: 58.8, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 16.7, maxReturnStock: "Яндекс" },
+  { id: 19, rank: 22, name: "MoneyTalks", company: "Telegram", category: "influencer", ideas: 7, profitablePercent: 48.0, betterThanBenchmark: 28.0, avgReturn: 5.2, hitRate: 44.0, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 14.9, maxReturnStock: "Лукойл" },
+  { id: 20, rank: 23, name: "Игорь Белов", company: "Aton", category: "institutional", ideas: 3, profitablePercent: 66.7, betterThanBenchmark: 50.0, avgReturn: 8.9, hitRate: 58.3, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 13.1, maxReturnStock: "OZON" },
 ]
 
 const columnInfo = {
@@ -492,20 +494,18 @@ export default function RatingPage() {
                 <Table className="min-w-[860px]">
                   <TableHeader>
                     <TableRow className="bg-secondary/50">
-                      <SortableHeader field="rank" className="w-10 px-2 text-center"><span className="text-xs">#</span></SortableHeader>
+                      <TableHead className="w-12 px-3 text-center font-medium text-foreground">#</TableHead>
                       <TableHead className="font-medium text-foreground">Аналитик</TableHead>
-                      <SortableHeader field="ideas" className="w-16 px-2">Идей</SortableHeader>
-                      <SortableHeader field="profitablePercent" className="w-28 px-2">Прибыльных</SortableHeader>
-                      <SortableHeader field="betterThanBenchmark" className="w-36 px-2">Лучше бенчмарка</SortableHeader>
-                      <SortableHeader field="avgReturn" className="w-36 px-2">Ср. доходность</SortableHeader>
-                      <SortableHeader field="hitRate" className="w-28 px-2">Hit Rate</SortableHeader>
-                      <SortableHeader field="awards" className="w-24 px-2">Награды</SortableHeader>
+                      <SortableHeader field="awards" className="w-32 px-3">Награды</SortableHeader>
+                      <SortableHeader field="maxReturn" className="w-36 px-3">Макс. дох-сть</SortableHeader>
+                      <SortableHeader field="avgReturn" className="w-32 px-3">Ср. дох-сть</SortableHeader>
+                      <SortableHeader field="ideas" className="w-20 px-3">Идей</SortableHeader>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {filteredAndSortedData.map((participant, index) => (
                       <TableRow key={participant.id} className="hover:bg-secondary/30">
-                        <TableCell className="w-10 px-2 text-center">{getRankBadge(index + 1)}</TableCell>
+                        <TableCell className="w-12 px-3 text-center">{getRankBadge(index + 1)}</TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
                             <Avatar className="w-7 h-7 shrink-0">
@@ -514,48 +514,26 @@ export default function RatingPage() {
                               </AvatarFallback>
                             </Avatar>
                             <div className="min-w-0">
-                              <button className="font-medium text-foreground truncate hover:text-primary hover:underline transition-colors text-left">
+                              <button className="font-medium text-foreground text-sm truncate hover:text-primary hover:underline transition-colors text-left">
                                 {participant.name}
                               </button>
-                              <div className="text-xs text-muted-foreground flex items-center gap-1">
-                                <span className="truncate">{participant.company}</span>
-                                <span className="shrink-0">
-                                  {participant.category === "institutional" ? (
-                                    <Users className="w-3 h-3 text-blue-500" />
-                                  ) : participant.category === "tleague" ? (
-                                    <span className="inline-flex items-center justify-center w-3 h-3 rounded bg-yellow-400 text-black text-[8px] font-black">Т</span>
-                                  ) : (
-                                    <User className="w-3 h-3 text-violet-500" />
-                                  )}
-                                </span>
-                              </div>
+                              <div className="text-xs text-muted-foreground truncate">{participant.company}</div>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell className="px-2 font-medium">{participant.ideas}</TableCell>
-                        <TableCell className="px-2">
-                          <span className={participant.profitablePercent > 50 ? "text-green-600" : "text-foreground"}>
-                            {Math.round(participant.profitablePercent)}%
-                          </span>
+                        <TableCell className="px-3">
+                          <TeamMedalDisplay medals={participant.medals} />
                         </TableCell>
-                        <TableCell className="px-2">
-                          <span className={participant.betterThanBenchmark > 50 ? "text-green-600" : "text-foreground"}>
-                            {Math.round(participant.betterThanBenchmark)}%
-                          </span>
+                        <TableCell className="px-3">
+                          <div className="flex flex-col">
+                            <span className="text-green-600 font-medium">+{participant.maxReturn}%</span>
+                            <a href="#" className="text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2 transition-colors w-fit">{participant.maxReturnStock}</a>
+                          </div>
                         </TableCell>
-                        <TableCell className="px-2">
-                          <span className={participant.avgReturn > 50 ? "text-green-600 font-medium" : "text-foreground"}>
-                            +{Math.round(participant.avgReturn)}%
-                          </span>
+                        <TableCell className="px-3">
+                          <span className="text-green-600">+{Math.round(participant.avgReturn)}%</span>
                         </TableCell>
-                        <TableCell className="px-2">
-                          <span className={participant.hitRate > 50 ? "text-green-600" : "text-foreground"}>
-                            {Math.round(participant.hitRate)}%
-                          </span>
-                        </TableCell>
-                        <TableCell className="px-2">
-                          <MedalDisplay medals={participant.medals} />
-                        </TableCell>
+                        <TableCell className="px-3 font-medium">{participant.ideas}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -566,57 +544,35 @@ export default function RatingPage() {
               <div className="md:hidden divide-y divide-border">
                 {filteredAndSortedData.map((participant, index) => (
                   <div key={participant.id} className="p-4 space-y-3">
-                    {/* Header with rank and analyst info */}
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-center gap-3">
                       {getRankBadge(index + 1)}
-                      <Avatar className="w-10 h-10 shrink-0">
+                      <Avatar className="w-9 h-9 shrink-0">
                         <AvatarFallback className="bg-muted text-muted-foreground">
-                          <User className="w-5 h-5" />
+                          <User className="w-4 h-4" />
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
-                        <button className="font-medium text-foreground truncate hover:text-primary hover:underline transition-colors text-left block w-full">
-                          {participant.name}
-                        </button>
-                        <div className="text-xs text-muted-foreground flex items-center gap-1 mb-1">
-                          {participant.company}
-                          <span className="ml-1">
-                            {participant.category === "institutional" ? (
-                              <Users className="w-3.5 h-3.5 text-blue-500" />
-                            ) : participant.category === "tleague" ? (
-                              <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded bg-yellow-400 text-black text-[9px] font-black">Т</span>
-                            ) : (
-                              <User className="w-3.5 h-3.5 text-violet-500" />
-                            )}
-                          </span>
-                        </div>
-                        <MedalDisplayCompact medals={participant.medals} />
+                        <div className="font-medium text-foreground text-sm truncate">{participant.name}</div>
+                        <div className="text-xs text-muted-foreground truncate">{participant.company}</div>
                       </div>
                     </div>
-                    
-                    {/* Stats grid */}
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
-                        <span className="text-muted-foreground">Идей</span>
-                        <span className="font-medium">{participant.ideas}</span>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <span className="text-muted-foreground text-xs">Награды:</span>
+                        <TeamMedalDisplay medals={participant.medals} />
                       </div>
-                      <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
-                        <span className="text-muted-foreground">Прибыльных</span>
-                        <span className={participant.profitablePercent > 50 ? "text-green-600 font-medium" : "font-medium"}>
-                          {Math.round(participant.profitablePercent)}%
-                        </span>
+                      <div>
+                        <span className="text-muted-foreground text-xs">Макс. дох-сть:</span>
+                        <div className="text-green-600 font-medium">+{participant.maxReturn}%</div>
+                        <a href="#" className="text-xs text-muted-foreground hover:underline">{participant.maxReturnStock}</a>
                       </div>
-                      <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
-                        <span className="text-muted-foreground">Лучше бенчм.</span>
-                        <span className={participant.betterThanBenchmark > 50 ? "text-green-600 font-medium" : "font-medium"}>
-                          {Math.round(participant.betterThanBenchmark)}%
-                        </span>
+                      <div>
+                        <span className="text-muted-foreground text-xs">Ср. дох-сть:</span>
+                        <div className="text-green-600">+{Math.round(participant.avgReturn)}%</div>
                       </div>
-                      <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
-                        <span className="text-muted-foreground">Ср. дох-сть</span>
-                        <span className={participant.avgReturn > 50 ? "text-green-600 font-medium" : "font-medium"}>
-                          +{Math.round(participant.avgReturn)}%
-                        </span>
+                      <div>
+                        <span className="text-muted-foreground text-xs">Идей:</span>
+                        <div className="font-medium">{participant.ideas}</div>
                       </div>
                     </div>
                   </div>
