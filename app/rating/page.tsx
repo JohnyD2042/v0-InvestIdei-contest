@@ -80,7 +80,7 @@ const columnInfo = {
   profitablePercent: "Процент идей, которые принесли положительную доходность",
   betterThanBenchmark: "Процент идей, которые показали доходность выше индекса МосБиржи",
   avgReturn: "Средняя доходность всех идей участника",
-  hitRate: "Процент точных прогнозов по направлению движения цены",
+  hitRate: "Процент точных прог��озов по направлению движения цены",
   awards: "Количество полученных наград за всё время участия в конкурсе",
 }
 
@@ -320,11 +320,11 @@ export default function RatingPage() {
                                 <span className="truncate">{participant.company}</span>
                                 <span className="shrink-0">
                                   {participant.category === "institutional" ? (
-                                    <BriefcaseBusiness className="w-3 h-3 text-blue-500" />
+                                    <Users className="w-3 h-3 text-blue-500" />
                                   ) : participant.category === "tleague" ? (
                                     <span className="inline-flex items-center justify-center w-3 h-3 rounded bg-yellow-400 text-black text-[8px] font-black">Т</span>
                                   ) : (
-                                    <Palmtree className="w-3 h-3 text-violet-500" />
+                                    <User className="w-3 h-3 text-violet-500" />
                                   )}
                                 </span>
                               </div>
@@ -396,7 +396,7 @@ export default function RatingPage() {
                     {/* Stats grid */}
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
-                        <span className="text-muted-foreground">Идей</span>
+                        <span className="text-muted-foreground">Ид��й</span>
                         <span className="font-medium">{participant.ideas}</span>
                       </div>
                       <div className="flex justify-between bg-secondary/30 rounded px-2 py-1.5">
