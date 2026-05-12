@@ -55,20 +55,21 @@ interface TeamParticipant {
   ideas: number
   medals: MedalCount
   maxReturn: number
+  maxReturnStock: string
   avgReturn: number
 }
 
 const teamData: TeamParticipant[] = [
-  { id: 1, name: "VTB Capital", logo: "VTB", ideas: 156, medals: { gold: 5, silver: 3, bronze: 2 }, maxReturn: 87.4, avgReturn: 24.2 },
-  { id: 2, name: "Sberbank CIB", logo: "SBER", ideas: 143, medals: { gold: 4, silver: 4, bronze: 1 }, maxReturn: 72.1, avgReturn: 21.8 },
-  { id: 3, name: "Альфа Капитал", logo: "ALFA", ideas: 128, medals: { gold: 3, silver: 2, bronze: 3 }, maxReturn: 65.3, avgReturn: 19.5 },
-  { id: 4, name: "Тинькофф Инвестиции", logo: "TINK", ideas: 134, medals: { gold: 2, silver: 3, bronze: 2 }, maxReturn: 58.9, avgReturn: 18.1 },
-  { id: 5, name: "БКС Мир Инвестиций", logo: "BCS", ideas: 112, medals: { gold: 2, silver: 2, bronze: 1 }, maxReturn: 54.2, avgReturn: 16.7 },
-  { id: 6, name: "Газпромбанк", logo: "GPB", ideas: 98, medals: { gold: 1, silver: 2, bronze: 2 }, maxReturn: 48.7, avgReturn: 15.3 },
-  { id: 7, name: "Ренессанс Капитал", logo: "REN", ideas: 87, medals: { gold: 1, silver: 1, bronze: 2 }, maxReturn: 45.1, avgReturn: 14.2 },
-  { id: 8, name: "Открытие", logo: "OTKR", ideas: 76, medals: { gold: 1, silver: 1, bronze: 1 }, maxReturn: 42.3, avgReturn: 13.1 },
-  { id: 9, name: "Финам", logo: "FNAM", ideas: 94, medals: { gold: 0, silver: 2, bronze: 1 }, maxReturn: 38.6, avgReturn: 12.4 },
-  { id: 10, name: "Атон", logo: "ATON", ideas: 65, medals: { gold: 0, silver: 1, bronze: 2 }, maxReturn: 35.2, avgReturn: 11.8 },
+  { id: 1, name: "VTB Capital", logo: "VTB", ideas: 156, medals: { gold: 5, silver: 3, bronze: 2 }, maxReturn: 87.4, maxReturnStock: "Яндекс", avgReturn: 24.2 },
+  { id: 2, name: "Sberbank CIB", logo: "SBER", ideas: 143, medals: { gold: 4, silver: 4, bronze: 1 }, maxReturn: 72.1, maxReturnStock: "Лукойл", avgReturn: 21.8 },
+  { id: 3, name: "Альфа Капитал", logo: "ALFA", ideas: 128, medals: { gold: 3, silver: 2, bronze: 3 }, maxReturn: 65.3, maxReturnStock: "OZON", avgReturn: 19.5 },
+  { id: 4, name: "Тинькофф Инвестиции", logo: "TINK", ideas: 134, medals: { gold: 2, silver: 3, bronze: 2 }, maxReturn: 58.9, maxReturnStock: "Мосбиржа", avgReturn: 18.1 },
+  { id: 5, name: "БКС Мир Инвестиций", logo: "BCS", ideas: 112, medals: { gold: 2, silver: 2, bronze: 1 }, maxReturn: 54.2, maxReturnStock: "Яндекс", avgReturn: 16.7 },
+  { id: 6, name: "Газпромбанк", logo: "GPB", ideas: 98, medals: { gold: 1, silver: 2, bronze: 2 }, maxReturn: 48.7, maxReturnStock: "Лукойл", avgReturn: 15.3 },
+  { id: 7, name: "Ренессанс Капитал", logo: "REN", ideas: 87, medals: { gold: 1, silver: 1, bronze: 2 }, maxReturn: 45.1, maxReturnStock: "OZON", avgReturn: 14.2 },
+  { id: 8, name: "Открытие", logo: "OTKR", ideas: 76, medals: { gold: 1, silver: 1, bronze: 1 }, maxReturn: 42.3, maxReturnStock: "Мосбиржа", avgReturn: 13.1 },
+  { id: 9, name: "Финам", logo: "FNAM", ideas: 94, medals: { gold: 0, silver: 2, bronze: 1 }, maxReturn: 38.6, maxReturnStock: "Яндекс", avgReturn: 12.4 },
+  { id: 10, name: "Атон", logo: "ATON", ideas: 65, medals: { gold: 0, silver: 1, bronze: 2 }, maxReturn: 35.2, maxReturnStock: "Лукойл", avgReturn: 11.8 },
 ]
 
 const participantsData: Participant[] = [
@@ -437,7 +438,10 @@ export default function RatingPage() {
                               <TeamMedalDisplay medals={team.medals} />
                             </TableCell>
                             <TableCell className="px-3">
-                              <span className="text-green-600 font-medium">+{team.maxReturn}%</span>
+                              <div className="flex flex-col">
+                                <span className="text-green-600 font-medium">+{team.maxReturn}%</span>
+                                <span className="text-xs text-muted-foreground">{team.maxReturnStock}</span>
+                              </div>
                             </TableCell>
                             <TableCell className="px-3">
                               <span className="text-green-600">+{team.avgReturn}%</span>
@@ -466,6 +470,7 @@ export default function RatingPage() {
                           <div>
                             <span className="text-muted-foreground">Макс. дох-сть:</span>
                             <div className="text-green-600 font-medium">+{team.maxReturn}%</div>
+                            <div className="text-xs text-muted-foreground">{team.maxReturnStock}</div>
                           </div>
                           <div>
                             <span className="text-muted-foreground">Ср. дох-сть:</span>
