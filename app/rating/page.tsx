@@ -203,12 +203,9 @@ function TeamMedalDisplay({ medals }: { medals: MedalCount }) {
   )
 }
 
-function BrokerLogo({ logo }: { logo: string }) {
+function BrokerLogo({ logo, index }: { logo: string; index: number }) {
   const availableLogos = ["/logos/sber.png", "/logos/tbank.svg", "/logos/finam.jpg"]
-  
-  // Use logo code to consistently pick a logo (same broker always gets same logo)
-  const logoIndex = logo.charCodeAt(0) % availableLogos.length
-  const logoUrl = availableLogos[logoIndex]
+  const logoUrl = availableLogos[index % availableLogos.length]
   
   return (
     <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center overflow-hidden p-1">
@@ -432,7 +429,7 @@ export default function RatingPage() {
                             <TableCell className="w-12 px-3 text-center">{getRankBadge(index + 1)}</TableCell>
                             <TableCell>
                               <div className="flex items-center gap-3">
-                                <BrokerLogo logo={team.logo} />
+                                <BrokerLogo logo={team.logo} index={index} />
                                 <span className="font-medium text-foreground text-sm">{team.name}</span>
                               </div>
                             </TableCell>
@@ -458,7 +455,7 @@ export default function RatingPage() {
                       <div key={team.id} className="p-4 space-y-3">
                         <div className="flex items-center gap-3">
                           {getRankBadge(index + 1)}
-                          <BrokerLogo logo={team.logo} />
+                          <BrokerLogo logo={team.logo} index={index} />
                           <span className="font-medium text-foreground text-sm flex-1">{team.name}</span>
                         </div>
                         <div className="grid grid-cols-2 gap-3 text-sm">
