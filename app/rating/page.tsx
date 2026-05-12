@@ -343,9 +343,6 @@ export default function RatingPage() {
   )
 
   const getRankBadge = (rank: number) => {
-    if (rank === 1) return <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-500 text-white text-xs font-bold">1</span>
-    if (rank === 2) return <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-400 text-white text-xs font-bold">2</span>
-    if (rank === 3) return <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-orange-700 text-white text-xs font-bold">3</span>
     return <span className="text-sm text-muted-foreground font-medium">{rank}</span>
   }
 
@@ -440,7 +437,7 @@ export default function RatingPage() {
                             <TableCell className="px-3">
                               <div className="flex flex-col">
                                 <span className="text-green-600 font-medium">+{team.maxReturn}%</span>
-                                <span className="text-xs text-muted-foreground">{team.maxReturnStock}</span>
+                                <a href="#" className="text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2 transition-colors w-fit">{team.maxReturnStock}</a>
                               </div>
                             </TableCell>
                             <TableCell className="px-3">
@@ -470,7 +467,7 @@ export default function RatingPage() {
                           <div>
                             <span className="text-muted-foreground">Макс. дох-сть:</span>
                             <div className="text-green-600 font-medium">+{team.maxReturn}%</div>
-                            <div className="text-xs text-muted-foreground">{team.maxReturnStock}</div>
+                            <a href="#" className="text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2 transition-colors">{team.maxReturnStock}</a>
                           </div>
                           <div>
                             <span className="text-muted-foreground">Ср. дох-сть:</span>
