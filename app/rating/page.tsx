@@ -8,8 +8,7 @@ import {
   Medal,
   ChevronUp,
   ChevronDown,
-  BriefcaseBusiness,
-  Palmtree,
+  Users,
   User,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -27,7 +26,7 @@ import {
 
 type SortField = "rank" | "ideas" | "profitablePercent" | "betterThanBenchmark" | "avgReturn" | "hitRate" | "awards"
 type SortDirection = "asc" | "desc"
-type Category = "all" | "institutional" | "influencer" | "tleague"
+type Category = "team" | "individual" | "tleague"
 
 interface MedalCount {
   gold: number
@@ -148,15 +147,17 @@ function MedalDisplayCompact({ medals }: { medals: MedalCount }) {
 }
 
 export default function RatingPage() {
-  const [category, setCategory] = useState<Category>("all")
+  const [category, setCategory] = useState<Category>("team")
   const [sortField, setSortField] = useState<SortField>("rank")
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc")
 
   const filteredAndSortedData = useMemo(() => {
     let data = [...participantsData]
     
-    if (category !== "all") {
-      data = data.filter(p => p.category === category)
+    if (category === "individual") {
+      data = data.filter(p => p.category === "influencer")
+    } else if (category === "tleague") {
+      data = data.filter(p => p.category === "tleague")
     }
     
     // Sort
@@ -249,43 +250,34 @@ export default function RatingPage() {
             <div>
               <h1 className="text-xl sm:text-3xl font-bold text-foreground flex items-center gap-2 sm:gap-3">
                 <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-amber-500" />
-                <span>Рейтинг участников</span>
+                <span>Рейтинг чемпионов</span>
               </h1>
               <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
-                Турнирная таблица конкурса финансовых аналитиков
+                Лучшие аналитики за все время
               </p>
             </div>
           </div>
 
           {/* Filters */}
           <div className="flex flex-wrap items-center gap-2">
-            {(["all", "institutional", "influencer", "tleague"] as Category[]).map((cat) => {
-              const isActive = category === cat
+            {([
+              { key: "team", label: "Командный зачет", icon: <Users className="w-4 h-4" /> },
+              { key: "individual", label: "Индивидуальный зачет", icon: <User className="w-4 h-4" /> },
+              { key: "tleague", label: "Т-лига", icon: <span className="inline-flex items-center justify-center w-5 h-5 rounded text-xs font-black bg-yellow-400 text-black">Т</span> },
+            ] as { key: Category; label: string; icon: React.ReactNode }[]).map(({ key, label, icon }) => {
+              const isActive = category === key
               return (
                 <button
-                  key={cat}
-                  onClick={() => setCategory(cat)}
+                  key={key}
+                  onClick={() => setCategory(key)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-all ${
                     isActive
                       ? "bg-foreground text-background border-foreground shadow-sm"
                       : "bg-card text-muted-foreground border-border hover:text-foreground hover:border-foreground/30"
                   }`}
                 >
-                  {cat === "institutional" && (
-                    <BriefcaseBusiness className={`w-4 h-4 ${isActive ? "text-background" : "text-blue-500"}`} />
-                  )}
-                  {cat === "influencer" && (
-                    <Palmtree className={`w-4 h-4 ${isActive ? "text-background" : "text-violet-500"}`} />
-                  )}
-                  {cat === "tleague" && (
-                    <span className="inline-flex items-center justify-center w-5 h-5 rounded text-xs font-black bg-yellow-400 text-black">
-                      Т
-                    </span>
-                  )}
-                  {cat === "all" && "Все"}
-                  {cat === "institutional" && "Брокеры"}
-                  {cat === "influencer" && "Инфлюенсеры"}
-                  {cat === "tleague" && "Т-лига"}
+                  <span className={isActive ? "text-background" : "text-muted-foreground"}>{icon}</span>
+                  {label}
                 </button>
               )
             })}
