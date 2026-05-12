@@ -178,7 +178,7 @@ function TeamMedalDisplay({ medals }: { medals: MedalCount }) {
 
   return (
     <div className="flex flex-col gap-1">
-      <span className="text-xl font-bold text-foreground">{total}</span>
+      <span className="text-sm font-medium text-foreground">{total}</span>
       <div className="flex items-center gap-1.5">
         {medals.gold > 0 && (
           <span className="inline-flex items-center gap-0.5">
@@ -463,7 +463,7 @@ export default function RatingPage() {
                             <TableCell>
                               <div className="flex items-center gap-3">
                                 <BrokerLogo logo={team.logo} />
-                                <span className="font-semibold text-foreground text-base">{team.name}</span>
+                                <span className="font-medium text-foreground text-sm">{team.name}</span>
                               </div>
                             </TableCell>
                             <TableCell className="px-3">
@@ -489,7 +489,7 @@ export default function RatingPage() {
                         <div className="flex items-center gap-3">
                           {getRankBadge(index + 1)}
                           <BrokerLogo logo={team.logo} />
-                          <span className="font-semibold text-foreground text-base flex-1">{team.name}</span>
+                          <span className="font-medium text-foreground text-sm flex-1">{team.name}</span>
                         </div>
                         <div className="grid grid-cols-2 gap-3 text-sm">
                           <div>
