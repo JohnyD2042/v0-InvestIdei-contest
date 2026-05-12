@@ -16,7 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { DashboardLayout } from "@/components/dashboard-layout"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   Tooltip,
   TooltipContent,
@@ -48,6 +48,7 @@ interface Participant {
   medals: MedalCount
   maxReturn: number
   maxReturnStock: string
+  avatar?: string
 }
 
 interface TeamParticipant {
@@ -75,23 +76,23 @@ const teamData: TeamParticipant[] = [
 ]
 
 const participantsData: Participant[] = [
-  { id: 1, rank: 1, name: "Алексей Громов", company: "VTB Capital", category: "influencer", ideas: 8, profitablePercent: 78.5, betterThanBenchmark: 65.2, avgReturn: 18.4, hitRate: 72.3, medals: { gold: 2, silver: 1, bronze: 0 }, maxReturn: 87.4, maxReturnStock: "Яндекс" },
-  { id: 2, rank: 2, name: "Наталья Борисова", company: "Sberbank CIB", category: "influencer", ideas: 5, profitablePercent: 74.2, betterThanBenchmark: 58.1, avgReturn: 15.7, hitRate: 68.9, medals: { gold: 1, silver: 2, bronze: 0 }, maxReturn: 72.1, maxReturnStock: "Лукойл" },
+  { id: 1, rank: 1, name: "Алексей Громов", company: "VTB Capital", category: "influencer", ideas: 8, profitablePercent: 78.5, betterThanBenchmark: 65.2, avgReturn: 18.4, hitRate: 72.3, medals: { gold: 2, silver: 1, bronze: 0 }, maxReturn: 87.4, maxReturnStock: "Яндекс", avatar: "/avatars/author_55.jpg" },
+  { id: 2, rank: 2, name: "Наталья Борисова", company: "Sberbank CIB", category: "influencer", ideas: 5, profitablePercent: 74.2, betterThanBenchmark: 58.1, avgReturn: 15.7, hitRate: 68.9, medals: { gold: 1, silver: 2, bronze: 0 }, maxReturn: 72.1, maxReturnStock: "Лукойл", avatar: "/avatars/author_11.jpg" },
   { id: 3, rank: 3, name: "Роман Захаров", company: "Альфа Капитал", category: "influencer", ideas: 12, profitablePercent: 71.1, betterThanBenchmark: 52.4, avgReturn: 14.2, hitRate: 65.5, medals: { gold: 1, silver: 1, bronze: 1 }, maxReturn: 65.3, maxReturnStock: "OZON" },
-  { id: 4, rank: 4, name: "Светлана Морозова", company: "Тинькофф Инвестиции", category: "influencer", ideas: 6, profitablePercent: 72.2, betterThanBenchmark: 61.1, avgReturn: 16.8, hitRate: 70.1, medals: { gold: 1, silver: 0, bronze: 2 }, maxReturn: 58.9, maxReturnStock: "Мосбиржа" },
-  { id: 5, rank: 5, name: "Дмитрий Лебедев", company: "БКС Мир Инвестиций", category: "influencer", ideas: 15, profitablePercent: 68.3, betterThanBenchmark: 48.5, avgReturn: 12.1, hitRate: 62.4, medals: { gold: 1, silver: 1, bronze: 0 }, maxReturn: 54.2, maxReturnStock: "Яндекс" },
+  { id: 4, rank: 4, name: "Светлана Морозова", company: "Тинькофф Инвестиции", category: "influencer", ideas: 6, profitablePercent: 72.2, betterThanBenchmark: 61.1, avgReturn: 16.8, hitRate: 70.1, medals: { gold: 1, silver: 0, bronze: 2 }, maxReturn: 58.9, maxReturnStock: "Мосбиржа", avatar: "/avatars/author_11.jpg" },
+  { id: 5, rank: 5, name: "Дмитрий Лебедев", company: "БКС Мир Инвестиций", category: "influencer", ideas: 15, profitablePercent: 68.3, betterThanBenchmark: 48.5, avgReturn: 12.1, hitRate: 62.4, medals: { gold: 1, silver: 1, bronze: 0 }, maxReturn: 54.2, maxReturnStock: "Яндекс", avatar: "/avatars/author_105.jpg" },
   { id: 21, rank: 6, name: "Кирилл Орлов", company: "Т-Инвестиции", category: "tleague", ideas: 9, profitablePercent: 75.9, betterThanBenchmark: 62.1, avgReturn: 17.3, hitRate: 69.0, medals: { gold: 1, silver: 0, bronze: 1 }, maxReturn: 51.7, maxReturnStock: "Лукойл" },
   { id: 6, rank: 7, name: "Ирина Соловьёва", company: "Газпромбанк", category: "influencer", ideas: 7, profitablePercent: 70.4, betterThanBenchmark: 55.6, avgReturn: 13.9, hitRate: 64.8, medals: { gold: 0, silver: 2, bronze: 1 }, maxReturn: 48.3, maxReturnStock: "OZON" },
-  { id: 7, rank: 8, name: "Андрей Титов", company: "Ренессанс Капитал", category: "influencer", ideas: 11, profitablePercent: 66.7, betterThanBenchmark: 45.2, avgReturn: 11.5, hitRate: 60.2, medals: { gold: 0, silver: 2, bronze: 0 }, maxReturn: 45.1, maxReturnStock: "Мосбиржа" },
+  { id: 7, rank: 8, name: "Андрей Титов", company: "Ренессанс Капитал", category: "influencer", ideas: 11, profitablePercent: 66.7, betterThanBenchmark: 45.2, avgReturn: 11.5, hitRate: 60.2, medals: { gold: 0, silver: 2, bronze: 0 }, maxReturn: 45.1, maxReturnStock: "Мосбиржа", avatar: "/avatars/author_55.jpg" },
   { id: 8, rank: 9, name: "Елена Пономарёва", company: "Открытие", category: "influencer", ideas: 4, profitablePercent: 73.3, betterThanBenchmark: 60.0, avgReturn: 15.2, hitRate: 66.7, medals: { gold: 0, silver: 1, bronze: 1 }, maxReturn: 42.3, maxReturnStock: "Яндекс" },
-  { id: 22, rank: 10, name: "Виктория Соболева", company: "Т-Инвестиции", category: "tleague", ideas: 7, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 13.6, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 2 }, maxReturn: 38.6, maxReturnStock: "Лукойл" },
+  { id: 22, rank: 10, name: "Виктория Соболева", company: "Т-Инвестиции", category: "tleague", ideas: 7, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 13.6, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 2 }, maxReturn: 38.6, maxReturnStock: "Лукойл", avatar: "/avatars/author_11.jpg" },
   { id: 9, rank: 11, name: "Михаил Крылов", company: "Финам", category: "influencer", ideas: 13, profitablePercent: 63.4, betterThanBenchmark: 43.9, avgReturn: 10.8, hitRate: 58.5, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 35.2, maxReturnStock: "OZON" },
-  { id: 10, rank: 12, name: "Ольга Иванова", company: "БКС Мир Инвестиций", category: "influencer", ideas: 6, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 12.7, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 33.1, maxReturnStock: "Мосбиржа" },
-  { id: 11, rank: 13, name: "Павел Рогов", company: "Sberbank CIB", category: "influencer", ideas: 9, profitablePercent: 60.6, betterThanBenchmark: 42.4, avgReturn: 9.8, hitRate: 57.6, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 31.4, maxReturnStock: "Яндекс" },
+  { id: 10, rank: 12, name: "Ольга Иванова", company: "БКС Мир Инвестиций", category: "influencer", ideas: 6, profitablePercent: 68.2, betterThanBenchmark: 54.5, avgReturn: 12.7, hitRate: 63.6, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 33.1, maxReturnStock: "Мосбиржа", avatar: "/avatars/author_11.jpg" },
+  { id: 11, rank: 13, name: "Павел Рогов", company: "Sberbank CIB", category: "influencer", ideas: 9, profitablePercent: 60.6, betterThanBenchmark: 42.4, avgReturn: 9.8, hitRate: 57.6, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 31.4, maxReturnStock: "Яндекс", avatar: "/avatars/author_105.jpg" },
   { id: 12, rank: 14, name: "Татьяна Власова", company: "Газпромбанк", category: "influencer", ideas: 5, profitablePercent: 68.4, betterThanBenchmark: 52.6, avgReturn: 11.9, hitRate: 63.2, medals: { gold: 0, silver: 0, bronze: 1 }, maxReturn: 29.7, maxReturnStock: "Лукойл" },
   { id: 13, rank: 15, name: "Игорь Беляев", company: "Атон", category: "influencer", ideas: 14, profitablePercent: 58.3, betterThanBenchmark: 39.6, avgReturn: 8.7, hitRate: 54.2, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 27.2, maxReturnStock: "OZON" },
   { id: 14, rank: 16, name: "Юлия Степанова", company: "VTB Capital", category: "influencer", ideas: 3, profitablePercent: 71.4, betterThanBenchmark: 57.1, avgReturn: 13.2, hitRate: 64.3, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 25.8, maxReturnStock: "Мосбиржа" },
-  { id: 23, rank: 17, name: "Максим Тарасов", company: "Т-Инвестиции", category: "tleague", ideas: 5, profitablePercent: 58.8, betterThanBenchmark: 41.2, avgReturn: 9.1, hitRate: 52.9, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 23.5, maxReturnStock: "Яндекс" },
+  { id: 23, rank: 17, name: "Максим Тарасов", company: "Т-Инвестиции", category: "tleague", ideas: 5, profitablePercent: 58.8, betterThanBenchmark: 41.2, avgReturn: 9.1, hitRate: 52.9, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 23.5, maxReturnStock: "Яндекс", avatar: "/avatars/author_55.jpg" },
   { id: 15, rank: 18, name: "Сергей Комаров", company: "Ренессанс Капитал", category: "influencer", ideas: 8, profitablePercent: 55.2, betterThanBenchmark: 37.9, avgReturn: 7.9, hitRate: 51.7, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 21.3, maxReturnStock: "Лукойл" },
   { id: 16, rank: 19, name: "Анастасия Жукова", company: "Открытие", category: "influencer", ideas: 6, profitablePercent: 61.9, betterThanBenchmark: 47.6, avgReturn: 10.1, hitRate: 57.1, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 19.8, maxReturnStock: "OZON" },
   { id: 17, rank: 20, name: "Николай Фёдоров", company: "Тинькофф Инвестиции", category: "influencer", ideas: 10, profitablePercent: 52.8, betterThanBenchmark: 33.3, avgReturn: 6.5, hitRate: 47.2, medals: { gold: 0, silver: 0, bronze: 0 }, maxReturn: 18.2, maxReturnStock: "Мосбиржа" },
@@ -506,6 +507,7 @@ export default function RatingPage() {
                         <TableCell>
                           <div className="flex items-center gap-2">
                             <Avatar className="w-7 h-7 shrink-0">
+                              {participant.avatar && <AvatarImage src={participant.avatar} alt={participant.name} />}
                               <AvatarFallback className="bg-muted text-muted-foreground text-xs">
                                 <User className="w-3.5 h-3.5" />
                               </AvatarFallback>
@@ -544,6 +546,7 @@ export default function RatingPage() {
                     <div className="flex items-center gap-3">
                       {getRankBadge(index + 1)}
                       <Avatar className="w-9 h-9 shrink-0">
+                        {participant.avatar && <AvatarImage src={participant.avatar} alt={participant.name} />}
                         <AvatarFallback className="bg-muted text-muted-foreground">
                           <User className="w-4 h-4" />
                         </AvatarFallback>
