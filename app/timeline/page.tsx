@@ -128,7 +128,7 @@ function StatusBadge({ status }: { status: "active" | "closed" }) {
 export default function TimelinePage() {
   return (
     <DashboardLayout>
-      <TooltipProvider>
+      <TooltipProvider delayDuration={0}>
         <div className="space-y-6">
           {/* Header */}
           <div>
@@ -165,10 +165,8 @@ export default function TimelinePage() {
                           <div className="flex items-center gap-1.5">
                             <span>Дата фиксации прибыли</span>
                             <Tooltip>
-                              <TooltipTrigger asChild>
-                                <button type="button" className="cursor-help">
-                                  <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors" />
-                                </button>
+                              <TooltipTrigger>
+                                <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
                               </TooltipTrigger>
                               <TooltipContent side="top" className="max-w-xs">
                                 <p>Для закрытых идей берется дата закрытия. Для активных идей берется доходность за текущий этап конкурса (текущий месяц)</p>
@@ -180,10 +178,8 @@ export default function TimelinePage() {
                           <div className="flex items-center gap-1.5">
                             <span>Дата старта</span>
                             <Tooltip>
-                              <TooltipTrigger asChild>
-                                <button type="button" className="cursor-help">
-                                  <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors" />
-                                </button>
+                              <TooltipTrigger>
+                                <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
                               </TooltipTrigger>
                               <TooltipContent side="top" className="max-w-xs">
                                 <p>Для идей в статусе «активная» берется доходность за текущий этап конкурса (текущий месяц)</p>
@@ -195,10 +191,8 @@ export default function TimelinePage() {
                           <div className="flex items-center gap-1.5">
                             <span>Статус</span>
                             <Tooltip>
-                              <TooltipTrigger asChild>
-                                <button type="button" className="cursor-help">
-                                  <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors" />
-                                </button>
+                              <TooltipTrigger>
+                                <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
                               </TooltipTrigger>
                               <TooltipContent side="top" className="max-w-xs">
                                 <p>Приоритет отдаётся идеям, которые были закрыты в текущем месяце</p>
