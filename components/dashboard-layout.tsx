@@ -118,7 +118,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <Link href="/about" className="hidden md:block">
           <Button
             size="sm"
-            className="font-bold bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-md shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105 text-sm px-5"
+            className="font-bold bg-violet-700 hover:bg-violet-600 text-white shadow-md shadow-violet-700/30 hover:shadow-violet-700/50 transition-all duration-200 hover:scale-105 text-sm px-5"
           >
             Принять участие!
           </Button>
