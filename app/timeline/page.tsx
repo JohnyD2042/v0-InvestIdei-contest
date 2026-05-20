@@ -35,7 +35,7 @@ const categoriesData: Category[] = [
     name: "Лучшие идеи на акции",
     icon: "triangle",
     ideas: [
-      { id: 1, rank: 1, analyst: "VTB Capital", stock: "Яндекс", returnPercent: 24.5, closeDate: "15.05.26", startDate: "30.04.26", status: "closed", link: "#" },
+      { id: 1, rank: 1, analyst: "VTB Capital", stock: "Яндекс", returnPercent: 24.5, closeDate: "15.05.26", startDate: "07.04.26", status: "closed", link: "#" },
       { id: 2, rank: 2, analyst: "Sberbank CIB", stock: "Газпром", returnPercent: 19.2, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
       { id: 3, rank: 3, analyst: "Альфа Капитал", stock: "Лукойл", returnPercent: 15.8, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
     ],
