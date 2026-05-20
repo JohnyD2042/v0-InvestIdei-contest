@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Trophy, Clock, Layers, Menu, Rocket } from "lucide-react"
+import { Home, Trophy, Clock, Layers, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
@@ -70,7 +70,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <header className="h-16 border-b border-border bg-card px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center gap-3 md:gap-4">
           {/* Mobile Menu Button */}
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+          <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <Menu className="w-5 h-5" />
@@ -87,14 +87,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 </div>
               </div>
               <SidebarContent />
-              
+
               {/* CTA Button in mobile menu */}
               <div className="mt-6">
-                <Link href="/about" onClick={() => setMobileMenuOpen(false)}>
-                  <Button
-                    className="w-full gap-2 font-bold bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-md shadow-yellow-400/30"
-                  >
-                    <Rocket className="w-4 h-4" />
+                <Link href="/about">
+                  <Button className="w-full font-bold bg-violet-700 hover:bg-violet-600 text-white shadow-md shadow-violet-700/30">
                     Принять участие!
                   </Button>
                 </Link>
@@ -121,10 +118,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <Link href="/about" className="hidden md:block">
           <Button
             size="sm"
-            className="gap-1.5 font-bold bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-md shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105 text-sm px-5"
+            className="font-bold bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-md shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105 text-sm px-5"
           >
-            <Rocket className="w-4 h-4 shrink-0" />
-            <span>Принять участие!</span>
+            Принять участие!
           </Button>
         </Link>
       </header>

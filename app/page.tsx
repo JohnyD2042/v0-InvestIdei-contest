@@ -10,9 +10,7 @@ import {
   Layers,
   Timer,
   Calendar,
-  ArrowRight,
   Target,
-  Rocket,
   BarChart2,
   Trophy,
 } from "lucide-react"
@@ -423,11 +421,9 @@ export default function Dashboard() {
             <Link href="/about" className="shrink-0 w-full md:w-auto">
               <Button
                 size="lg"
-                className="w-full md:w-auto gap-2 text-base font-bold px-8 py-6 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-lg shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105"
+                className="w-full md:w-auto text-base font-bold px-8 py-6 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-lg shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105"
               >
-                <Rocket className="w-5 h-5" />
                 Подробнее о конкурсе
-                <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
