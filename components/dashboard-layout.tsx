@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Trophy, Clock, Layers, Menu } from "lucide-react"
+import { Home, Trophy, Clock, Layers, Menu, Rocket } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
@@ -104,6 +104,17 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             {getCurrentPageName()}
           </div>
         </div>
+
+        {/* CTA Button */}
+        <Link href="/about">
+          <Button
+            size="sm"
+            className="gap-1.5 font-bold bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-md shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105 text-xs md:text-sm px-3 md:px-5"
+          >
+            <Rocket className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" />
+            <span>Принять участие!</span>
+          </Button>
+        </Link>
       </header>
 
       <div className="flex">
