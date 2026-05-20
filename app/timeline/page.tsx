@@ -255,7 +255,7 @@ function CategoryTable({ category, compact = false }: { category: Category; comp
                         <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
                       </TooltipTrigger>
                       <TooltipContent side="top" className="max-w-xs">
-                        <p>Для идей в статусе «активная» берется доходность за текущий этап конкурса (текущий месяц)</p>
+                        <p>Для идей в статусе «активная» берется дата начала текущего этапа конкурса</p>
                       </TooltipContent>
                     </Tooltip>
                   </div>
