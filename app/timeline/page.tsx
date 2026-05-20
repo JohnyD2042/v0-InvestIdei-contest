@@ -160,7 +160,19 @@ export default function TimelinePage() {
                       <TableRow className="bg-secondary/50">
                         <TableHead className="w-12 px-3 text-center font-medium text-foreground">#</TableHead>
                         <TableHead className="font-medium text-foreground">Идея</TableHead>
-                        <TableHead className="font-medium text-foreground w-28">Доходность</TableHead>
+                        <TableHead className="font-medium text-foreground w-28">
+                          <div className="flex items-center gap-1.5">
+                            <span>Доходность</span>
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
+                              </TooltipTrigger>
+                              <TooltipContent side="top" className="max-w-xs">
+                                <p>Для завершенных идей — доходность уже зафиксирована. Для активных идей — доходность плавающая и может меняться</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
+                        </TableHead>
                         <TableHead className="font-medium text-foreground w-40">
                           <div className="flex items-center gap-1.5">
                             <span>Дата фиксации прибыли</span>
@@ -169,7 +181,7 @@ export default function TimelinePage() {
                                 <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
                               </TooltipTrigger>
                               <TooltipContent side="top" className="max-w-xs">
-                                <p>Для закрытых идей берется дата закрытия. Для активных идей берется доходность за текущий этап конкурса (текущий месяц)</p>
+                                <p>Для завершенных идей — берется дата фактического закрытия. Для активных идей — берется дата «сегодня», так как идеи продолжаются</p>
                               </TooltipContent>
                             </Tooltip>
                           </div>
