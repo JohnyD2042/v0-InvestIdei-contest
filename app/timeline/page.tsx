@@ -1,302 +1,426 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Clock, Timer, Medal, Zap, Rocket } from "lucide-react"
+import { useState } from "react"
+import { Clock, Info, ChevronDown, ChevronUp, Trophy } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { DashboardLayout } from "@/components/dashboard-layout"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
-interface AwardCard {
-  id: string
-  type: "gold" | "silver" | "bronze" | "active" | "avgReturn"
+interface Idea {
+  id: number
+  rank: number
   analyst: string
-  asset?: string
-  returnPercent?: number
-  ideasCount?: number
-  profitableCount?: number
-  avgReturnPercent?: number
+  stock: string
+  returnPercent: number
+  closeDate: string
+  startDate: string
+  status: "active" | "closed"
+  link?: string
 }
 
-interface MonthData {
+interface Category {
+  name: string
+  icon: "triangle" | "butterfly" | "circle"
+  ideas: Idea[]
+}
+
+interface MonthArchive {
   month: string
-  year: number
-  isLive: boolean
-  awards: AwardCard[]
+  label: string
+  finalDate: string
+  categories: Category[]
 }
 
-const timelineData: MonthData[] = [
+// ---- CURRENT MONTH DATA (Май 2026) ----
+const currentCategories: Category[] = [
   {
-    month: "Май",
-    year: 2026,
-    isLive: true,
-    awards: [
-      { id: "may-gold", type: "gold", analyst: "VTB Capital", asset: "Яндекс", returnPercent: 24.5 },
-      { id: "may-silver", type: "silver", analyst: "Sberbank CIB", asset: "Газпром", returnPercent: 19.2 },
-      { id: "may-bronze", type: "bronze", analyst: "InvestBlog", asset: "Лукойл", returnPercent: 15.8 },
-      { id: "may-active", type: "active", analyst: "FinanceGuru", ideasCount: 5, profitableCount: 3 },
-      { id: "may-avg", type: "avgReturn", analyst: "Alfa Capital", ideasCount: 3, avgReturnPercent: 8.5 },
+    name: "Лучшие идеи на акции",
+    icon: "triangle",
+    ideas: [
+      { id: 1, rank: 1, analyst: "VTB Capital", stock: "Яндекс", returnPercent: 24.5, closeDate: "15.05.26", startDate: "07.04.26", status: "closed", link: "#" },
+      { id: 2, rank: 2, analyst: "Sberbank CIB", stock: "Газпром", returnPercent: 19.2, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
+      { id: 3, rank: 3, analyst: "Альфа Капитал", stock: "Лукойл", returnPercent: 15.8, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
     ],
   },
   {
-    month: "Апрель",
-    year: 2026,
-    isLive: false,
-    awards: [
-      { id: "apr-gold", type: "gold", analyst: "Tinkoff Investments", asset: "Сбербанк", returnPercent: 28.3 },
-      { id: "apr-silver", type: "silver", analyst: "StockMaster", asset: "Норникель", returnPercent: 21.7 },
-      { id: "apr-bronze", type: "bronze", analyst: "Renaissance Capital", asset: "Роснефть", returnPercent: 17.4 },
-      { id: "apr-active", type: "active", analyst: "TradingPro", ideasCount: 7, profitableCount: 4 },
-      { id: "apr-avg", type: "avgReturn", analyst: "BCS Global Markets", ideasCount: 4, avgReturnPercent: 9.2 },
+    name: "Лучшие идеи на БПИФ",
+    icon: "butterfly",
+    ideas: [
+      { id: 4, rank: 1, analyst: "Тинькофф Инвестиции", stock: "TMOS", returnPercent: 12.3, closeDate: "12.05.26", startDate: "30.04.26", status: "closed", link: "#" },
+      { id: 5, rank: 2, analyst: "БКС Мир Инвестиций", stock: "SBMX", returnPercent: 9.7, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
+      { id: 6, rank: 3, analyst: "Финам", stock: "FXRL", returnPercent: 7.2, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
     ],
   },
   {
-    month: "Март",
-    year: 2026,
-    isLive: false,
-    awards: [
-      { id: "mar-gold", type: "gold", analyst: "Alfa Capital", asset: "МТС", returnPercent: 32.1 },
-      { id: "mar-silver", type: "silver", analyst: "VTB Capital", asset: "Полюс", returnPercent: 25.4 },
-      { id: "mar-bronze", type: "bronze", analyst: "MarketWatcher", asset: "Магнит", returnPercent: 18.9 },
-      { id: "mar-active", type: "active", analyst: "InvestBlog", ideasCount: 6, profitableCount: 5 },
-      { id: "mar-avg", type: "avgReturn", analyst: "Sberbank CIB", ideasCount: 5, avgReturnPercent: 11.3 },
+    name: "Лучшие идеи на ОТС",
+    icon: "circle",
+    ideas: [
+      { id: 7, rank: 1, analyst: "Ренессанс Капитал", stock: "Делимобиль", returnPercent: 31.4, closeDate: "10.05.26", startDate: "30.04.26", status: "closed", link: "#" },
+      { id: 8, rank: 2, analyst: "Газпромбанк", stock: "Самокат", returnPercent: 18.9, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
+      { id: 9, rank: 3, analyst: "Атон", stock: "Вкусвилл", returnPercent: 14.2, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
     ],
   },
 ]
 
-const getAwardTitle = (type: AwardCard["type"]) => {
-  switch (type) {
-    case "gold":      return "Самая доходная идея — Золото"
-    case "silver":    return "Самая доходная идея — Серебро"
-    case "bronze":    return "Самая доходная идея — Бронза"
-    case "active":    return "Самый активный участник"
-    case "avgReturn": return "Лучшая средняя доходность"
+// ---- ARCHIVE DATA ----
+const archiveData: MonthArchive[] = [
+  {
+    month: "Апрель 2026",
+    label: "apr",
+    finalDate: "01.05.26",
+    categories: [
+      {
+        name: "Лучшие идеи на акции",
+        icon: "triangle",
+        ideas: [
+          { id: 101, rank: 1, analyst: "Финам", stock: "Сбербанк", returnPercent: 18.3, closeDate: "28.04.26", startDate: "01.04.26", status: "closed", link: "#" },
+          { id: 102, rank: 2, analyst: "VTB Capital", stock: "Роснефть", returnPercent: 12.7, closeDate: "25.04.26", startDate: "03.04.26", status: "closed", link: "#" },
+          { id: 103, rank: 3, analyst: "Газпромбанк", stock: "Норникель", returnPercent: 9.4, closeDate: "30.04.26", startDate: "05.04.26", status: "closed", link: "#" },
+        ],
+      },
+      {
+        name: "Лучшие идеи на БПИФ",
+        icon: "butterfly",
+        ideas: [
+          { id: 104, rank: 1, analyst: "Sberbank CIB", stock: "SBRB", returnPercent: 8.1, closeDate: "29.04.26", startDate: "02.04.26", status: "closed", link: "#" },
+          { id: 105, rank: 2, analyst: "Тинькофф Инвестиции", stock: "TMOS", returnPercent: 6.5, closeDate: "27.04.26", startDate: "04.04.26", status: "closed", link: "#" },
+          { id: 106, rank: 3, analyst: "Альфа Капитал", stock: "AKMB", returnPercent: 5.2, closeDate: "26.04.26", startDate: "06.04.26", status: "closed", link: "#" },
+        ],
+      },
+      {
+        name: "Лучшие идеи на ОТС",
+        icon: "circle",
+        ideas: [
+          { id: 107, rank: 1, analyst: "БКС Мир Инвестиций", stock: "Whoosh", returnPercent: 22.6, closeDate: "30.04.26", startDate: "01.04.26", status: "closed", link: "#" },
+          { id: 108, rank: 2, analyst: "Атон", stock: "Делимобиль", returnPercent: 15.3, closeDate: "28.04.26", startDate: "03.04.26", status: "closed", link: "#" },
+          { id: 109, rank: 3, analyst: "Ренессанс Капитал", stock: "Вкусвилл", returnPercent: 11.8, closeDate: "25.04.26", startDate: "07.04.26", status: "closed", link: "#" },
+        ],
+      },
+    ],
+  },
+  {
+    month: "Март 2026",
+    label: "mar",
+    finalDate: "01.04.26",
+    categories: [
+      {
+        name: "Лучшие идеи на акции",
+        icon: "triangle",
+        ideas: [
+          { id: 201, rank: 1, analyst: "Газпромбанк", stock: "OZON", returnPercent: 32.1, closeDate: "27.03.26", startDate: "01.03.26", status: "closed", link: "#" },
+          { id: 202, rank: 2, analyst: "Альфа Капитал", stock: "Яндекс", returnPercent: 21.4, closeDate: "25.03.26", startDate: "03.03.26", status: "closed", link: "#" },
+          { id: 203, rank: 3, analyst: "Открытие", stock: "Мосбиржа", returnPercent: 14.9, closeDate: "28.03.26", startDate: "05.03.26", status: "closed", link: "#" },
+        ],
+      },
+      {
+        name: "Лучшие идеи на БПИФ",
+        icon: "butterfly",
+        ideas: [
+          { id: 204, rank: 1, analyst: "Финам", stock: "FXRL", returnPercent: 11.2, closeDate: "29.03.26", startDate: "02.03.26", status: "closed", link: "#" },
+          { id: 205, rank: 2, analyst: "БКС Мир Инвестиций", stock: "SBMX", returnPercent: 8.7, closeDate: "26.03.26", startDate: "04.03.26", status: "closed", link: "#" },
+          { id: 206, rank: 3, analyst: "VTB Capital", stock: "VTBX", returnPercent: 6.3, closeDate: "24.03.26", startDate: "06.03.26", status: "closed", link: "#" },
+        ],
+      },
+      {
+        name: "Лучшие идеи на ОТС",
+        icon: "circle",
+        ideas: [
+          { id: 207, rank: 1, analyst: "Тинькофф Инвестиции", stock: "Самокат", returnPercent: 28.5, closeDate: "30.03.26", startDate: "01.03.26", status: "closed", link: "#" },
+          { id: 208, rank: 2, analyst: "Sberbank CIB", stock: "Whoosh", returnPercent: 19.2, closeDate: "27.03.26", startDate: "03.03.26", status: "closed", link: "#" },
+          { id: 209, rank: 3, analyst: "Ренессанс Капитал", stock: "Indriver", returnPercent: 13.7, closeDate: "25.03.26", startDate: "07.03.26", status: "closed", link: "#" },
+        ],
+      },
+    ],
+  },
+]
+
+// Icons from the awards section
+const CategoryIcon = ({ icon, size = "md" }: { icon: "triangle" | "butterfly" | "circle"; size?: "sm" | "md" }) => {
+  const cls = size === "sm" ? "w-4 h-4" : "w-5 h-5"
+  if (icon === "triangle") {
+    return (
+      <svg className={cls} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+        <defs>
+          <linearGradient id="gradTriangleTl" x1="56" y1="440" x2="456" y2="72" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#F2A7D5" /><stop offset="100%" stopColor="#D899F0" />
+          </linearGradient>
+        </defs>
+        <polygon points="256,52 40,426 472,426" fill="url(#gradTriangleTl)" stroke="url(#gradTriangleTl)" strokeWidth="28" strokeLinejoin="round" />
+      </svg>
+    )
   }
-}
-
-// Animated typing badge with faster speed
-function TypingBadge() {
-  const phrases = ["Кандидаты на победу", "Итоги не финальные", "Расклад может измениться"]
-  const [phraseIndex, setPhraseIndex] = useState(0)
-  const [displayed, setDisplayed] = useState("")
-  const [deleting, setDeleting] = useState(false)
-
-  useEffect(() => {
-    const current = phrases[phraseIndex]
-    let timeout: ReturnType<typeof setTimeout>
-
-    if (!deleting && displayed.length < current.length) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 35)
-    } else if (!deleting && displayed.length === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 1200)
-    } else if (deleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length - 1)), 15)
-    } else {
-      setDeleting(false)
-      setPhraseIndex((i) => (i + 1) % phrases.length)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [displayed, deleting, phraseIndex])
-
+  if (icon === "butterfly") {
+    return (
+      <svg className={cls} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+        <defs>
+          <linearGradient id="gradBpifTl" x1="18" y1="256" x2="494" y2="256" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#F6A000" /><stop offset="52%" stopColor="#F6B08F" /><stop offset="100%" stopColor="#E08FEF" />
+          </linearGradient>
+        </defs>
+        <path d="M 18 78 Q 18 42 46 30 L 84 12 Q 104 2 124 20 L 256 148 L 388 20 Q 408 2 428 12 L 466 30 Q 494 42 494 78 L 494 434 Q 494 470 466 482 L 428 500 Q 408 510 388 492 L 256 364 L 124 492 Q 104 510 84 500 L 46 482 Q 18 470 18 434 Z" fill="url(#gradBpifTl)" />
+      </svg>
+    )
+  }
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm font-semibold min-w-[230px]">
-      <div className="w-2 h-2 bg-green-500 rounded-full animate-[pulse_0.8s_ease-in-out_infinite] shrink-0" />
-      <span>
-        {displayed}
-        <span className="animate-[pulse_0.5s_ease-in-out_infinite]">|</span>
-      </span>
-    </div>
+    <svg className={cls} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+      <defs>
+        <radialGradient id="gradCircleTl" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(368 136) rotate(134.105) scale(430)">
+          <stop offset="0%" stopColor="#FFC33A" /><stop offset="55%" stopColor="#FFA20A" /><stop offset="100%" stopColor="#F3981C" />
+        </radialGradient>
+      </defs>
+      <circle cx="256" cy="256" r="256" fill="url(#gradCircleTl)" />
+    </svg>
   )
 }
 
-function AwardIcon({ type }: { type: AwardCard["type"] }) {
-  const iconClasses = "w-5 h-5"
-  switch (type) {
-    case "gold":
-      return <Medal className={`${iconClasses} text-amber-500`} />
-    case "silver":
-      return <Medal className={`${iconClasses} text-slate-400`} />
-    case "bronze":
-      return <Medal className={`${iconClasses} text-orange-600`} />
-    case "active":
-      return <Zap className={`${iconClasses} text-blue-500`} />
-    case "avgReturn":
-      return <Rocket className={`${iconClasses} text-green-500`} />
-  }
+const getRankDisplay = (rank: number) => {
+  if (rank === 1) return <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-500 text-white text-xs font-bold">1</span>
+  if (rank === 2) return <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-400 text-white text-xs font-bold">2</span>
+  if (rank === 3) return <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-orange-700 text-white text-xs font-bold">3</span>
+  return <span className="text-sm text-muted-foreground font-medium">{rank}</span>
 }
 
-function AwardCardComponent({ award, isLive }: { award: AwardCard; isLive: boolean }) {
-  const accentColor = {
-    gold:      "bg-amber-400",
-    silver:    "bg-slate-400",
-    bronze:    "bg-orange-600",
-    active:    "bg-primary",
-    avgReturn: "bg-emerald-500",
-  }[award.type]
-
-  const getStatValue = () => {
-    if (award.type === "active") {
-      return `${award.ideasCount} идей`
-    } else if (award.type === "avgReturn") {
-      return `+${award.avgReturnPercent}%`
-    } else {
-      return `+${Math.round(award.returnPercent!)}%`
-    }
+function StatusBadge({ status }: { status: "active" | "closed" }) {
+  if (status === "active") {
+    return (
+      <Badge className="bg-green-100 text-green-700 hover:bg-green-100 border-green-200 font-medium text-xs">
+        Активная
+      </Badge>
+    )
   }
-
-  const getSuffix = () => {
-    if (award.type === "avgReturn") return null
-    return "за май"
-  }
-
-  const statColor = {
-    gold:      "text-amber-600",
-    silver:    "text-slate-500",
-    bronze:    "text-orange-700",
-    active:    "text-primary",
-    avgReturn: "text-emerald-600",
-  }[award.type]
-
   return (
-    <div className={`flex flex-col rounded-xl border border-border bg-card hover:shadow-md transition-all overflow-hidden h-full ${!isLive ? "opacity-75" : ""}`}>
-      {/* Accent bar */}
-      <div className={`h-1 w-full ${accentColor}`} />
+    <Badge variant="secondary" className="bg-muted text-muted-foreground hover:bg-muted font-medium text-xs">
+      Завершена
+    </Badge>
+  )
+}
 
-      <div className="flex flex-col flex-1 p-4">
-        {/* Top row: icon + nomination label — fixed height for alignment */}
-        <div className="h-[52px] flex items-start gap-2 mb-2">
-          <div className="shrink-0 mt-0.5">
-            <AwardIcon type={award.type} />
-          </div>
-          <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-tight pt-1">
-            {getAwardTitle(award.type)}
-          </div>
-        </div>
-
-        {/* Analyst name — always at same vertical position */}
-        <div className="font-bold text-foreground text-sm leading-snug flex-1">
-          {award.analyst}
-        </div>
-
-        {/* Asset name for medal types */}
-        {(award.type === "gold" || award.type === "silver" || award.type === "bronze") && award.asset && (
-          <div className="text-xs text-muted-foreground truncate mt-1 mb-2">{award.asset}</div>
-        )}
-
-        {/* Stat row — on one line without wrap */}
-        <div className="pt-3 mt-auto border-t border-border/60">
-          <div className="flex items-baseline gap-1 whitespace-nowrap text-sm">
-            <span className={`font-bold ${statColor}`}>{getStatValue()}</span>
-            {getSuffix() && <span className="text-muted-foreground text-xs">{getSuffix()}</span>}
+// Reusable table for both current and archive
+function CategoryTable({ category, compact = false }: { category: Category; compact?: boolean }) {
+  return (
+    <Card className="border-border">
+      <CardContent className="p-0">
+        <div className={`px-4 py-3 border-b border-border ${compact ? "bg-secondary/20" : "bg-secondary/30"}`}>
+          <div className="flex items-center gap-2">
+            <CategoryIcon icon={category.icon} size={compact ? "sm" : "md"} />
+            <h3 className={`font-bold text-foreground ${compact ? "text-sm" : ""}`}>{category.name}</h3>
           </div>
         </div>
-      </div>
+
+        {/* Desktop */}
+        <div className="hidden md:block overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-secondary/50">
+                <TableHead className="w-12 px-3 text-center font-medium text-foreground">#</TableHead>
+                <TableHead className="font-medium text-foreground">Идея</TableHead>
+                <TableHead className="font-medium text-foreground w-28">
+                  <div className="flex items-center gap-1.5">
+                    <span>Доходность</span>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <p>Для завершенных идей — доходность уже зафиксирована. Для активных идей — доходность плавающая и может меняться</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TableHead>
+                <TableHead className="font-medium text-foreground w-40">
+                  <div className="flex items-center gap-1.5">
+                    <span>Дата фиксации прибыли</span>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <p>Для завершенных идей — берется дата фактического закрытия. Для активных идей — берется дата «сегодня», так как идеи продолжаются</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TableHead>
+                <TableHead className="font-medium text-foreground w-32">
+                  <div className="flex items-center gap-1.5">
+                    <span>Дата старта</span>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <p>Для идей в статусе «активная» берется доходность за текущий этап конкурса (текущий месяц)</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TableHead>
+                <TableHead className="font-medium text-foreground w-28">
+                  <div className="flex items-center gap-1.5">
+                    <span>Статус</span>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground transition-colors cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs">
+                        <p>Приоритет отдаётся идеям, которые были закрыты в текущем месяце</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {category.ideas.map((idea) => (
+                <TableRow key={idea.id} className="hover:bg-secondary/30">
+                  <TableCell className="w-12 px-3 text-center">{getRankDisplay(idea.rank)}</TableCell>
+                  <TableCell>
+                    <a href={idea.link || "#"} target="_blank" rel="noopener noreferrer" className="block hover:opacity-80 transition-opacity">
+                      <div className="font-medium text-foreground hover:text-primary transition-colors">{idea.analyst}</div>
+                      <div className="text-xs text-muted-foreground">{idea.stock}</div>
+                    </a>
+                  </TableCell>
+                  <TableCell><span className="text-green-600 font-semibold">+{idea.returnPercent}%</span></TableCell>
+                  <TableCell><span className="text-sm text-foreground">{idea.closeDate}</span></TableCell>
+                  <TableCell><span className="text-sm text-muted-foreground">{idea.startDate}</span></TableCell>
+                  <TableCell><StatusBadge status={idea.status} /></TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+        {/* Mobile */}
+        <div className="md:hidden divide-y divide-border">
+          {category.ideas.map((idea) => (
+            <div key={idea.id} className="p-4 space-y-3">
+              <div className="flex items-center gap-3">
+                {getRankDisplay(idea.rank)}
+                <a href={idea.link || "#"} target="_blank" rel="noopener noreferrer" className="flex-1 min-w-0">
+                  <div className="font-medium text-foreground text-sm truncate hover:text-primary transition-colors">{idea.analyst}</div>
+                  <div className="text-xs text-muted-foreground truncate">{idea.stock}</div>
+                </a>
+                <StatusBadge status={idea.status} />
+              </div>
+              <div className="grid grid-cols-3 gap-3 text-sm">
+                <div>
+                  <span className="text-muted-foreground text-xs block">Доходность</span>
+                  <span className="text-green-600 font-semibold">+{idea.returnPercent}%</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground text-xs block">Старт</span>
+                  <span className="text-foreground text-sm">{idea.startDate}</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground text-xs block">Фиксация</span>
+                  <span className="text-foreground text-sm">{idea.closeDate}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+function ArchiveMonth({ archive }: { archive: MonthArchive }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="border border-border rounded-xl overflow-hidden">
+      {/* Accordion header */}
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center justify-between px-5 py-4 bg-secondary/30 hover:bg-secondary/50 transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+            <Trophy className="w-4 h-4 text-primary" />
+          </div>
+          <div className="text-left">
+            <span className="font-bold text-foreground">{archive.month}</span>
+            <span className="text-xs text-muted-foreground block">Итоги зафиксированы {archive.finalDate}</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="text-xs hidden sm:flex">Завершён</Badge>
+          {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+        </div>
+      </button>
+
+      {/* Accordion body */}
+      {open && (
+        <div className="p-4 space-y-4 bg-background">
+          {archive.categories.map((cat) => (
+            <CategoryTable key={cat.name} category={cat} compact />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
 export default function TimelinePage() {
-  // Calculate days until June 1st deadline
-  const [daysLeft, setDaysLeft] = useState(0)
-  
-  useEffect(() => {
-    const deadline = new Date("2026-06-01T00:00:00")
-    const now = new Date()
-    const diff = deadline.getTime() - now.getTime()
-    setDaysLeft(Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24))))
-  }, [])
-
   return (
     <DashboardLayout>
-      <div className="space-y-8">
-        {/* Header */}
-        <div>
-          <h1 className="text-xl sm:text-3xl font-bold text-foreground flex items-center gap-2 sm:gap-3">
-            <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
-            <span>Таймлайн конкурса</span>
-          </h1>
-          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
-            История побед и текущие кандидаты на награды
-          </p>
-        </div>
+      <TooltipProvider delayDuration={0}>
+        <div className="space-y-6">
 
-        {/* Timeline */}
-        <div className="relative">
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-border via-border/60 to-border hidden md:block" />
-
-          <div className="space-y-8 md:space-y-0">
-            {timelineData.map((monthData, index) => {
-              const awardNumber = timelineData.length - index
-              return (
-                <div
-                  key={`${monthData.month}-${monthData.year}`}
-                  className={`relative md:pl-16 pb-8 ${index === timelineData.length - 1 ? "pb-0" : ""}`}
-                >
-                  {/* Timeline Node */}
-                  <div className="absolute left-0 hidden md:flex items-center justify-center">
-                    <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center border-4 ${
-                      monthData.isLive
-                        ? "bg-card border-primary text-primary shadow-md"
-                        : "bg-card border-border text-muted-foreground"
-                    }`}>
-                      <span className="text-sm font-bold">{awardNumber}</span>
-                    </div>
-                    <div className={`absolute left-12 w-4 h-0.5 ${monthData.isLive ? "bg-primary" : "bg-border"}`} />
-                  </div>
-
-                  {/* Month Content Card */}
-                  <Card className={`border-2 transition-all ${
-                    monthData.isLive
-                      ? "border-primary/20 bg-card shadow-md"
-                      : "border-border bg-card/50 hover:bg-card hover:border-border"
-                  }`}>
-                    <CardContent className="p-6">
-                      {/* Month Header */}
-                      <div className="flex flex-wrap items-center gap-3 mb-6">
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-lg border bg-secondary border-border text-foreground">
-                          {monthData.isLive && (
-                            <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shrink-0" />
-                          )}
-                          <span>{monthData.month} {monthData.year}</span>
-                        </div>
-
-                        {monthData.isLive ? (
-                          <div className="flex flex-wrap items-center gap-2">
-                            <TypingBadge />
-                            {/* Neutral deadline chip */}
-                            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-secondary text-muted-foreground text-xs font-medium">
-                              <Timer className="w-3.5 h-3.5 shrink-0" />
-                              <span>Награждение 1 июня</span>
-                              <span className="text-foreground font-semibold">· {daysLeft} {daysLeft === 1 ? "день" : daysLeft < 5 ? "дня" : "дней"}</span>
-                            </div>
-                          </div>
-                        ) : (
-                          <Badge variant="outline" className="text-muted-foreground">
-                            Победители объявлены
-                          </Badge>
-                        )}
-                      </div>
-
-                      {/* Awards Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                        {monthData.awards.map((award, awardIndex) => (
-                          <div
-                            key={award.id}
-                            className="animate-in fade-in slide-in-from-bottom-2 h-full"
-                            style={{ animationDelay: `${awardIndex * 50}ms`, animationFillMode: "both" }}
-                          >
-                            <AwardCardComponent award={award} isLive={monthData.isLive} />
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              )
-            })}
+          {/* Page Header */}
+          <div>
+            <h1 className="text-xl sm:text-3xl font-bold text-foreground flex items-center gap-2 sm:gap-3">
+              <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+              <span>Таймлайн конкурса</span>
+            </h1>
+            <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
+              Лучшие идеи по номинациям
+            </p>
           </div>
+
+          {/* Live month banner */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-green-500/30 bg-green-500/5 px-5 py-4">
+            <div className="flex items-center gap-3">
+              {/* Pulsing dot */}
+              <span className="relative flex h-3 w-3 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+              </span>
+              <div>
+                <span className="font-semibold text-foreground text-sm sm:text-base">Текущий этап — Май 2026</span>
+                <span className="text-xs text-muted-foreground block">Результаты предварительные и могут меняться</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-xs text-muted-foreground">Окончательные итоги</span>
+              <Badge className="bg-green-600 hover:bg-green-600 text-white font-semibold text-xs px-3 py-1">
+                1 июня 2026
+              </Badge>
+            </div>
+          </div>
+
+          {/* Current month tables */}
+          {currentCategories.map((category) => (
+            <CategoryTable key={category.name} category={category} />
+          ))}
+
+          {/* Archive */}
+          <div className="pt-2">
+            <h2 className="text-lg font-bold text-foreground mb-4">Прошлые этапы конкурса</h2>
+            <div className="space-y-3">
+              {archiveData.map((archive) => (
+                <ArchiveMonth key={archive.label} archive={archive} />
+              ))}
+            </div>
+          </div>
+
         </div>
-      </div>
+      </TooltipProvider>
     </DashboardLayout>
   )
 }
