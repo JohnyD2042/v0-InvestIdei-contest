@@ -377,8 +377,8 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Призовой фонд</div>
-                  <div className="text-3xl font-bold text-foreground">
-                    {formatCurrency(statsData.prizeFund)} ₽
+                  <div className="text-3xl font-bold text-foreground whitespace-nowrap">
+                    {formatCurrency(statsData.prizeFund)}&nbsp;₽
                   </div>
                 </div>
               </div>
@@ -403,13 +403,13 @@ export default function Dashboard() {
           <div className="absolute right-20 bottom-0 w-48 h-48 bg-violet-500/20 rounded-full translate-y-1/2 pointer-events-none" />
           <div className="absolute left-0 bottom-0 w-32 h-32 bg-violet-500/10 rounded-full translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
-          <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 px-8 py-7 md:px-10 md:py-8">
+          <div className="relative flex flex-col items-center text-center md:flex-row md:items-center md:text-left md:justify-between gap-5 px-6 py-6 md:px-10 md:py-8">
             {/* Left: badge + title */}
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-center md:flex-row md:items-center gap-4">
               <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
                 <Trophy className="w-7 h-7 text-yellow-400" />
               </div>
-              <div>
+              <div className="flex flex-col items-center md:items-start">
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-0.5 text-xs font-semibold text-white/90 uppercase tracking-wide">Для профучастников и блогеров</span>
                 </div>
@@ -420,10 +420,10 @@ export default function Dashboard() {
             </div>
 
             {/* Right: CTA */}
-            <Link href="/about" className="shrink-0">
+            <Link href="/about" className="shrink-0 w-full md:w-auto">
               <Button
                 size="lg"
-                className="gap-2 text-base font-bold px-8 py-6 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-lg shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105"
+                className="w-full md:w-auto gap-2 text-base font-bold px-8 py-6 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-lg shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105"
               >
                 <Rocket className="w-5 h-5" />
                 Подробнее о конкурсе
