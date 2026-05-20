@@ -90,11 +90,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
               {/* CTA Button in mobile menu */}
               <div className="mt-6">
-                <Link href="/about">
+                <a href="https://investidei.ru" target="_blank" rel="noopener noreferrer">
                   <Button className="w-full font-bold bg-violet-700 hover:bg-violet-600 text-white shadow-md shadow-violet-700/30">
                     Принять участие!
                   </Button>
-                </Link>
+                </a>
               </div>
             </SheetContent>
           </Sheet>
@@ -115,14 +115,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         {/* CTA Button - Desktop only */}
-        <Link href="/about" className="hidden md:block">
+        <a href="https://investidei.ru" target="_blank" rel="noopener noreferrer" className="hidden md:block">
           <Button
             size="sm"
             className="font-bold bg-violet-700 hover:bg-violet-600 text-white shadow-md shadow-violet-700/30 hover:shadow-violet-700/50 transition-all duration-200 hover:scale-105 text-sm px-5"
           >
             Принять участие!
           </Button>
-        </Link>
+        </a>
       </header>
 
       <div className="flex">

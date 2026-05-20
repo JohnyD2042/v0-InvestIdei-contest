@@ -418,14 +418,14 @@ export default function Dashboard() {
             </div>
 
             {/* Right: CTA */}
-            <Link href="/about" className="shrink-0 w-full md:w-auto">
+            <a href="https://investidei.ru" target="_blank" rel="noopener noreferrer" className="shrink-0 w-full md:w-auto">
               <Button
                 size="lg"
                 className="w-full md:w-auto text-base font-bold px-8 py-6 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-lg shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105"
               >
                 Подробнее о конкурсе
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
