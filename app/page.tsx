@@ -397,21 +397,21 @@ export default function Dashboard() {
         </Card>
 
         {/* About Contest Banner */}
-        <div className="relative overflow-hidden rounded-xl bg-primary border border-primary/20">
+        <div className="relative overflow-hidden rounded-xl bg-violet-700 border border-violet-600/50">
           {/* Decorative background elements */}
-          <div className="absolute right-0 top-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-          <div className="absolute right-24 bottom-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 pointer-events-none" />
-          <div className="absolute left-1/2 top-0 w-px h-full bg-white/5 pointer-events-none" />
+          <div className="absolute right-0 top-0 w-72 h-72 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+          <div className="absolute right-20 bottom-0 w-48 h-48 bg-violet-500/20 rounded-full translate-y-1/2 pointer-events-none" />
+          <div className="absolute left-0 bottom-0 w-32 h-32 bg-violet-500/10 rounded-full translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
           <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 px-8 py-7 md:px-10 md:py-8">
-            {/* Left: badges + title */}
+            {/* Left: badge + title */}
             <div className="flex items-center gap-4">
               <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
-                <Trophy className="w-7 h-7 text-accent" />
+                <Trophy className="w-7 h-7 text-yellow-400" />
               </div>
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="inline-flex items-center rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-semibold text-accent uppercase tracking-wide">Призовой фонд 5,4 млн ₽</span>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-0.5 text-xs font-semibold text-white/90 uppercase tracking-wide">Для профучастников и блогеров</span>
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-white leading-tight text-balance">
                   Олимпиада Аналитиков 2026
@@ -423,7 +423,7 @@ export default function Dashboard() {
             <Link href="/about" className="shrink-0">
               <Button
                 size="lg"
-                className="gap-2 text-base font-bold px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all duration-200 hover:scale-105"
+                className="gap-2 text-base font-bold px-8 py-6 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-lg shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105"
               >
                 <Rocket className="w-5 h-5" />
                 Подробнее о конкурсе
