@@ -397,38 +397,41 @@ export default function Dashboard() {
         </Card>
 
         {/* About Contest Banner */}
-        <Card className="border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent overflow-hidden">
-          <CardContent className="p-8 md:p-10">
-            <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-8">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                    <Trophy className="w-6 h-6 text-primary" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-foreground">Олимпиада Аналитиков 2026</h2>
-                </div>
-                <p className="text-muted-foreground text-base leading-relaxed max-w-xl">
-                  Крупнейший конкурс инвестиционных идей в России. Призовой фонд 5,4 млн рублей. 
-                  Участвуют ведущие брокеры и финансовые инфлюенсеры страны.
-                </p>
+        <div className="relative overflow-hidden rounded-xl bg-primary border border-primary/20">
+          {/* Decorative background elements */}
+          <div className="absolute right-0 top-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+          <div className="absolute right-24 bottom-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 pointer-events-none" />
+          <div className="absolute left-1/2 top-0 w-px h-full bg-white/5 pointer-events-none" />
+
+          <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 px-8 py-7 md:px-10 md:py-8">
+            {/* Left: badges + title */}
+            <div className="flex items-center gap-4">
+              <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
+                <Trophy className="w-7 h-7 text-accent" />
               </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/about">
-                  <Button size="lg" className="w-full sm:w-auto gap-2 text-base font-semibold px-8 py-6 bg-primary hover:bg-primary/90">
-                    <Rocket className="w-5 h-5" />
-                    Принять участие!
-                  </Button>
-                </Link>
-                <Link href="/about">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2 text-base px-6 py-6">
-                    Подробнее о конкурсе
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="inline-flex items-center rounded-full bg-accent/20 px-2.5 py-0.5 text-xs font-semibold text-accent uppercase tracking-wide">Призовой фонд 5,4 млн ₽</span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold text-white leading-tight text-balance">
+                  Олимпиада Аналитиков 2026
+                </h2>
               </div>
             </div>
-          </CardContent>
-        </Card>
+
+            {/* Right: CTA */}
+            <Link href="/about" className="shrink-0">
+              <Button
+                size="lg"
+                className="gap-2 text-base font-bold px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg shadow-accent/30 hover:shadow-accent/50 transition-all duration-200 hover:scale-105"
+              >
+                <Rocket className="w-5 h-5" />
+                Подробнее о конкурсе
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   )
