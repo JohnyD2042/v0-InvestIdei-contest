@@ -8,13 +8,9 @@ import {
   Palmtree,
   Lightbulb,
   Layers,
-  TrendingUp,
+  Timer,
   Calendar,
-  FileText,
-  ArrowRight,
-  Medal,
   Target,
-  Rocket,
   BarChart2,
   Trophy,
 } from "lucide-react"
@@ -23,91 +19,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { DashboardLayout } from "@/components/dashboard-layout"
-
-const faqItems = [
-  {
-    question: "Кто может участвовать в конкурсе?",
-    answer: "В конкурсе могут участвовать лицензированные брокеры, инвестиционные компании и финансовые инфлюенсеры, зарегистрированные на платформе Invest-idei.ru. Для участия необходимо пройти верификацию и принять условия конкурса.",
-  },
-  {
-    question: "Как подать инвест-идею?",
-    answer: "Идеи подаются через личный кабинет на платформе Invest-idei.ru. Каждая идея должна содержать: базовый актив, целевую цену, горизонт инвестирования и обоснование. Одна организация может подать неограниченное количество идей.",
-  },
-  {
-    question: "Как распределяются награды?",
-    answer: "Победители определяются ежемесячно по итогам закрытых идей. Лучшая идея по акциям получает 500 тыс. ₽, лучшая идея по БПИФ — 350 тыс. ₽, лучшая идея ОТС — 50 тыс. ₽. Оценка производится по соотношению доходность/риск и точности прогноза.",
-  },
-  {
-    question: "Какие критерии оценки идей?",
-    answer: "Идеи оцениваются по следующим критериям: фактическая доходность на момент закрытия, точность целевой цены, качество аналитического обоснования и актуальность идеи на момент подачи. Итоговый балл формируется автоматически на основе рыночных данных.",
-  },
-  {
-    question: "Куда обращаться, если хочу участвовать?",
-    answer: "Для участия в конкурсе свяжитесь с организаторами через раздел «Контакты» на сайте Invest-idei.ru или напишите на почту contest@invest-idei.ru. Наша команда свяжется с вами в течение одного рабочего дня и поможет пройти регистрацию.",
-  },
-  {
-    question: "Когда проходит конкурс?",
-    answer: "Конкурс проходит с 1 апреля по 25 декабря 2026 года. Награждение победителей проводится ежемесячно — 1-го числа каждого месяца по итогам предыдущего периода. Финальная церемония награждения состоится в январе 2027 года.",
-  },
-]
-
-function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  return (
-    <div className="space-y-3 p-4">
-      {faqItems.map((item, index) => {
-        const isOpen = openIndex === index
-        
-        return (
-          <div 
-            key={index}
-            className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-              isOpen 
-                ? "border-transparent bg-gradient-to-r from-fuchsia-500/20 to-pink-500/20 p-[2px]" 
-                : "border-border hover:border-muted-foreground/30"
-            }`}
-          >
-            <div className={`rounded-2xl ${isOpen ? "bg-background" : ""}`}>
-              <button
-                className="w-full flex items-center gap-4 px-5 py-4 text-left cursor-pointer group"
-                onClick={() => setOpenIndex(isOpen ? null : index)}
-                type="button"
-              >
-                <div className={`shrink-0 w-3 h-3 rounded-full transition-all duration-300 ${
-                  isOpen 
-                    ? "bg-gradient-to-br from-fuchsia-500 to-pink-500 w-4 h-4" 
-                    : "bg-muted-foreground/40 group-hover:bg-muted-foreground/60"
-                }`} />
-                <span className="font-medium text-foreground flex-1">{item.question}</span>
-                <div className={`shrink-0 w-5 h-5 flex items-center justify-center transition-all duration-300 ${
-                  isOpen 
-                    ? "text-fuchsia-500 rotate-180" 
-                    : "text-muted-foreground"
-                }`}>
-                  <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                    <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </button>
-              <div className={`grid transition-all duration-300 ease-in-out ${
-                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-              }`}>
-                <div className="overflow-hidden">
-                  <div className="px-5 pb-5 pt-0 pl-17">
-                    <div className="pl-12 text-sm text-muted-foreground leading-relaxed border-l-2 border-fuchsia-500/30">
-                      {item.answer}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
 
 const weeklyIdeasData = [
   { week: "6 апр", brokers: 5, influencers: 3 },
@@ -132,7 +43,7 @@ const statsData = {
   ideasPerDay: 3.5,
   prizesAwarded: 12,
   totalPrizes: 100,
-  prizeFund: 8000000,
+  prizeFund: 5400000,
   prizeAwarded: 900000,
 }
 
@@ -335,19 +246,16 @@ export default function Dashboard() {
             </Card>
           </Link>
 
-          {/* Ideas Per Day */}
+          {/* Days Remaining */}
           <Card className="border-border h-full">
             <CardContent className="p-6 flex flex-col h-full">
-              <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
-                <TrendingUp className="w-6 h-6 text-blue-500" />
+              <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4">
+                <Timer className="w-6 h-6 text-orange-500" />
               </div>
-              <div className="text-3xl font-bold text-foreground">{statsData.ideasPerDay}</div>
-              <div className="text-sm text-muted-foreground mt-1">Идей / день</div>
+              <div className="text-3xl font-bold text-foreground">180</div>
+              <div className="text-sm text-muted-foreground mt-1">Дней впереди</div>
               <div className="mt-auto pt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3 text-blue-500 shrink-0" />
-                  <span className="whitespace-nowrap">Средняя активность</span>
-                </div>
+                <span>12 дней в пути</span>
               </div>
             </CardContent>
           </Card>
@@ -467,8 +375,8 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <div className="text-sm text-muted-foreground">Призовой фонд</div>
-                  <div className="text-3xl font-bold text-foreground">
-                    {formatCurrency(statsData.prizeFund)} ₽
+                  <div className="text-3xl font-bold text-foreground whitespace-nowrap">
+                    {formatCurrency(statsData.prizeFund)}&nbsp;₽
                   </div>
                 </div>
               </div>
@@ -486,16 +394,40 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* FAQ Block */}
-        <Card className="border-border">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-foreground">О конкурсе</CardTitle>
-            <CardDescription>Часто задаваемые вопросы</CardDescription>
-          </CardHeader>
-          <CardContent className="p-0">
-            <FAQ />
-          </CardContent>
-        </Card>
+        {/* About Contest Banner */}
+        <div className="relative overflow-hidden rounded-xl bg-violet-700 border border-violet-600/50">
+          {/* Decorative background elements */}
+          <div className="absolute right-0 top-0 w-72 h-72 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+          <div className="absolute right-20 bottom-0 w-48 h-48 bg-violet-500/20 rounded-full translate-y-1/2 pointer-events-none" />
+          <div className="absolute left-0 bottom-0 w-32 h-32 bg-violet-500/10 rounded-full translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+
+          <div className="relative flex flex-col items-center text-center md:flex-row md:items-center md:text-left md:justify-between gap-5 px-6 py-6 md:px-10 md:py-8">
+            {/* Left: badge + title */}
+            <div className="flex flex-col items-center md:flex-row md:items-center gap-4">
+              <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
+                <Trophy className="w-7 h-7 text-yellow-400" />
+              </div>
+              <div className="flex flex-col items-center md:items-start">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-0.5 text-xs font-semibold text-white/90 uppercase tracking-wide">Для профучастников и блогеров</span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold text-white leading-tight text-balance">
+                  Олимпиада Аналитиков 2026
+                </h2>
+              </div>
+            </div>
+
+            {/* Right: CTA */}
+            <a href="https://investidei.ru" target="_blank" rel="noopener noreferrer" className="shrink-0 w-full md:w-auto">
+              <Button
+                size="lg"
+                className="w-full md:w-auto text-base font-bold px-8 py-6 bg-yellow-400 hover:bg-yellow-300 text-yellow-950 shadow-lg shadow-yellow-400/30 hover:shadow-yellow-400/50 transition-all duration-200 hover:scale-105"
+              >
+                Подробнее о конкурсе
+              </Button>
+            </a>
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   )
