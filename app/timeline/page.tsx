@@ -35,27 +35,27 @@ const categoriesData: Category[] = [
     name: "Лучшие идеи на акции",
     icon: "triangle",
     ideas: [
-      { id: 1, rank: 1, analyst: "VTB Capital", stock: "Яндекс", returnPercent: 24.5, closeDate: "15.05.26", startDate: "10.04.26", status: "closed", link: "#" },
-      { id: 2, rank: 2, analyst: "Sberbank CIB", stock: "Газпром", returnPercent: 19.2, closeDate: "20.05.26", startDate: "18.04.26", status: "active", link: "#" },
-      { id: 3, rank: 3, analyst: "Альфа Капитал", stock: "Лукойл", returnPercent: 15.8, closeDate: "20.05.26", startDate: "22.04.26", status: "active", link: "#" },
+      { id: 1, rank: 1, analyst: "VTB Capital", stock: "Яндекс", returnPercent: 24.5, closeDate: "15.05.26", startDate: "30.04.26", status: "closed", link: "#" },
+      { id: 2, rank: 2, analyst: "Sberbank CIB", stock: "Газпром", returnPercent: 19.2, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
+      { id: 3, rank: 3, analyst: "Альфа Капитал", stock: "Лукойл", returnPercent: 15.8, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
     ],
   },
   {
     name: "Лучшие идеи на БПИФ",
     icon: "butterfly",
     ideas: [
-      { id: 4, rank: 1, analyst: "Тинькофф Инвестиции", stock: "TMOS", returnPercent: 12.3, closeDate: "12.05.26", startDate: "05.04.26", status: "closed", link: "#" },
-      { id: 5, rank: 2, analyst: "БКС Мир Инвестиций", stock: "SBMX", returnPercent: 9.7, closeDate: "20.05.26", startDate: "08.04.26", status: "active", link: "#" },
-      { id: 6, rank: 3, analyst: "Финам", stock: "FXRL", returnPercent: 7.2, closeDate: "20.05.26", startDate: "15.04.26", status: "active", link: "#" },
+      { id: 4, rank: 1, analyst: "Тинькофф Инвестиции", stock: "TMOS", returnPercent: 12.3, closeDate: "12.05.26", startDate: "30.04.26", status: "closed", link: "#" },
+      { id: 5, rank: 2, analyst: "БКС Мир Инвестиций", stock: "SBMX", returnPercent: 9.7, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
+      { id: 6, rank: 3, analyst: "Финам", stock: "FXRL", returnPercent: 7.2, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
     ],
   },
   {
     name: "Лучшие идеи на ОТС",
     icon: "circle",
     ideas: [
-      { id: 7, rank: 1, analyst: "Ренессанс Капитал", stock: "Делимобиль", returnPercent: 31.4, closeDate: "10.05.26", startDate: "01.04.26", status: "closed", link: "#" },
-      { id: 8, rank: 2, analyst: "Газпромбанк", stock: "Самокат", returnPercent: 18.9, closeDate: "20.05.26", startDate: "12.04.26", status: "active", link: "#" },
-      { id: 9, rank: 3, analyst: "Атон", stock: "Вкусвилл", returnPercent: 14.2, closeDate: "20.05.26", startDate: "20.04.26", status: "active", link: "#" },
+      { id: 7, rank: 1, analyst: "Ренессанс Капитал", stock: "Делимобиль", returnPercent: 31.4, closeDate: "10.05.26", startDate: "30.04.26", status: "closed", link: "#" },
+      { id: 8, rank: 2, analyst: "Газпромбанк", stock: "Самокат", returnPercent: 18.9, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
+      { id: 9, rank: 3, analyst: "Атон", stock: "Вкусвилл", returnPercent: 14.2, closeDate: "20.05.26", startDate: "30.04.26", status: "active", link: "#" },
     ],
   },
 ]
@@ -120,7 +120,7 @@ function StatusBadge({ status }: { status: "active" | "closed" }) {
   }
   return (
     <Badge variant="secondary" className="bg-muted text-muted-foreground hover:bg-muted font-medium text-xs">
-      Закрыта
+      Завершена
     </Badge>
   )
 }
