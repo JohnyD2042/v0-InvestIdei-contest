@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: Home },
-  { name: "Рейтинг", href: "/rating", icon: Trophy },
+  { name: "Обзор", href: "/", icon: Home },
+  { name: "Пьедестал", href: "/rating", icon: Trophy },
   { name: "Таймлайн", href: "/timeline", icon: Clock },
   { name: "Покрытие", href: "/coverage", icon: Layers },
 ]
@@ -25,7 +25,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const getCurrentPageName = () => {
     const current = navigation.find((item) => item.href === pathname)
-    return current?.name || "Dashboard"
+    return current?.name || "Обзор"
   }
 
   const SidebarContent = () => (
