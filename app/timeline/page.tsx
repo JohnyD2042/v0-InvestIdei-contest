@@ -41,7 +41,7 @@ interface MonthArchive {
 // ---- CURRENT MONTH DATA (Май 2026) ----
 const currentCategories: Category[] = [
   {
-    name: "Лучшие идеи на акции",
+    name: "Номинация «Лучшая идея на акции»",
     icon: "triangle",
     ideas: [
       { id: 1, rank: 1, analyst: "VTB Capital", stock: "Яндекс", returnPercent: 24.5, closeDate: "15.05.26", startDate: "07.04.26", status: "closed", link: "#" },
@@ -50,7 +50,7 @@ const currentCategories: Category[] = [
     ],
   },
   {
-    name: "Лучшие идеи на БПИФ",
+    name: "Номинация «Лучшая идея на БПИФ»",
     icon: "butterfly",
     ideas: [
       { id: 4, rank: 1, analyst: "Тинькофф Инвестиции", stock: "TMOS", returnPercent: 12.3, closeDate: "12.05.26", startDate: "30.04.26", status: "closed", link: "#" },
@@ -59,7 +59,7 @@ const currentCategories: Category[] = [
     ],
   },
   {
-    name: "Лучшие идеи на ОТС",
+    name: "Номинация «Лучшая идея на ОТС»",
     icon: "circle",
     ideas: [
       { id: 7, rank: 1, analyst: "Ренессанс Капитал", stock: "Делимобиль", returnPercent: 31.4, closeDate: "10.05.26", startDate: "30.04.26", status: "closed", link: "#" },
@@ -77,7 +77,7 @@ const archiveData: MonthArchive[] = [
     finalDate: "01.05.26",
     categories: [
       {
-        name: "Лучшие идеи на акции",
+        name: "Номинация «Лучшая идея на акции»",
         icon: "triangle",
         ideas: [
           { id: 101, rank: 1, analyst: "Финам", stock: "Сбербанк", returnPercent: 18.3, closeDate: "28.04.26", startDate: "01.04.26", status: "closed", link: "#" },
@@ -86,7 +86,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Лучшие идеи на БПИФ",
+        name: "Номинация «Лучшая идея на БПИФ»",
         icon: "butterfly",
         ideas: [
           { id: 104, rank: 1, analyst: "Sberbank CIB", stock: "SBRB", returnPercent: 8.1, closeDate: "29.04.26", startDate: "02.04.26", status: "closed", link: "#" },
@@ -95,7 +95,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Лучшие идеи на ОТС",
+        name: "Номинация «Лучшая идея на ОТС»",
         icon: "circle",
         ideas: [
           { id: 107, rank: 1, analyst: "БКС Мир Инвестиций", stock: "Whoosh", returnPercent: 22.6, closeDate: "30.04.26", startDate: "01.04.26", status: "closed", link: "#" },
@@ -111,7 +111,7 @@ const archiveData: MonthArchive[] = [
     finalDate: "01.04.26",
     categories: [
       {
-        name: "Лучшие идеи на акции",
+        name: "Номинация «Лучшая идея на акции»",
         icon: "triangle",
         ideas: [
           { id: 201, rank: 1, analyst: "Газпромбанк", stock: "OZON", returnPercent: 32.1, closeDate: "27.03.26", startDate: "01.03.26", status: "closed", link: "#" },
@@ -120,7 +120,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Лучшие идеи на БПИФ",
+        name: "Номинация «Лучшая идея на БПИФ»",
         icon: "butterfly",
         ideas: [
           { id: 204, rank: 1, analyst: "Финам", stock: "FXRL", returnPercent: 11.2, closeDate: "29.03.26", startDate: "02.03.26", status: "closed", link: "#" },
@@ -129,7 +129,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Лучшие идеи на ОТС",
+        name: "Номинация «Лучшая идея на ОТС»",
         icon: "circle",
         ideas: [
           { id: 207, rank: 1, analyst: "Тинькофф Инвестиции", stock: "Самокат", returnPercent: 28.5, closeDate: "30.03.26", startDate: "01.03.26", status: "closed", link: "#" },
@@ -208,10 +208,7 @@ function CategoryTable({ category, compact = false }: { category: Category; comp
     <Card className="border-border">
       <CardContent className="p-0">
         <div className={`px-4 py-3 border-b border-border ${compact ? "bg-secondary/20" : "bg-secondary/30"}`}>
-          <div className="flex items-center gap-2">
-            <CategoryIcon icon={category.icon} size={compact ? "sm" : "md"} />
-            <h3 className={`font-bold text-foreground ${compact ? "text-sm" : ""}`}>{category.name}</h3>
-          </div>
+          <h3 className={`font-bold text-foreground ${compact ? "text-sm" : ""}`}>{category.name}</h3>
         </div>
 
         {/* Desktop */}
@@ -285,7 +282,17 @@ function CategoryTable({ category, compact = false }: { category: Category; comp
                       <div className="text-xs text-muted-foreground">{idea.stock}</div>
                     </a>
                   </TableCell>
-                  <TableCell><span className="text-green-600 font-semibold">+{idea.returnPercent}%</span></TableCell>
+                  <TableCell>
+                    <span className="text-green-600 font-semibold inline-flex items-center gap-1.5">
+                      +{idea.returnPercent}%
+                      {idea.status === "active" && (
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                        </span>
+                      )}
+                    </span>
+                  </TableCell>
                   <TableCell><span className="text-sm text-foreground">{idea.closeDate}</span></TableCell>
                   <TableCell><span className="text-sm text-muted-foreground">{idea.startDate}</span></TableCell>
                   <TableCell><StatusBadge status={idea.status} /></TableCell>
@@ -310,7 +317,15 @@ function CategoryTable({ category, compact = false }: { category: Category; comp
               <div className="grid grid-cols-3 gap-3 text-sm">
                 <div>
                   <span className="text-muted-foreground text-xs block">Доходность</span>
-                  <span className="text-green-600 font-semibold">+{idea.returnPercent}%</span>
+                  <span className="text-green-600 font-semibold inline-flex items-center gap-1.5">
+                    +{idea.returnPercent}%
+                    {idea.status === "active" && (
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                      </span>
+                    )}
+                  </span>
                 </div>
                 <div>
                   <span className="text-muted-foreground text-xs block">Старт</span>
