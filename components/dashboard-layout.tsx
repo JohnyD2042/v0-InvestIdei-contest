@@ -54,7 +54,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Competition Info Card */}
       <div className="mt-8 p-4 bg-secondary rounded-xl">
         <div className="text-xs text-muted-foreground mb-2">Конкурс активен</div>
-        <div className="text-sm font-medium text-foreground mb-1">1 апреля - 25 декабря</div>
+        <div className="text-sm font-medium text-foreground mb-1">25 мая - 1 декабря</div>
         <div className="text-xs text-muted-foreground">2026 год</div>
         <div className="mt-3 flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
