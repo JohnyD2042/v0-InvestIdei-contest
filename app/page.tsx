@@ -21,14 +21,19 @@ import { Progress } from "@/components/ui/progress"
 import { DashboardLayout } from "@/components/dashboard-layout"
 
 const weeklyIdeasData = [
-  { week: "6 апр", brokers: 5, influencers: 3 },
-  { week: "13 апр", brokers: 7, influencers: 5 },
-  { week: "20 апр", brokers: 9, influencers: 6 },
-  { week: "27 апр", brokers: 6, influencers: 4 },
-  { week: "4 мая", brokers: 11, influencers: 7 },
-  { week: "11 мая", brokers: 8, influencers: 6 },
-  { week: "18 мая", brokers: 5, influencers: 4 },
-  { week: "25 мая", brokers: 4, influencers: 2 },
+  { week: "9 мая", brokers: 2, influencers: 1 },
+  { week: "10 мая", brokers: 3, influencers: 2 },
+  { week: "11 мая", brokers: 1, influencers: 1 },
+  { week: "12 мая", brokers: 4, influencers: 2 },
+  { week: "13 мая", brokers: 2, influencers: 1 },
+  { week: "14 мая", brokers: 0, influencers: 0 },
+  { week: "15 мая", brokers: 0, influencers: 0 },
+  { week: "16 мая", brokers: 3, influencers: 2 },
+  { week: "17 мая", brokers: 2, influencers: 1 },
+  { week: "18 мая", brokers: 1, influencers: 0 },
+  { week: "19 мая", brokers: 4, influencers: 3 },
+  { week: "20 мая", brokers: 3, influencers: 2 },
+  { week: "21 мая", brokers: 2, influencers: 1 },
 ]
 
 const statsData = {
@@ -264,7 +269,7 @@ export default function Dashboard() {
         {/* Weekly Ideas Chart - Full Width */}
         <Card className="border-border">
           <CardHeader>
-            <CardTitle className="text-lg">Динамика идей по неделям</CardTitle>
+            <CardTitle className="text-lg">Динамика идей по дням</CardTitle>
             <CardDescription>Количество новых инвестиционных идей</CardDescription>
           </CardHeader>
           <CardContent>

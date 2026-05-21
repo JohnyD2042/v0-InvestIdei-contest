@@ -407,14 +407,14 @@ export default function TimelinePage() {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
               </span>
               <div>
-                <span className="font-semibold text-foreground text-sm sm:text-base">Текущий этап — Май 2026</span>
+                <span className="font-semibold text-foreground text-sm sm:text-base">Текущий этап — Июнь 2026</span>
                 <span className="text-xs text-muted-foreground block">Результаты предварительные и могут меняться</span>
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
               <span className="text-xs text-muted-foreground">Окончательные итоги</span>
               <Badge className="bg-green-600 hover:bg-green-600 text-white font-semibold text-xs px-3 py-1">
-                1 июня 2026
+                1 июля 2026
               </Badge>
             </div>
           </div>
