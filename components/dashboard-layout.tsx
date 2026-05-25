@@ -80,7 +80,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <SheetContent side="left" className="w-72 p-4">
               <div className="mb-6">
                 <span className="font-bold text-foreground text-base block">Конкурс аналитиков 2026</span>
-                <span className="text-xs text-muted-foreground block">Проект Invest-idei.ru при партнерстве с ПАО Московская Биржа</span>
               </div>
               <SidebarContent />
 
@@ -98,7 +97,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <div>
             <span className="hidden sm:block font-bold text-foreground text-sm">Конкурс аналитиков 2026</span>
             <span className="sm:hidden font-bold text-foreground text-sm">Конкурс 2026</span>
-            <span className="text-xs text-muted-foreground block">Проект Invest-idei.ru при партнерстве с ПАО Московская Биржа</span>
           </div>
           <div className="h-6 w-px bg-border mx-2 hidden md:block" />
           <div className="text-sm text-muted-foreground hidden md:block">
