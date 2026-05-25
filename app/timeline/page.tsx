@@ -50,7 +50,7 @@ const currentCategories: Category[] = [
     ],
   },
   {
-    name: "Номинация «Лучшая идея на БПИФ»",
+    name: "Номинация «Лучшая идея на рынке коллективных инвестиций»",
     icon: "butterfly",
     ideas: [
       { id: 4, rank: 1, analyst: "Тинькофф Инвестиции", stock: "TMOS", returnPercent: 12.3, closeDate: "12.05.26", startDate: "30.04.26", status: "closed", link: "#" },
@@ -59,7 +59,7 @@ const currentCategories: Category[] = [
     ],
   },
   {
-    name: "Номинация «Лучшая идея на ОТС»",
+    name: "Номинация «Лучшая идея на внебиржевом рынке»",
     icon: "circle",
     ideas: [
       { id: 7, rank: 1, analyst: "Ренессанс Капитал", stock: "Делимобиль", returnPercent: 31.4, closeDate: "10.05.26", startDate: "30.04.26", status: "closed", link: "#" },
@@ -86,7 +86,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Номинация «Лучшая идея на БПИФ»",
+        name: "Номинация «Лучшая идея на рынке коллективных инвестиций»",
         icon: "butterfly",
         ideas: [
           { id: 104, rank: 1, analyst: "Sberbank CIB", stock: "SBRB", returnPercent: 8.1, closeDate: "29.04.26", startDate: "02.04.26", status: "closed", link: "#" },
@@ -95,7 +95,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Номинация «Лучшая идея на ОТС»",
+        name: "Номинация «Лучшая идея на внебиржевом рынке»",
         icon: "circle",
         ideas: [
           { id: 107, rank: 1, analyst: "БКС Мир Инвестиций", stock: "Whoosh", returnPercent: 22.6, closeDate: "30.04.26", startDate: "01.04.26", status: "closed", link: "#" },
@@ -120,7 +120,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Номинация «Лучшая идея на БПИФ»",
+        name: "Номинация «Лучшая идея на рынке коллективных инвестиций»",
         icon: "butterfly",
         ideas: [
           { id: 204, rank: 1, analyst: "Финам", stock: "FXRL", returnPercent: 11.2, closeDate: "29.03.26", startDate: "02.03.26", status: "closed", link: "#" },
@@ -129,7 +129,7 @@ const archiveData: MonthArchive[] = [
         ],
       },
       {
-        name: "Номинация «Лучшая идея на ОТС»",
+        name: "Номинация «Лучшая идея на внебиржевом рынке»",
         icon: "circle",
         ideas: [
           { id: 207, rank: 1, analyst: "Тинькофф Инвестиции", stock: "Самокат", returnPercent: 28.5, closeDate: "30.03.26", startDate: "01.03.26", status: "closed", link: "#" },
