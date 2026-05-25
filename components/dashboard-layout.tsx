@@ -78,13 +78,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-72 p-4">
-              <div className="flex items-center gap-3 mb-6">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo.png" alt="Logo" width={40} height={40} className="rounded-lg shrink-0" />
-                <div>
-                  <span className="font-bold text-foreground text-base">Олимпиада Аналитиков 2026</span>
-                  <span className="text-xs text-muted-foreground block">Конкурс инвест-идей</span>
-                </div>
+              <div className="mb-6">
+                <span className="font-bold text-foreground text-base block">Конкурс аналитиков 2026</span>
               </div>
               <SidebarContent />
 
@@ -99,14 +94,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </SheetContent>
           </Sheet>
 
-          <div className="flex items-center gap-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="Logo" width={40} height={40} className="rounded-lg shrink-0" />
-            <div>
-              <span className="hidden sm:block font-bold text-foreground text-sm">Олимпиада Аналитиков 2026</span>
-              <span className="sm:hidden font-bold text-foreground text-sm">ОлА 2026</span>
-              <span className="text-xs text-muted-foreground block">Конкурс инвест-идей</span>
-            </div>
+          <div>
+            <span className="hidden sm:block font-bold text-foreground text-sm">Конкурс аналитиков 2026</span>
+            <span className="sm:hidden font-bold text-foreground text-sm">Конкурс 2026</span>
           </div>
           <div className="h-6 w-px bg-border mx-2 hidden md:block" />
           <div className="text-sm text-muted-foreground hidden md:block">

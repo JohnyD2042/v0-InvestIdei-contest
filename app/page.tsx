@@ -173,7 +173,7 @@ export default function Dashboard() {
         {/* Header */}
         <div>
           <h1 className="text-xl sm:text-3xl font-bold text-foreground text-balance">
-            Олимпиада Аналитиков 2026
+            Конкурс аналитиков 2026
           </h1>
           <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base text-pretty">
             Сделаем финансовую аналитику великой снова
@@ -325,7 +325,7 @@ export default function Dashboard() {
                     <path d="M 18 78 Q 18 42 46 30 L 84 12 Q 104 2 124 20 L 256 148 L 388 20 Q 408 2 428 12 L 466 30 Q 494 42 494 78 L 494 434 Q 494 470 466 482 L 428 500 Q 408 510 388 492 L 256 364 L 124 492 Q 104 510 84 500 L 46 482 Q 18 470 18 434 Z" fill="url(#gradBpif)"/>
                   </svg>
                   <div>
-                    <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея по БПИФ</h3>
+                    <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея на рынке коллективных инвестиций</h3>
                     <div className="text-xl font-bold text-fuchsia-400 whitespace-nowrap">
                       350 тыс. ₽
                     </div>
@@ -347,7 +347,7 @@ export default function Dashboard() {
                     <circle cx="256" cy="256" r="256" fill="url(#gradCircle)"/>
                   </svg>
                   <div>
-                    <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея ОТС</h3>
+                    <h3 className="font-medium text-foreground mb-1 text-lg">Лучшая идея на внебиржевом рынке</h3>
                     <div className="text-xl font-bold text-orange-400 whitespace-nowrap">
                       50 тыс. ₽
                     </div>
@@ -417,7 +417,7 @@ export default function Dashboard() {
                   <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-0.5 text-xs font-semibold text-white/90 uppercase tracking-wide">Для профучастников и блогеров</span>
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-white leading-tight text-balance">
-                  Олимпиада Аналитиков 2026
+                  Открытый конкурс аналитики
                 </h2>
               </div>
             </div>
