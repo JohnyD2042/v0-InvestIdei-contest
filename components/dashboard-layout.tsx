@@ -82,7 +82,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/logo.png" alt="Logo" width={40} height={40} className="rounded-lg shrink-0" />
                 <div>
-                  <span className="font-bold text-foreground text-base">Олимпиада Аналитиков 2026</span>
+                  <span className="font-bold text-foreground text-base">Конкурс аналитиков 2026</span>
                   <span className="text-xs text-muted-foreground block">Конкурс инвест-идей</span>
                 </div>
               </div>
@@ -103,8 +103,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.png" alt="Logo" width={40} height={40} className="rounded-lg shrink-0" />
             <div>
-              <span className="hidden sm:block font-bold text-foreground text-sm">Олимпиада Аналитиков 2026</span>
-              <span className="sm:hidden font-bold text-foreground text-sm">ОлА 2026</span>
+              <span className="hidden sm:block font-bold text-foreground text-sm">Конкурс аналитиков 2026</span>
+              <span className="sm:hidden font-bold text-foreground text-sm">Конкурс 2026</span>
               <span className="text-xs text-muted-foreground block">Конкурс инвест-идей</span>
             </div>
           </div>
